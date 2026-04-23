@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RŪḤ TEMPLE — A Fragrance of Soul, Memory, and Warmth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #EFE7DA;
+    --sand: #C4AA82;
+    --tan: #A49070;
+    --earth: #6D5840;
+    --dark: #3A3028;
+    --darker: #1E1812;
+    --deepest: #0F0D0A;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deepest);
+    color: var(--ivory);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* GRAIN OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.035;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  /* CUSTOM CURSOR */
+  body { cursor: none; }
+  .cursor {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: var(--sand);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, opacity 0.3s;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(196,170,130,0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.25s ease, width 0.3s, height 0.3s, opacity 0.3s;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 32px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mix-blend-mode: normal;
+    background: linear-gradient(to bottom, rgba(15,13,10,0.8) 0%, transparent 100%);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant SC', serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: var(--ivory);
+    text-decoration: none;
+    opacity: 0;
+    animation: fadeIn 1.5s ease 2s forwards;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 48px;
+    list-style: none;
+    opacity: 0;
+    animation: fadeIn 1.5s ease 2.2s forwards;
+  }
+
+  .nav-links a {
+    font-family: 'Cormorant SC', serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: var(--tan);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.4s;
+  }
+
+  .nav-links a:hover { color: var(--ivory); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 60%, rgba(109,88,64,0.25) 0%, rgba(58,48,40,0.15) 40%, transparent 70%),
+                radial-gradient(ellipse at 20% 80%, rgba(196,170,130,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(164,144,112,0.06) 0%, transparent 50%);
+  }
+
+  .hero-smoke {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(109,88,64,0.2) 0%, transparent 60%);
+    animation: smokeRise 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes smokeRise {
+    0% { transform: translateY(0) scale(1); opacity: 0.6; }
+    100% { transform: translateY(-30px) scale(1.05); opacity: 1; }
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Cormorant SC', serif;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    color: var(--sand);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.5s forwards;
+    margin-bottom: 32px;
+  }
+
+  .hero-logo {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(72px, 14vw, 160px);
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    line-height: 0.9;
+    color: var(--ivory);
+    opacity: 0;
+    animation: fadeUp 1.4s ease 0.8s forwards;
+    position: relative;
+  }
+
+  .hero-logo::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--sand);
+    margin: 24px auto 0;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.8s forwards;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(11px, 1.5vw, 14px);
+    letter-spacing: 0.45em;
+    color: var(--sand);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 1.2s forwards;
+    margin-top: 28px;
+  }
+
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(14px, 2vw, 18px);
+    font-weight: 300;
+    color: var(--tan);
+    letter-spacing: 0.05em;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 1.5s forwards;
+    margin-top: 20px;
+  }
+
+  .hero-cta {
+    margin-top: 56px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 1.8s forwards;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    font-family: 'Cormorant SC', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    border: 1px solid rgba(196,170,130,0.4);
+    padding: 18px 48px;
+    text-decoration: none;
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(196,170,130,0.08);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+  }
+
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary:hover { border-color: rgba(196,170,130,0.8); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeIn 1s ease 2.5s forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-scroll span {
+    font-family: 'Cormorant SC', serif;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: var(--earth);
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--earth), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(0.7); }
+  }
+
+  /* SECTIONS */
+  section { position: relative; }
+
+  /* MARQUEE DIVIDER */
+  .marquee-wrap {
+    overflow: hidden;
+    border-top: 1px solid rgba(109,88,64,0.25);
+    border-bottom: 1px solid rgba(109,88,64,0.25);
+    padding: 20px 0;
+    background: rgba(15,13,10,0.5);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    white-space: nowrap;
+    animation: marquee 30s linear infinite;
+  }
+
+  .marquee-item {
+    font-family: 'Cormorant SC', serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--earth);
+    text-transform: uppercase;
+    padding: 0 48px;
+  }
+
+  .marquee-dot {
+    color: var(--sand);
+    padding: 0 12px;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* PURPOSE SECTION */
+  .purpose {
+    padding: 160px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 120px;
+    align-items: center;
+  }
+
+  .purpose-left {
+    position: relative;
+  }
+
+  .purpose-number {
+    font-family: 'Cormorant SC', serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--earth);
+    margin-bottom: 40px;
+  }
+
+  .purpose-headline {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--ivory);
+    margin-bottom: 40px;
+  }
+
+  .purpose-headline em {
+    font-style: italic;
+    color: var(--sand);
+  }
+
+  .purpose-body {
+    font-size: clamp(15px, 1.5vw, 18px);
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--tan);
+    letter-spacing: 0.02em;
+  }
+
+  .purpose-right {
+    position: relative;
+  }
+
+  .purpose-quote {
+    border-left: 1px solid rgba(196,170,130,0.3);
+    padding-left: 40px;
+  }
+
+  .purpose-quote blockquote {
+    font-style: italic;
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--ivory);
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+  }
+
+  .purpose-quote cite {
+    font-family: 'Cormorant SC', serif;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    color: var(--earth);
+    font-style: normal;
+    text-transform: uppercase;
+  }
+
+  /* BOTTLE SECTION */
+  .bottle-section {
+    padding: 80px 0 160px;
+    background: linear-gradient(to bottom, var(--deepest), var(--darker), var(--deepest));
+    overflow: hidden;
+  }
+
+  .bottle-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .bottle-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 600px;
+  }
+
+  /* SVG BOTTLE */
+  .bottle-svg-wrap {
+    position: relative;
+    width: 280px;
+    height: 420px;
+    filter: drop-shadow(0 40px 80px rgba(109,88,64,0.4)) drop-shadow(0 0 120px rgba(196,170,130,0.1));
+    animation: bottleFloat 6s ease-in-out infinite;
+  }
+
+  @keyframes bottleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+  }
+
+  .bottle-glow {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 40px;
+    background: radial-gradient(ellipse, rgba(196,170,130,0.25) 0%, transparent 70%);
+    animation: bottleFloat 6s ease-in-out infinite;
+    filter: blur(8px);
+  }
+
+  .bottle-info {
+    position: relative;
+    z-index: 2;
+  }
+
+  .bottle-label {
+    font-family: 'Cormorant SC', serif;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    color: var(--earth);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .bottle-title {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 1.2;
+    margin-bottom: 32px;
+  }
+
+  .bottle-description {
+    font-size: clamp(14px, 1.4vw, 17px);
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--tan);
+    margin-bottom: 48px;
+    letter-spacing: 0.02em;
+  }
+
+  .bottle-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid rgba(109,88,64,0.3);
+  }
+
+  .spec-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(109,88,64,0.15);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+
+  .spec-label {
+    font-family: 'Cormorant SC', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--earth);
+    text-transform: uppercase;
+  }
+
+  .spec-value {
+    color: var(--ivory);
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  /* SCENT SECTION */
+  .scent-section {
+    padding: 160px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .section-eyebrow {
+    font-family: 'Cormorant SC', serif;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    color: var(--earth);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 1.1;
+    margin-bottom: 80px;
+  }
+
+  .scent-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 80px;
+  }
+
+  .scent-card {
+    position: relative;
+    padding: 64px 40px;
+    background: rgba(30,24,18,0.6);
+    border: 1px solid rgba(109,88,64,0.2);
+    transition: all 0.5s ease;
+    overflow: hidden;
+  }
+
+  .scent-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(196,170,130,0.05) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
+  .scent-card:hover::before { opacity: 1; }
+  .scent-card:hover { border-color: rgba(196,170,130,0.35); }
+
+  .scent-icon {
+    font-size: 32px;
+    margin-bottom: 24px;
+    opacity: 0.6;
+  }
+
+  .scent-name {
+    font-family: 'Cormorant SC', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ivory);
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+  }
+
+  .scent-desc {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--tan);
+    font-style: italic;
+  }
+
+  .scent-notes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 48px;
+  }
+
+  .note-pill {
+    font-family: 'Cormorant SC', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--sand);
+    border: 1px solid rgba(196,170,130,0.25);
+    padding: 10px 24px;
+    text-transform: uppercase;
+    transition: all 0.4s;
+  }
+
+  .note-pill:hover {
+    background: rgba(196,170,130,0.08);
+    border-color: rgba(196,170,130,0.5);
+  }
+
+  /* RITUAL SECTION */
+  .ritual-section {
+    position: relative;
+    padding: 160px 0;
+    background: linear-gradient(to bottom, var(--deepest), rgba(30,24,18,0.8), var(--deepest));
+    overflow: hidden;
+  }
+
+  .ritual-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(120px, 20vw, 280px);
+    font-weight: 300;
+    color: rgba(109,88,64,0.04);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: 0.1em;
+  }
+
+  .ritual-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ritual-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 80px;
+    margin-top: 80px;
+  }
+
+  .ritual-step {
+    text-align: left;
+    position: relative;
+    padding-top: 40px;
+  }
+
+  .ritual-step::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 1px;
+    background: var(--sand);
+  }
+
+  .ritual-num {
+    font-family: 'Cormorant SC', serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--earth);
+    margin-bottom: 24px;
+  }
+
+  .ritual-title {
+    font-family: 'Cormorant SC', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ivory);
+    margin-bottom: 20px;
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+  }
+
+  .ritual-text {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--tan);
+    font-style: italic;
+  }
+
+  /* POEM SECTION */
+  .poem-section {
+    padding: 160px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .poem-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 50%, rgba(109,88,64,0.12) 0%, transparent 65%);
+  }
+
+  .poem-papyrus {
+    position: relative;
+    z-index: 2;
+    max-width: 560px;
+    text-align: center;
+    padding: 80px 60px;
+    background: rgba(196,170,130,0.04);
+    border: 1px solid rgba(196,170,130,0.15);
+  }
+
+  .poem-papyrus::before,
+  .poem-papyrus::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 48px;
+    background: rgba(196,170,130,0.3);
+  }
+
+  .poem-papyrus::before { top: -48px; }
+  .poem-papyrus::after { bottom: -48px; }
+
+  .poem-brand {
+    font-family: 'Cormorant SC', serif;
+    font-size: 14px;
+    letter-spacing: 0.4em;
+    color: var(--sand);
+    margin-bottom: 48px;
+    text-transform: uppercase;
+  }
+
+  .poem-text {
+    font-style: italic;
+    font-size: clamp(16px, 1.8vw, 20px);
+    font-weight: 300;
+    line-height: 2;
+    color: var(--ivory);
+    letter-spacing: 0.02em;
+  }
+
+  .poem-text p {
+    margin-bottom: 8px;
+  }
+
+  /* PACKAGING SECTION */
+  .packaging-section {
+    padding: 120px 60px 160px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .packaging-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .packaging-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+  }
+
+  .pkg-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    background: rgba(20,16,12,0.8);
+    border: 1px solid rgba(109,88,64,0.2);
+  }
+
+  .pkg-card-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px;
+    background: linear-gradient(to top, rgba(15,13,10,0.95) 0%, rgba(15,13,10,0.3) 50%, transparent 100%);
+  }
+
+  .pkg-visual {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pkg-label {
+    font-family: 'Cormorant SC', serif;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: var(--earth);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .pkg-title {
+    font-family: 'Cormorant SC', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ivory);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .pkg-desc {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--tan);
+    font-style: italic;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    padding: 160px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(109,88,64,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-headline {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(36px, 5vw, 68px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ivory);
+    margin-bottom: 24px;
+  }
+
+  .cta-sub {
+    font-size: clamp(15px, 1.6vw, 18px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--tan);
+    letter-spacing: 0.03em;
+    margin-bottom: 56px;
+    line-height: 1.7;
+  }
+
+  .cta-price {
+    font-family: 'Cormorant SC', serif;
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    color: var(--sand);
+    margin-bottom: 48px;
+    text-transform: uppercase;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    font-family: 'Cormorant SC', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--tan);
+    padding: 18px 40px;
+    text-decoration: none;
+    transition: color 0.4s;
+    border-bottom: 1px solid rgba(196,170,130,0.2);
+  }
+
+  .btn-ghost:hover { color: var(--ivory); border-color: rgba(196,170,130,0.5); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(109,88,64,0.2);
+    padding: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant SC', serif;
+    font-size: 16px;
+    letter-spacing: 0.3em;
+    color: var(--ivory);
+  }
+
+  .footer-tagline {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--earth);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-family: 'Cormorant SC', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--earth);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--sand); }
+
+  /* SCROLL REVEALS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
+  .reveal-delay-4 { transition-delay: 0.6s; }
+
+  /* KEYFRAMES */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 24px 30px; }
+    .nav-links { display: none; }
+    .purpose { grid-template-columns: 1fr; gap: 60px; padding: 100px 30px; }
+    .bottle-inner { grid-template-columns: 1fr; padding: 0 30px; }
+    .bottle-visual { height: 360px; }
+    .scent-grid { grid-template-columns: 1fr; gap: 2px; }
+    .ritual-steps { grid-template-columns: 1fr; gap: 48px; }
+    .packaging-grid { grid-template-columns: 1fr; }
+    .scent-section, .ritual-inner, .poem-section, .cta-section, .packaging-section { padding-left: 30px; padding-right: 30px; }
+    footer { flex-direction: column; gap: 32px; text-align: center; padding: 40px 30px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">RŪḤ</a>
+  <ul class="nav-links">
+    <li><a href="#scent">The Scent</a></li>
+    <li><a href="#bottle">The Bottle</a></li>
+    <li><a href="#ritual">The Ritual</a></li>
+    <li><a href="#acquire">Acquire</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-smoke"></div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Origine — The First</p>
+    <h1 class="hero-logo">RŪḤ</h1>
+    <p class="hero-subtitle">Temple &nbsp;·&nbsp; Fragrance Oil</p>
+    <p class="hero-tagline">A fragrance of soul, memory, and warmth</p>
+    <div class="hero-cta">
+      <a href="#acquire" class="btn-primary">Acquire — $200</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Descend</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Soul</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Memory</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Warmth</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Ritual</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">RŪḤ Temple</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Origine</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Ancient</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Presence</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Soul</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Memory</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Warmth</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Ritual</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">RŪḤ Temple</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Origine</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Ancient</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Presence</span><span class="marquee-dot">·</span>
+  </div>
+</div>
+
+<!-- PURPOSE -->
+<section>
+  <div class="purpose">
+    <div class="purpose-left reveal">
+      <p class="purpose-number">01 — Purpose</p>
+      <h2 class="purpose-headline">Fragrance became something<br>we wear <em>without feeling.</em></h2>
+      <p class="purpose-body">Across ancient cultures — Egypt, Arabia, Persia — scent was never casual. It marked ceremony, love, mourning, and prayer. It was the invisible layer between the human and the sacred.<br><br>Somewhere along the way, it became a marketing decision. A bottle on a shelf. A logo on skin.<br><br>RŪḤ exists to reverse that shift.</p>
+    </div>
+    <div class="purpose-right reveal reveal-delay-2">
+      <div class="purpose-quote">
+        <blockquote>"This brand is not just fragrance.<br>It is a feeling you wear."</blockquote>
+        <cite>RŪḤ — Means Soul in Arabic</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOTTLE SECTION -->
+<section class="bottle-section" id="bottle">
+  <div class="bottle-inner">
+    <div class="bottle-visual reveal">
+
+      <!-- SVG BOTTLE ILLUSTRATION -->
+      <div style="position:relative;">
+        <div class="bottle-glow"></div>
+        <svg class="bottle-svg-wrap" viewBox="0 0 280 420" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="stoneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#C4AA82;stop-opacity:1" />
+              <stop offset="35%" style="stop-color:#A49070;stop-opacity:1" />
+              <stop offset="65%" style="stop-color:#8B7660;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#6D5840;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="stoneGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#B09872;stop-opacity:1" />
+              <stop offset="40%" style="stop-color:#8B7660;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#5A4835;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="topLight" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#D4BC94;stop-opacity:0.5" />
+              <stop offset="100%" style="stop-color:#A49070;stop-opacity:0" />
+            </linearGradient>
+            <filter id="texture" x="-5%" y="-5%" width="110%" height="110%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise"/>
+              <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise"/>
+              <feBlend in="SourceGraphic" in2="grayNoise" mode="multiply" result="blend"/>
+              <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+            </filter>
+          </defs>
+
+          <!-- CAP -->
+          <rect x="70" y="20" width="140" height="105" rx="3" fill="url(#stoneGrad)" filter="url(#texture)"/>
+          <rect x="70" y="20" width="140" height="105" rx="3" fill="url(#topLight)"/>
+          <rect x="70" y="20" width="12" height="105" rx="3" fill="rgba(0,0,0,0.2)"/>
+          <rect x="198" y="20" width="12" height="105" rx="3" fill="rgba(0,0,0,0.15)"/>
+          <line x1="90" y1="40" x2="115" y2="55" stroke="rgba(90,72,53,0.3)" stroke-width="1"/>
+          <line x1="160" y1="30" x2="185" y2="50" stroke="rgba(90,72,53,0.2)" stroke-width="0.8"/>
+          <line x1="80" y1="80" x2="120" y2="95" stroke="rgba(90,72,53,0.15)" stroke-width="1.2"/>
+
+          <!-- NECK -->
+          <rect x="100" y="122" width="80" height="24" rx="2" fill="url(#stoneGrad2)"/>
+          <rect x="100" y="122" width="80" height="24" rx="2" fill="rgba(0,0,0,0.12)"/>
+
+          <!-- BODY -->
+          <rect x="40" y="140" width="200" height="260" rx="4" fill="url(#stoneGrad)" filter="url(#texture)"/>
+          <rect x="40" y="140" width="200" height="260" rx="4" fill="url(#topLight)"/>
+          <rect x="40" y="140" width="16" height="260" rx="4" fill="rgba(0,0,0,0.2)"/>
+          <rect x="224" y="140" width="16" height="260" rx="4" fill="rgba(0,0,0,0.15)"/>
+          <rect x="40" y="368" width="200" height="32" rx="4" fill="rgba(0,0,0,0.2)"/>
+          <line x1="60" y1="180" x2="100" y2="200" stroke="rgba(90,72,53,0.25)" stroke-width="1.5"/>
+          <line x1="180" y1="160" x2="220" y2="190" stroke="rgba(90,72,53,0.2)" stroke-width="1"/>
+          <line x1="55" y1="280" x2="95" y2="300" stroke="rgba(90,72,53,0.2)" stroke-width="1.2"/>
+          <line x1="170" y1="320" x2="220" y2="350" stroke="rgba(90,72,53,0.15)" stroke-width="1.5"/>
+          <circle cx="200" cy="250" r="8" fill="rgba(90,72,53,0.12)"/>
+          <circle cx="65" cy="330" r="5" fill="rgba(90,72,53,0.15)"/>
+
+          <!-- Engraved text -->
+          <text x="140" y="248" font-family="Georgia, serif" font-size="22" font-weight="400" fill="rgba(58,48,40,0.7)" text-anchor="middle" letter-spacing="6">RŪH</text>
+          <text x="140" y="272" font-family="Georgia, serif" font-size="11" font-weight="300" fill="rgba(58,48,40,0.6)" text-anchor="middle" letter-spacing="5">TEMPLE</text>
+
+          <!-- Light sheen -->
+          <rect x="40" y="140" width="200" height="260" rx="4" fill="none" stroke="rgba(196,170,130,0.15)" stroke-width="1"/>
+          <rect x="70" y="20" width="140" height="105" rx="3" fill="none" stroke="rgba(196,170,130,0.12)" stroke-width="1"/>
+        </svg>
+      </div>
+
+    </div>
+    <div class="bottle-info reveal reveal-delay-2">
+      <p class="bottle-label">02 — The Vessel</p>
+      <h2 class="bottle-title">An Artifact,<br>Not a Bottle</h2>
+      <p class="bottle-description">The bottle was never meant to sit on a shelf. It was designed to feel ancient — like something excavated, not manufactured. Raw concrete outer shell, warm sandstone tones, imperfect by intention. The RŪḤ name is engraved directly into the surface. No label. No sticker. No plate.</p>
+      <div class="bottle-specs">
+        <div class="spec-row">
+          <span class="spec-label">Form</span>
+          <span class="spec-value">Double-cube, two stacked blocks</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Volume</span>
+          <span class="spec-value">50ml — 10ml pure oil</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Construction</span>
+          <span class="spec-value">Raw concrete shell · glass inner vessel</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Finish</span>
+          <span class="spec-value">Matte, unpolished, tactile</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Engraving</span>
+          <span class="spec-value">Carved directly into concrete</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENT SECTION -->
+<section class="scent-section" id="scent">
+  <p class="section-eyebrow reveal">03 — The Scent DNA</p>
+  <h2 class="section-title reveal reveal-delay-1">Dark Softness</h2>
+
+  <div class="scent-grid">
+    <div class="scent-card reveal">
+      <div class="scent-icon">◈</div>
+      <div class="scent-name">Smoky Depth</div>
+      <div class="scent-desc">Myrrh · Labdanum · Patchouli<br>Resinous, intense, grounding.<br>The weight of ancient ceremony.</div>
+    </div>
+    <div class="scent-card reveal reveal-delay-1">
+      <div class="scent-icon">◉</div>
+      <div class="scent-name">Warm Sweetness</div>
+      <div class="scent-desc">Benzoin · Vanilla · Soft smoke<br>Addictive, warm, slightly sweet.<br>The kind of warmth you return to.</div>
+    </div>
+    <div class="scent-card reveal reveal-delay-2">
+      <div class="scent-icon">◌</div>
+      <div class="scent-name">Soft Skin</div>
+      <div class="scent-desc">Sandalwood · Airy florals · Musk<br>Intimate, soft, almost personal.<br>A scent that becomes your own.</div>
+    </div>
+  </div>
+
+  <div class="scent-notes reveal reveal-delay-1">
+    <span class="note-pill">Myrrh</span>
+    <span class="note-pill">Labdanum</span>
+    <span class="note-pill">Patchouli</span>
+    <span class="note-pill">Benzoin</span>
+    <span class="note-pill">Vanilla</span>
+    <span class="note-pill">Sandalwood</span>
+    <span class="note-pill">Soft Smoke</span>
+    <span class="note-pill">Rose</span>
+  </div>
+</section>
+
+<!-- RITUAL SECTION -->
+<section class="ritual-section" id="ritual">
+  <div class="ritual-bg-text">RŪḤ</div>
+  <div class="ritual-inner">
+    <p class="section-eyebrow reveal">04 — The Ritual</p>
+    <h2 class="section-title reveal reveal-delay-1">To return fragrance<br>to a ritual</h2>
+
+    <div class="ritual-steps">
+      <div class="ritual-step reveal">
+        <p class="ritual-num">I</p>
+        <h3 class="ritual-title">Lift the lid.<br>Meet the poem first.</h3>
+        <p class="ritual-text">When you open the box, you are not greeted by the bottle. You are greeted by words — a poem printed on torn papyrus, wrapped around the vessel like a scroll sealed for centuries.</p>
+      </div>
+      <div class="ritual-step reveal reveal-delay-2">
+        <p class="ritual-num">II</p>
+        <h3 class="ritual-title">Unwrap.<br>Slowly.</h3>
+        <p class="ritual-text">Untie the jute cord. Unfold the papyrus. The concrete bottle is revealed — rough, warm, heavy. An object that asks to be held before it is used.</p>
+      </div>
+      <div class="ritual-step reveal reveal-delay-3">
+        <p class="ritual-num">III</p>
+        <h3 class="ritual-title">Wear it like<br>a prayer.</h3>
+        <p class="ritual-text">Apply the oil as a deliberate act. Not a finishing touch. A foundation. The scent was not made — it was remembered. Now it belongs to you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POEM -->
+<section class="poem-section">
+  <div class="poem-bg"></div>
+  <div class="poem-papyrus reveal">
+    <p class="poem-brand">RŪḤ</p>
+    <div class="poem-text">
+      <p>In every fire, a memory.</p>
+      <p>In every breath, a return.</p>
+      <p>This scent was not made.</p>
+      <p>It was remembered.</p>
+      <br>
+      <p>Wear it like a prayer.</p>
+      <p>Leave it like a trace.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGING -->
+<section class="packaging-section">
+  <div class="packaging-header">
+    <p class="section-eyebrow reveal">05 — The Experience</p>
+    <h2 class="section-title reveal reveal-delay-1">Everything organic.<br>Everything intentional.</h2>
+  </div>
+
+  <div class="packaging-grid">
+    <div class="pkg-card reveal">
+      <div class="pkg-visual">
+        <svg width="160" height="200" viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" opacity="0.7">
+          <rect x="20" y="20" width="120" height="160" rx="2" fill="#C4AA82" opacity="0.15" stroke="rgba(196,170,130,0.4)" stroke-width="1"/>
+          <text x="80" y="88" font-family="Georgia,serif" font-size="16" font-weight="400" fill="#C4AA82" text-anchor="middle" letter-spacing="4">RŪH</text>
+          <text x="80" y="108" font-family="Georgia,serif" font-size="9" fill="#A49070" text-anchor="middle" letter-spacing="5">TEMPLE</text>
+          <text x="80" y="156" font-family="Georgia,serif" font-size="9" fill="#6D5840" text-anchor="middle" letter-spacing="5">ORIGINE</text>
+        </svg>
+      </div>
+      <div class="pkg-card-inner">
+        <span class="pkg-label">The Box</span>
+        <h3 class="pkg-title">Kraft.&nbsp; Matte.<br>Minimal.</h3>
+        <p class="pkg-desc">The simplicity is the luxury. Three lines. No pattern. No colour.</p>
+      </div>
+    </div>
+
+    <div class="pkg-card reveal reveal-delay-1">
+      <div class="pkg-visual">
+        <svg width="140" height="180" viewBox="0 0 140 180" xmlns="http://www.w3.org/2000/svg" opacity="0.6">
+          <path d="M10,15 Q20,8 30,12 Q50,5 70,10 Q90,5 110,12 Q125,8 132,18 L135,165 Q125,172 115,168 Q95,175 75,170 Q55,175 35,168 Q20,172 8,165 Z" fill="rgba(196,170,130,0.12)" stroke="rgba(196,170,130,0.3)" stroke-width="1"/>
+          <text x="70" y="65" font-family="Georgia,serif" font-size="9" font-style="italic" fill="#A49070" text-anchor="middle" letter-spacing="1">In every fire,</text>
+          <text x="70" y="83" font-family="Georgia,serif" font-size="9" font-style="italic" fill="#A49070" text-anchor="middle" letter-spacing="1">a memory.</text>
+          <text x="70" y="105" font-family="Georgia,serif" font-size="9" font-style="italic" fill="#8B7660" text-anchor="middle" letter-spacing="1">In every breath,</text>
+          <text x="70" y="123" font-family="Georgia,serif" font-size="9" font-style="italic" fill="#8B7660" text-anchor="middle" letter-spacing="1">a return.</text>
+        </svg>
+      </div>
+      <div class="pkg-card-inner">
+        <span class="pkg-label">The Papyrus</span>
+        <h3 class="pkg-title">Torn edges.<br>Ancient words.</h3>
+        <p class="pkg-desc">The poem wraps the bottle like a scroll sealed for centuries. Jute cord. No plastic.</p>
+      </div>
+    </div>
+
+    <div class="pkg-card reveal reveal-delay-2">
+      <div class="pkg-visual">
+        <svg width="100" height="160" viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg" opacity="0.65">
+          <defs>
+            <linearGradient id="bottleMini" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#C4AA82"/>
+              <stop offset="100%" style="stop-color:#6D5840"/>
+            </linearGradient>
+          </defs>
+          <rect x="25" y="8" width="50" height="38" rx="2" fill="url(#bottleMini)" opacity="0.8"/>
+          <rect x="35" y="44" width="30" height="9" rx="1" fill="url(#bottleMini)" opacity="0.7"/>
+          <rect x="15" y="51" width="70" height="98" rx="2" fill="url(#bottleMini)" opacity="0.8"/>
+          <text x="50" y="100" font-family="Georgia,serif" font-size="7" fill="rgba(30,24,18,0.7)" text-anchor="middle" letter-spacing="2">RŪH</text>
+          <text x="50" y="112" font-family="Georgia,serif" font-size="5" fill="rgba(30,24,18,0.6)" text-anchor="middle" letter-spacing="2">TEMPLE</text>
+        </svg>
+      </div>
+      <div class="pkg-card-inner">
+        <span class="pkg-label">The Vessel</span>
+        <h3 class="pkg-title">Concrete.<br>Imperfect.</h3>
+        <p class="pkg-desc">Rough, warm, tactile. An object that feels like it came from somewhere else in time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="acquire">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <p class="section-eyebrow reveal">Origine — First Edition</p>
+    <h2 class="cta-headline reveal reveal-delay-1">This is not a fragrance<br>to be worn.</h2>
+    <p class="cta-sub reveal reveal-delay-2">It is a feeling to be returned to.<br>A ritual. A memory. A soul worn on skin.</p>
+    <p class="cta-price reveal reveal-delay-2">50ml Fragrance Oil &nbsp;·&nbsp; $200 AUD</p>
+    <div class="cta-buttons reveal reveal-delay-3">
+      <a href="#" class="btn-primary">Order Now — $200</a>
+      <a href="#" class="btn-ghost">Join the Waitlist</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">RŪḤ TEMPLE</div>
+    <div class="footer-tagline" style="margin-top:8px;">A feeling you wear.</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#">The Story</a></li>
+    <li><a href="#">Instagram</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      ring.style.width = '56px';
+      ring.style.height = '56px';
+      ring.style.borderColor = 'rgba(196,170,130,0.7)';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width = '32px';
+      ring.style.height = '32px';
+      ring.style.borderColor = 'rgba(196,170,130,0.4)';
+    });
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
