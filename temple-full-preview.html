@@ -30,6 +30,16 @@
     cursor: default;
   }
 
+  .bg-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.35;
+  }
+
   /* GRAIN OVERLAY */
   body::before {
     content: '';
@@ -976,6 +986,10 @@
 </style>
 </head>
 <body>
+
+<video class="bg-video" autoplay muted loop playsinline>
+  <source src="590120_Flashes%20Lights%20Black%20Background%20Effect_By_Thomas_Gellert_Artlist_5K.mov" type="video/mp4">
+</video>
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
