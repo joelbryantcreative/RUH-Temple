@@ -516,23 +516,9 @@
   /* BOTTLE SECTION */
   .bottle-section {
     padding: 80px 0 160px;
-    position: relative;
+    background: linear-gradient(to bottom, var(--deepest), var(--darker), var(--deepest));
     overflow: hidden;
-    background: url('D5F8B1D0-CA51-4598-A3B0-A53684E096B0.png') left center / cover no-repeat;
   }
-
-  .bottle-section-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to right, transparent 40%, rgba(201,168,122,0.5) 100%);
-    pointer-events: none;
-  }
-
-  .bottle-photo { display: none; }
-
-  .bottle-label { color: #7A5C38; }
-  .bottle-title { color: #2A1A0A; }
-  .bottle-description { color: #4A3020; }
 
   .bottle-inner {
     max-width: 1200px;
@@ -1199,13 +1185,87 @@
 
 <!-- BOTTLE SECTION -->
 <section class="bottle-section" id="bottle">
-  <div class="bottle-section-overlay"></div>
-  <div class="bottle-inner" style="grid-template-columns: 1fr 1fr;">
-    <div></div>
+  <div class="bottle-inner">
+    <div class="bottle-visual reveal">
+      <div style="position:relative;">
+        <div class="bottle-glow"></div>
+        <svg class="bottle-svg-wrap" viewBox="0 0 280 420" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="stoneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#C4AA82;stop-opacity:1" />
+              <stop offset="35%" style="stop-color:#A49070;stop-opacity:1" />
+              <stop offset="65%" style="stop-color:#8B7660;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#6D5840;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="stoneGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#B09872;stop-opacity:1" />
+              <stop offset="40%" style="stop-color:#8B7660;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#5A4835;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="topLight" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#D4BC94;stop-opacity:0.5" />
+              <stop offset="100%" style="stop-color:#A49070;stop-opacity:0" />
+            </linearGradient>
+            <filter id="texture" x="-5%" y="-5%" width="110%" height="110%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise"/>
+              <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise"/>
+              <feBlend in="SourceGraphic" in2="grayNoise" mode="multiply" result="blend"/>
+              <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+            </filter>
+          </defs>
+          <rect x="70" y="20" width="140" height="105" rx="3" fill="url(#stoneGrad)" filter="url(#texture)"/>
+          <rect x="70" y="20" width="140" height="105" rx="3" fill="url(#topLight)"/>
+          <rect x="70" y="20" width="12" height="105" rx="3" fill="rgba(0,0,0,0.2)"/>
+          <rect x="198" y="20" width="12" height="105" rx="3" fill="rgba(0,0,0,0.15)"/>
+          <line x1="90" y1="40" x2="115" y2="55" stroke="rgba(90,72,53,0.3)" stroke-width="1"/>
+          <line x1="160" y1="30" x2="185" y2="50" stroke="rgba(90,72,53,0.2)" stroke-width="0.8"/>
+          <line x1="80" y1="80" x2="120" y2="95" stroke="rgba(90,72,53,0.15)" stroke-width="1.2"/>
+          <rect x="100" y="122" width="80" height="24" rx="2" fill="url(#stoneGrad2)"/>
+          <rect x="100" y="122" width="80" height="24" rx="2" fill="rgba(0,0,0,0.12)"/>
+          <rect x="40" y="140" width="200" height="260" rx="4" fill="url(#stoneGrad)" filter="url(#texture)"/>
+          <rect x="40" y="140" width="200" height="260" rx="4" fill="url(#topLight)"/>
+          <rect x="40" y="140" width="16" height="260" rx="4" fill="rgba(0,0,0,0.2)"/>
+          <rect x="224" y="140" width="16" height="260" rx="4" fill="rgba(0,0,0,0.15)"/>
+          <rect x="40" y="368" width="200" height="32" rx="4" fill="rgba(0,0,0,0.2)"/>
+          <line x1="60" y1="180" x2="100" y2="200" stroke="rgba(90,72,53,0.25)" stroke-width="1.5"/>
+          <line x1="180" y1="160" x2="220" y2="190" stroke="rgba(90,72,53,0.2)" stroke-width="1"/>
+          <line x1="55" y1="280" x2="95" y2="300" stroke="rgba(90,72,53,0.2)" stroke-width="1.2"/>
+          <line x1="170" y1="320" x2="220" y2="350" stroke="rgba(90,72,53,0.15)" stroke-width="1.5"/>
+          <circle cx="200" cy="250" r="8" fill="rgba(90,72,53,0.12)"/>
+          <circle cx="65" cy="330" r="5" fill="rgba(90,72,53,0.15)"/>
+          <text x="140" y="248" font-family="Georgia, serif" font-size="22" font-weight="400" fill="rgba(58,48,40,0.7)" text-anchor="middle" letter-spacing="6">RŪH</text>
+          <text x="140" y="272" font-family="Georgia, serif" font-size="11" font-weight="300" fill="rgba(58,48,40,0.6)" text-anchor="middle" letter-spacing="5">TEMPLE</text>
+          <rect x="40" y="140" width="200" height="260" rx="4" fill="none" stroke="rgba(196,170,130,0.15)" stroke-width="1"/>
+          <rect x="70" y="20" width="140" height="105" rx="3" fill="none" stroke="rgba(196,170,130,0.12)" stroke-width="1"/>
+        </svg>
+      </div>
+    </div>
     <div class="bottle-info reveal reveal-delay-2">
       <p class="bottle-label">02 — The Vessel</p>
       <h2 class="bottle-title">An Artifact,<br>Not a Bottle</h2>
-      <p class="bottle-description">In ancient workshops, objects were made one at a time. Held, shaped, considered. The maker's hand left in every surface.<br><br>RŪḤ returns to that. Each vessel is cast by hand, in small batches — heavy, imperfect, irreplaceable. An object that carries the memory of being made.</p>
+      <p class="bottle-description">The bottle was never meant to sit on a shelf. It was designed to feel ancient — like something excavated, not manufactured. Raw concrete outer shell, warm sandstone tones, imperfect by intention. The RŪḤ name is engraved directly into the surface. No label. No sticker. No plate.</p>
+      <div class="bottle-specs">
+        <div class="spec-row">
+          <span class="spec-label">Form</span>
+          <span class="spec-value">Double-cube, two stacked blocks</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Volume</span>
+          <span class="spec-value">50ml — 10ml pure oil</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Construction</span>
+          <span class="spec-value">Raw concrete shell · glass inner vessel</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Finish</span>
+          <span class="spec-value">Matte, unpolished, tactile</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Engraving</span>
+          <span class="spec-value">Carved directly into concrete</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
