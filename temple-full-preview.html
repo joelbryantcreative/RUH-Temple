@@ -289,6 +289,106 @@
   /* SECTIONS */
   section { position: relative; }
 
+  /* COMING SOON ELEMENTS IN HERO */
+  .hero-line {
+    width: 1px;
+    height: 0;
+    background: linear-gradient(to bottom, transparent, rgba(196,170,130,0.3), transparent);
+    margin: 48px auto;
+    animation: growLine 1.2s ease 1.8s forwards;
+  }
+
+  @keyframes growLine {
+    to { height: 80px; }
+  }
+
+  .hero-coming {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(9px, 1.2vw, 11px);
+    letter-spacing: 0.55em;
+    color: var(--ivory);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 1s ease 2.2s forwards;
+    margin-bottom: 32px;
+  }
+
+  .notify-form {
+    opacity: 0;
+    animation: fadeUp 1s ease 2.5s forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .notify-label {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(9px, 1.1vw, 11px);
+    letter-spacing: 0.4em;
+    color: var(--ivory);
+    text-transform: uppercase;
+  }
+
+  .notify-row {
+    display: flex;
+    border: 1px solid rgba(196,170,130,0.2);
+    overflow: hidden;
+    transition: border-color 0.4s;
+  }
+
+  .notify-row:focus-within { border-color: rgba(196,170,130,0.5); }
+
+  .notify-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 14px 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 0.05em;
+    width: 260px;
+  }
+
+  .notify-input::placeholder {
+    color: rgba(164,144,112,0.4);
+    font-style: italic;
+  }
+
+  .notify-btn {
+    background: transparent;
+    border: none;
+    border-left: 1px solid rgba(196,170,130,0.2);
+    padding: 14px 24px;
+    font-family: 'Cormorant SC', serif;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: var(--sand);
+    text-transform: uppercase;
+    cursor: none;
+    transition: background 0.4s, color 0.4s;
+  }
+
+  .notify-btn:hover {
+    background: rgba(196,170,130,0.08);
+    color: var(--ivory);
+  }
+
+  .notify-confirm {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--tan);
+    letter-spacing: 0.05em;
+    height: 20px;
+    opacity: 0;
+    transition: opacity 0.6s;
+  }
+
+  .notify-confirm.show { opacity: 1; }
+
   /* MARQUEE DIVIDER */
   .marquee-wrap {
     overflow: hidden;
@@ -1013,12 +1113,21 @@
   <div class="hero-smoke"></div>
 
   <div class="hero-content">
-    <p class="hero-eyebrow">Origine — The First</p>
     <h1 class="hero-logo">RŪḤ</h1>
-    <p class="hero-subtitle">Temple &nbsp;·&nbsp; Fragrance Oil</p>
-    <p class="hero-tagline">A fragrance of soul, memory, and warmth</p>
-    <div class="hero-cta">
-      <a href="#acquire" class="btn-primary">Acquire — $200</a>
+    <p class="hero-subtitle">Temple</p>
+    <p class="hero-tagline">A fragrance of soul, memory, and warmth.</p>
+
+    <div class="hero-line"></div>
+
+    <p class="hero-coming">Something is coming</p>
+
+    <div class="notify-form">
+      <span class="notify-label">Be the first to know</span>
+      <div class="notify-row">
+        <input class="notify-input" type="email" placeholder="your@email.com" id="emailInput">
+        <button class="notify-btn" id="notifyBtn">Notify me</button>
+      </div>
+      <p class="notify-confirm" id="confirm">We'll be in touch.</p>
     </div>
   </div>
 
@@ -1386,6 +1495,19 @@
   }, { threshold: 0.12 });
 
   reveals.forEach(el => observer.observe(el));
+
+  // Email form
+  document.getElementById('notifyBtn').addEventListener('click', () => {
+    const val = document.getElementById('emailInput').value.trim();
+    if (val && val.includes('@')) {
+      document.getElementById('confirm').classList.add('show');
+      document.getElementById('emailInput').value = '';
+    }
+  });
+
+  document.getElementById('emailInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('notifyBtn').click();
+  });
 </script>
 </body>
 </html>
