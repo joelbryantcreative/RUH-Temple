@@ -21,13 +21,21 @@
   html, body { height: 100%; }
 
   body {
-    background:
-      linear-gradient(rgba(15,13,10,0.72), rgba(15,13,10,0.72)),
-      url('D5BA0917-D669-4B6E-BAD8-2EBC6C04B146.png') center center / cover no-repeat fixed;
+    background: var(--deepest);
     color: var(--ivory);
     font-family: 'Cormorant Garamond', Georgia, serif;
     overflow: hidden;
     cursor: none;
+  }
+
+  .bg-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.6;
   }
 
   /* GRAIN */
@@ -300,6 +308,10 @@
 </style>
 </head>
 <body>
+
+<video class="bg-video" autoplay muted loop playsinline>
+  <source src="590120_Flashes%20Lights%20Black%20Background%20Effect_By_Thomas_Gellert_Artlist_5K.mov" type="video/mp4">
+</video>
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
