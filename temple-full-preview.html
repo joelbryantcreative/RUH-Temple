@@ -627,7 +627,21 @@
   }
 
   /* SCENT SECTION */
+  .scent-section-wrap {
+    position: relative;
+    background: url('IMG_0308.jpeg') center center / cover no-repeat;
+  }
+
+  .scent-section-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(15,13,10,0.65);
+  }
+
   .scent-section {
+    position: relative;
+    z-index: 2;
     padding: 160px 60px;
     max-width: 1200px;
     margin: 0 auto;
@@ -1249,7 +1263,8 @@
 </section>
 
 <!-- SCENT SECTION -->
-<section class="scent-section" id="scent">
+<section class="scent-section-wrap" id="scent">
+<div class="scent-section">
   <p class="section-eyebrow reveal">03 — The Soul</p>
   <h2 class="section-title reveal reveal-delay-1">Three layers.<br>One feeling.<br>Yours alone.</h2>
 
@@ -1267,6 +1282,7 @@
       <div class="scent-desc">Skin and soul in harmony.</div>
     </div>
   </div>
+</section>
 </section>
 
 <!-- RITUAL SECTION -->
