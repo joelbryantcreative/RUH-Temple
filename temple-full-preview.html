@@ -513,6 +513,19 @@
     text-transform: uppercase;
   }
 
+  .purpose-mantra {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(13px, 1.4vw, 16px);
+    font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 0.1em;
+    padding: 0 60px 100px;
+  }
+
   /* BOTTLE SECTION */
   .bottle-section {
     padding: 80px 0 160px;
@@ -965,6 +978,65 @@
     font-style: italic;
   }
 
+  /* OUR STORY SECTION */
+  .story-section {
+    padding: 160px 60px;
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .story-philosophy {
+    margin-bottom: 80px;
+  }
+
+  .story-philosophy-text {
+    font-size: clamp(16px, 1.8vw, 20px);
+    font-weight: 300;
+    line-height: 1.95;
+    color: var(--tan);
+    letter-spacing: 0.03em;
+  }
+
+  .story-split {
+    width: 1px;
+    height: 72px;
+    background: linear-gradient(to bottom, transparent, rgba(196,170,130,0.3), transparent);
+    margin: 0 auto 80px;
+  }
+
+  .story-ethos-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    color: var(--earth);
+    text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+
+  .story-values {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .story-values li {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(15px, 1.6vw, 18px);
+    font-weight: 300;
+    color: var(--tan);
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(196,170,130,0.1);
+  }
+
+  .story-values li:last-child {
+    border-bottom: none;
+  }
+
   /* CTA SECTION */
   .cta-section {
     padding: 160px 60px;
@@ -1144,6 +1216,7 @@
     <li><a href="#scent">The Scent</a></li>
     <li><a href="#bottle">The Bottle</a></li>
     <li><a href="#ritual">The Ritual</a></li>
+    <li><a href="#story">Our Story</a></li>
     <li><a href="#acquire">Acquire</a></li>
   </ul>
 </nav>
@@ -1206,6 +1279,7 @@
       </div>
     </div>
   </div>
+  <p class="purpose-mantra reveal">Ancient in origin. Modern in conscience.</p>
 </section>
 
 <!-- BOTTLE SECTION -->
@@ -1341,6 +1415,27 @@
   </div>
 </section>
 
+
+<!-- OUR STORY -->
+<section class="story-section" id="story">
+  <p class="section-eyebrow reveal">Our Story</p>
+
+  <div class="story-philosophy reveal reveal-delay-1">
+    <p class="story-philosophy-text">We believe scent is one of the oldest languages.<br>That it carries memory in ways words cannot.<br><br>RŪḤ was born from a single question:<br>why does fragrance no longer feel like anything?<br><br>Not answered with a formula — but with intention.<br>Each bottle is an act of return.<br>To ritual. To nature. To soul.</p>
+  </div>
+
+  <div class="story-split"></div>
+
+  <p class="story-ethos-label reveal">Formulation Ethos</p>
+  <ul class="story-values reveal reveal-delay-1">
+    <li>Every fragrance handcrafted in house — Byron Bay, Australia</li>
+    <li>Made in small batches for purity, potency, and energetic integrity</li>
+    <li>Clean, plant-based, cruelty-free and vegan friendly</li>
+    <li>Oils sourced from Australia</li>
+    <li>Plastic-free. Toxin-free.</li>
+    <li>Nothing imported. Everything made here.</li>
+  </ul>
+</section>
 
 <!-- CTA -->
 <section class="cta-section" id="acquire">
