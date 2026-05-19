@@ -1397,6 +1397,13 @@
 
   .mobile-nav a:hover { color: var(--ivory); }
 
+  /* HIDE CURSOR ON TOUCH DEVICES */
+  @media (hover: none), (pointer: coarse) {
+    .cursor, .cursor-ring { display: none !important; }
+    body { cursor: auto; }
+    .hamburger, .nav-links a, button, input, textarea, a { cursor: pointer; }
+  }
+
   /* RESPONSIVE */
   @media (max-width: 900px) {
     nav { padding: 24px 30px; }
