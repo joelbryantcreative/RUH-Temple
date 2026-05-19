@@ -1329,10 +1329,68 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* HAMBURGER */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: none;
+    background: none;
+    border: none;
+    padding: 4px;
+    z-index: 201;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: var(--ivory);
+    transition: all 0.4s ease;
+    transform-origin: center;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  /* MOBILE OVERLAY */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15,13,10,0.97);
+    z-index: 200;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .mobile-nav.open {
+    opacity: 1;
+  }
+
+  .mobile-nav a {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    color: var(--tan);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.4s;
+  }
+
+  .mobile-nav a:hover { color: var(--ivory); }
+
   /* RESPONSIVE */
   @media (max-width: 900px) {
     nav { padding: 24px 30px; }
     .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .mobile-nav { display: flex; }
     .purpose { grid-template-columns: 1fr; gap: 60px; padding: 100px 30px; }
     .bottle-inner { grid-template-columns: 1fr; padding: 0 30px; }
     .bottle-visual { height: 360px; }
@@ -1353,6 +1411,17 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#scent" class="mobile-nav-link">The Scent</a>
+  <a href="#bottle" class="mobile-nav-link">The Bottle</a>
+  <a href="#ritual" class="mobile-nav-link">The Ritual</a>
+  <a href="#story" class="mobile-nav-link">Our Story</a>
+  <a href="#founder" class="mobile-nav-link">Founder</a>
+  <a href="#manifesto" class="mobile-nav-link">Manifesto</a>
+  <a href="#acquire" class="mobile-nav-link">Acquire</a>
+</div>
+
 <!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">RŪḤ</a>
@@ -1365,6 +1434,9 @@
     <li><a href="#manifesto">Manifesto</a></li>
     <li><a href="#acquire">Acquire</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -1742,6 +1814,24 @@
 
   document.getElementById('emailInput').addEventListener('keydown', e => {
     if (e.key === 'Enter') document.getElementById('notifyBtn').click();
+  });
+
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
   });
 </script>
 </body>
