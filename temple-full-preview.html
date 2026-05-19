@@ -1333,26 +1333,33 @@
   .hamburger {
     display: none;
     flex-direction: column;
-    gap: 5px;
-    cursor: none;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
     background: none;
     border: none;
-    padding: 4px;
+    padding: 12px;
+    position: relative;
     z-index: 201;
+    min-width: 44px;
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
   .hamburger span {
     display: block;
-    width: 24px;
+    width: 22px;
     height: 1px;
     background: var(--ivory);
     transition: all 0.4s ease;
     transform-origin: center;
   }
 
-  .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   /* MOBILE OVERLAY */
   .mobile-nav {
@@ -1383,6 +1390,9 @@
     text-decoration: none;
     text-transform: uppercase;
     transition: color 0.4s;
+    padding: 12px 24px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
   .mobile-nav a:hover { color: var(--ivory); }
