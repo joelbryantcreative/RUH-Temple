@@ -1372,14 +1372,10 @@
     align-items: center;
     justify-content: center;
     gap: 40px;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
   }
 
   .mobile-nav.open {
-    opacity: 1;
-    pointer-events: all;
+    display: flex;
   }
 
   .mobile-nav a {
@@ -1402,7 +1398,6 @@
     nav { padding: 24px 30px; }
     .nav-links { display: none; }
     .hamburger { display: flex; }
-    .mobile-nav { display: flex; }
     .purpose { grid-template-columns: 1fr; gap: 60px; padding: 100px 30px; }
     .bottle-inner { grid-template-columns: 1fr; padding: 0 30px; }
     .bottle-visual { height: 360px; }
