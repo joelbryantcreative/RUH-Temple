@@ -85,7 +85,7 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 100;
+    z-index: 300;
     padding: 32px 60px;
     display: flex;
     justify-content: space-between;
@@ -1396,13 +1396,6 @@
   }
 
   .mobile-nav a:hover { color: var(--ivory); }
-
-  /* HIDE CURSOR ON TOUCH DEVICES */
-  @media (hover: none), (pointer: coarse) {
-    .cursor, .cursor-ring { display: none !important; }
-    body { cursor: auto; }
-    .hamburger, .nav-links a, button, input, textarea, a { cursor: pointer; }
-  }
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
