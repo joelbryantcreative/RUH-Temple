@@ -1156,10 +1156,19 @@
   /* MANIFESTO SECTION */
   .manifesto-section {
     padding: 160px 60px;
-    max-width: 620px;
-    margin: 0 auto;
     text-align: center;
     position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(rgba(15,13,10,0.65), rgba(15,13,10,0.65)),
+      url('IMG_0774.jpeg') center center / cover no-repeat;
+  }
+
+  .manifesto-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 620px;
+    margin: 0 auto;
   }
 
   .manifesto-section::before {
@@ -1747,38 +1756,40 @@
 
 <!-- MANIFESTO -->
 <section class="manifesto-section" id="manifesto">
-  <p class="section-eyebrow reveal">Manifesto</p>
+  <div class="manifesto-inner">
+    <p class="section-eyebrow reveal">Manifesto</p>
 
-  <p class="manifesto-open reveal reveal-delay-1">Some things cannot be explained.<br>Only felt.</p>
+    <p class="manifesto-open reveal reveal-delay-1">Some things cannot be explained.<br>Only felt.</p>
 
-  <p class="manifesto-stanza reveal reveal-delay-1">Some things are older than language —<br>
-  smoke rising from burning resin,<br>
-  the warmth of skin after sunlight,<br>
-  the smell of a place you have never been<br>
-  but somehow remember.</p>
+    <p class="manifesto-stanza reveal reveal-delay-1">Some things are older than language —<br>
+    smoke rising from burning resin,<br>
+    the warmth of skin after sunlight,<br>
+    the smell of a place you have never been<br>
+    but somehow remember.</p>
 
-  <p class="manifesto-stanza reveal reveal-delay-1">Some things are lost when you leave home.<br>
-  And some things follow you across every ocean,<br>
-  every season, every year of forgetting.</p>
+    <p class="manifesto-stanza reveal reveal-delay-1">Some things are lost when you leave home.<br>
+    And some things follow you across every ocean,<br>
+    every season, every year of forgetting.</p>
 
-  <p class="manifesto-stanza reveal reveal-delay-1">Some things are made in laboratories.<br>
-  Others are made from longing.</p>
+    <p class="manifesto-stanza reveal reveal-delay-1">Some things are made in laboratories.<br>
+    Others are made from longing.</p>
 
-  <p class="manifesto-stanza reveal reveal-delay-1">Some things demand your attention.<br>
-  The ones worth keeping never do.</p>
+    <p class="manifesto-stanza reveal reveal-delay-1">Some things demand your attention.<br>
+    The ones worth keeping never do.</p>
 
-  <p class="manifesto-stanza reveal reveal-delay-1">Some things are trends.<br>
-  Some things are ancient.</p>
+    <p class="manifesto-stanza reveal reveal-delay-1">Some things are trends.<br>
+    Some things are ancient.</p>
 
-  <p class="manifesto-stanza reveal reveal-delay-1">Some things are purchased.<br>
-  Some things are carried.</p>
+    <p class="manifesto-stanza reveal reveal-delay-1">Some things are purchased.<br>
+    Some things are carried.</p>
 
-  <p class="manifesto-ruh reveal reveal-delay-2">Some fragrances sit on the surface.<br>
-  <span>RŪḤ settles into skin — and stays.</span></p>
+    <p class="manifesto-ruh reveal reveal-delay-2">Some fragrances sit on the surface.<br>
+    <span>RŪḤ settles into skin — and stays.</span></p>
 
-  <p class="manifesto-echo reveal reveal-delay-2">Some things cannot be explained.</p>
+    <p class="manifesto-echo reveal reveal-delay-2">Some things cannot be explained.</p>
 
-  <p class="manifesto-close reveal reveal-delay-3">Only worn.</p>
+    <p class="manifesto-close reveal reveal-delay-3">Only worn.</p>
+  </div>
 </section>
 
 <!-- CTA -->
