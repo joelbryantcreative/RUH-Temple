@@ -1064,6 +1064,41 @@
     text-align: center;
   }
 
+  .founder-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    text-align: left;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .founder-split-text { display: flex; flex-direction: column; gap: 0; }
+
+  .founder-photo {
+    position: sticky;
+    top: 120px;
+  }
+
+  .founder-photo img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  @media (max-width: 900px) {
+    .founder-split {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .founder-photo { position: static; }
+    .founder-photo img { height: 420px; }
+    .founder-split-text { text-align: center; }
+  }
+
   .founder-hook {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
@@ -1704,31 +1739,38 @@
 
   <p class="founder-hook reveal reveal-delay-1">RŪḤ was not built from a business plan.<br>It was built from longing.</p>
 
-  <p class="founder-stanza reveal reveal-delay-2">She is half Algerian, half French —<br>
-  far from both for longer than she expected.<br>
-  Distance does something to a person.<br>
-  It doesn't erase where you come from.<br>
-  It sharpens it.</p>
+  <div class="founder-split">
+    <div class="founder-photo reveal">
+      <img src="DA3D8325-0A2F-4E4F-8E5F-3999EEDEF571.jpeg" alt="The Founder">
+    </div>
+    <div class="founder-split-text">
+      <p class="founder-stanza reveal reveal-delay-2">She is half Algerian, half French —<br>
+      far from both for longer than she expected.<br>
+      Distance does something to a person.<br>
+      It doesn't erase where you come from.<br>
+      It sharpens it.</p>
 
-  <p class="founder-stanza reveal reveal-delay-2">Scent was always the thread.<br>
-  The warmth of a house in Algeria.<br>
-  Smoke and resin, something ancient in the air.<br>
-  The kind of smell that doesn't announce itself —<br>
-  it simply is, the way memory is.</p>
+      <p class="founder-stanza reveal reveal-delay-2">Scent was always the thread.<br>
+      The warmth of a house in Algeria.<br>
+      Smoke and resin, something ancient in the air.<br>
+      The kind of smell that doesn't announce itself —<br>
+      it simply is, the way memory is.</p>
 
-  <p class="founder-stanza reveal reveal-delay-2">She searched for that feeling in a bottle for years.<br>
-  Through every major house, every niche brand she could find.<br>
-  Nothing came close.<br>
-  So she made it herself.</p>
+      <p class="founder-stanza reveal reveal-delay-2">She searched for that feeling in a bottle for years.<br>
+      Through every major house, every niche brand she could find.<br>
+      Nothing came close.<br>
+      So she made it herself.</p>
 
-  <p class="founder-brand reveal reveal-delay-2">RŪḤ — soul in Arabic —<br>
-  was named in honour of her Algerian heritage.<br>
-  Not as aesthetic.<br>
-  As devotion.<br><br>
-  Every fragrance is clean, vegan-friendly, and plastic-free<br>
-  because it was never negotiable.</p>
+      <p class="founder-brand reveal reveal-delay-2">RŪḤ — soul in Arabic —<br>
+      was named in honour of her Algerian heritage.<br>
+      Not as aesthetic.<br>
+      As devotion.<br><br>
+      Every fragrance is clean, vegan-friendly, and plastic-free<br>
+      because it was never negotiable.</p>
 
-  <p class="founder-stanza reveal reveal-delay-2">RŪḤ Origine is the fragrance<br>she spent years not finding.</p>
+      <p class="founder-stanza reveal reveal-delay-2">RŪḤ Origine is the fragrance<br>she spent years not finding.</p>
+    </div>
+  </div>
 
   <p class="founder-close reveal reveal-delay-3">A feeling you wear.</p>
 </section>
