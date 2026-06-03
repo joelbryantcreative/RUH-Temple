@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre-Order a Sample — RŪḤ Temple</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cormorant+SC:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #EFE7DA;
+    --sand: #C4AA82;
+    --tan: #A49070;
+    --earth: #6D5840;
+    --deepest: #0F0D0A;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+
+  body {
+    background: var(--deepest);
+    color: var(--ivory);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    min-height: 100vh;
+    cursor: none;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.035;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  .bg-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.6;
+  }
+
+  .cursor {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: var(--sand);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(196,170,130,0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, border-color 0.3s;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 32px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(15,13,10,0.8) 0%, transparent 100%);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant SC', serif;
+    font-size: 18px;
+    letter-spacing: 0.2em;
+    color: var(--ivory);
+    text-decoration: none;
+  }
+
+  .nav-back {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--tan);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.4s;
+  }
+  .nav-back:hover { color: var(--ivory); }
+
+  .page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 140px 40px 100px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 560px;
+    text-align: center;
+  }
+
+  .eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    color: var(--earth);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.3s forwards;
+  }
+
+  .headline {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--ivory);
+    line-height: 1;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.5s forwards;
+  }
+
+  .sample-detail {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--sand);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.65s forwards;
+  }
+
+  .subline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(15px, 1.8vw, 18px);
+    font-weight: 300;
+    color: var(--tan);
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.7s forwards;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(196,170,130,0.3);
+    margin: 0 auto 56px;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.9s forwards;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    opacity: 0;
+    animation: fadeUp 1s ease 1s forwards;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    gap: 8px;
+  }
+
+  .field label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: var(--earth);
+    text-transform: uppercase;
+  }
+
+  .field input,
+  .field textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(196,170,130,0.2);
+    outline: none;
+    padding: 12px 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 0.04em;
+    transition: border-color 0.4s;
+    width: 100%;
+  }
+
+  .field input:focus,
+  .field textarea:focus { border-color: rgba(196,170,130,0.5); }
+
+  .field input::placeholder,
+  .field textarea::placeholder { color: rgba(164,144,112,0.3); font-style: italic; }
+
+  .field textarea { resize: none; height: 80px; }
+
+  .price-note {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--sand);
+    text-transform: uppercase;
+    margin-top: 8px;
+  }
+
+  .submit-btn {
+    margin-top: 8px;
+    background: transparent;
+    border: 1px solid rgba(196,170,130,0.4);
+    padding: 20px 48px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--ivory);
+    text-transform: uppercase;
+    cursor: none;
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    align-self: center;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .submit-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(196,170,130,0.08);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+  }
+
+  .submit-btn:hover::before { transform: translateX(0); }
+  .submit-btn:hover { border-color: rgba(196,170,130,0.8); }
+
+  /* CONFIRMATION */
+  .confirmation {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    animation: fadeUp 1s ease forwards;
+  }
+
+  .confirmation.show { display: flex; }
+
+  .confirm-mark {
+    width: 48px;
+    height: 1px;
+    background: var(--sand);
+  }
+
+  .confirm-headline {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 0.1em;
+  }
+
+  .confirm-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--tan);
+    line-height: 1.8;
+    letter-spacing: 0.03em;
+  }
+
+  .confirm-back {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--earth);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.4s;
+    margin-top: 16px;
+  }
+
+  .confirm-back:hover { color: var(--sand); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 24px 30px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<video class="bg-video" autoplay muted loop playsinline>
+  <source src="6508686_Silhouette%20Shadow%20Hand%20Reaching_By_Alejandro_Campollo_Artlist_HD.mp4" type="video/mp4">
+</video>
+
+<nav>
+  <a href="temple-full-preview.html" class="nav-logo">RŪḤ</a>
+  <a href="temple-full-preview.html" class="nav-back">← Return</a>
+</nav>
+
+<div class="page">
+  <div class="container">
+
+    <div id="formWrap">
+      <p class="eyebrow">Origine — First Edition</p>
+      <h1 class="headline">Pre-Order</h1>
+      <p class="sample-detail">5ml Sample · $35 AUD</p>
+      <p class="subline">Smell it before you commit.<br>Your sample ships when the first edition is ready.</p>
+      <div class="divider"></div>
+
+      <form class="form" id="preorderForm">
+        <div class="form-row">
+          <div class="field">
+            <label>First Name</label>
+            <input type="text" placeholder="Your first name" required>
+          </div>
+          <div class="field">
+            <label>Last Name</label>
+            <input type="text" placeholder="Your last name" required>
+          </div>
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" placeholder="your@email.com" required>
+        </div>
+        <div class="field">
+          <label>Shipping Address</label>
+          <input type="text" placeholder="Street address" required>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label>City</label>
+            <input type="text" placeholder="City" required>
+          </div>
+          <div class="field">
+            <label>Country</label>
+            <input type="text" placeholder="Country" required>
+          </div>
+        </div>
+        <div class="field">
+          <label>Anything you'd like to say</label>
+          <textarea placeholder="Optional…"></textarea>
+        </div>
+        <p class="price-note">Total: $35 AUD — Payment details to follow by email</p>
+        <button type="submit" class="submit-btn">Pre-Order My Sample</button>
+      </form>
+    </div>
+
+    <div class="confirmation" id="confirmation">
+      <div class="confirm-mark"></div>
+      <h2 class="confirm-headline">Confirmed.</h2>
+      <p class="confirm-text">Your sample is reserved.<br>We will be in touch personally<br>with payment and shipping details.</p>
+      <a href="temple-full-preview.html" class="confirm-back">Return to RŪḤ Temple</a>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  (function loop() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
+    requestAnimationFrame(loop);
+  })();
+
+  document.querySelectorAll('a, button, input, textarea').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      ring.style.width = '48px';
+      ring.style.height = '48px';
+      ring.style.borderColor = 'rgba(196,170,130,0.6)';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width = '32px';
+      ring.style.height = '32px';
+      ring.style.borderColor = 'rgba(196,170,130,0.4)';
+    });
+  });
+
+  document.getElementById('preorderForm').addEventListener('submit', e => {
+    e.preventDefault();
+    document.getElementById('formWrap').style.display = 'none';
+    document.getElementById('confirmation').classList.add('show');
+  });
+</script>
+</body>
+</html>
