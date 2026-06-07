@@ -258,6 +258,18 @@
 
   .notify-confirm.show { opacity: 1; }
 
+  .newsletter-link {
+    font-family: 'Cormorant SC', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--earth);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.4s;
+    margin-top: 8px;
+  }
+  .newsletter-link:hover { color: var(--sand); }
+
   /* BOTTOM MARK */
   .bottom-mark {
     position: fixed;
@@ -336,6 +348,7 @@
       <button class="notify-btn" id="notifyBtn">Notify me</button>
     </div>
     <p class="notify-confirm" id="confirm">We'll be in touch.</p>
+    <a href="newsletter.html" class="newsletter-link">Join the Newsletter →</a>
   </div>
 
 </div>
