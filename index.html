@@ -376,12 +376,31 @@
   });
 
   // Notify
-  document.getElementById('notifyBtn').addEventListener('click', () => {
-    const val = document.getElementById('emailInput').value.trim();
-    if (val && val.includes('@')) {
-      document.getElementById('confirm').classList.add('show');
-      document.getElementById('emailInput').value = '';
-    }
+  document.getElementById('notifyBtn').addEventListener('click', async () => {
+    const input = document.getElementById('emailInput');
+    const val = input.value.trim();
+    if (!val || !val.includes('@')) return;
+
+    const btn = document.getElementById('notifyBtn');
+    btn.textContent = '...';
+    btn.disabled = true;
+
+    try {
+      const data = new FormData();
+      data.append('email', val);
+      data.append('_subject', 'New Waitlist Signup — RŪḤ Temple');
+
+      await fetch('https://formspree.io/f/info@ruhtemple.com', {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+    } catch (_) {}
+
+    document.getElementById('confirm').classList.add('show');
+    input.value = '';
+    btn.textContent = 'Notify me';
+    btn.disabled = false;
   });
 
   document.getElementById('emailInput').addEventListener('keydown', e => {
