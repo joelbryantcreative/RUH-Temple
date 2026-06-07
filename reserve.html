@@ -352,23 +352,24 @@
       <div class="divider"></div>
 
       <form class="form" id="reserveForm">
+        <input type="hidden" name="_subject" value="New Full Bottle Reservation — RŪḤ Temple">
         <div class="form-row">
           <div class="field">
             <label>First Name</label>
-            <input type="text" placeholder="Your first name" required>
+            <input type="text" name="first_name" placeholder="Your first name" required>
           </div>
           <div class="field">
             <label>Last Name</label>
-            <input type="text" placeholder="Your last name" required>
+            <input type="text" name="last_name" placeholder="Your last name" required>
           </div>
         </div>
         <div class="field">
           <label>Email</label>
-          <input type="email" placeholder="your@email.com" required>
+          <input type="email" name="email" placeholder="your@email.com" required>
         </div>
         <div class="field">
           <label>Anything you'd like to say</label>
-          <textarea placeholder="Optional…"></textarea>
+          <textarea name="message" placeholder="Optional…"></textarea>
         </div>
         <button type="submit" class="submit-btn">Reserve My Bottle</button>
       </form>
@@ -417,11 +418,31 @@
     });
   });
 
-  // Form
-  document.getElementById('reserveForm').addEventListener('submit', e => {
+  document.getElementById('reserveForm').addEventListener('submit', async e => {
     e.preventDefault();
-    document.getElementById('formWrap').style.display = 'none';
-    document.getElementById('confirmation').classList.add('show');
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    try {
+      const res = await fetch('https://formspree.io/f/info@ruhtemple.com', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        document.getElementById('formWrap').style.display = 'none';
+        document.getElementById('confirmation').classList.add('show');
+      } else {
+        btn.textContent = 'Reserve My Bottle';
+        btn.disabled = false;
+        alert('Something went wrong. Please email us at info@ruhtemple.com');
+      }
+    } catch {
+      btn.textContent = 'Reserve My Bottle';
+      btn.disabled = false;
+      alert('Something went wrong. Please email us at info@ruhtemple.com');
+    }
   });
 </script>
 </body>

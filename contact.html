@@ -365,17 +365,18 @@
       <div class="divider"></div>
 
       <form class="form" id="contactForm">
+        <input type="hidden" name="_subject" value="New Contact — RŪḤ Temple">
         <div class="field">
           <label>Name</label>
-          <input type="text" placeholder="Your name" required>
+          <input type="text" name="name" placeholder="Your name" required>
         </div>
         <div class="field">
           <label>Email</label>
-          <input type="email" placeholder="your@email.com" required>
+          <input type="email" name="email" placeholder="your@email.com" required>
         </div>
         <div class="field">
           <label>Subject</label>
-          <select>
+          <select name="subject">
             <option value="" disabled selected style="color: rgba(164,144,112,0.3)">Select a subject</option>
             <option value="press">Press & Media</option>
             <option value="wholesale">Wholesale</option>
@@ -385,14 +386,14 @@
         </div>
         <div class="field">
           <label>Message</label>
-          <textarea placeholder="Your message…" required></textarea>
+          <textarea name="message" placeholder="Your message…" required></textarea>
         </div>
         <button type="submit" class="submit-btn">Send Message</button>
       </form>
 
       <div class="direct">
         <p class="direct-label">Or reach us directly</p>
-        <a href="mailto:shana@ruhtemple.com" class="direct-link">shana@ruhtemple.com</a>
+        <a href="mailto:info@ruhtemple.com" class="direct-link">info@ruhtemple.com</a>
         <a href="https://www.instagram.com/ruh.temple" target="_blank" class="direct-link">@ruh.temple</a>
       </div>
     </div>
@@ -439,10 +440,31 @@
     });
   });
 
-  document.getElementById('contactForm').addEventListener('submit', e => {
+  document.getElementById('contactForm').addEventListener('submit', async e => {
     e.preventDefault();
-    document.getElementById('formWrap').style.display = 'none';
-    document.getElementById('confirmation').classList.add('show');
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    try {
+      const res = await fetch('https://formspree.io/f/info@ruhtemple.com', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        document.getElementById('formWrap').style.display = 'none';
+        document.getElementById('confirmation').classList.add('show');
+      } else {
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
+        alert('Something went wrong. Please email us directly at info@ruhtemple.com');
+      }
+    } catch {
+      btn.textContent = 'Send Message';
+      btn.disabled = false;
+      alert('Something went wrong. Please email us directly at info@ruhtemple.com');
+    }
   });
 </script>
 </body>

@@ -352,37 +352,38 @@
       <div class="divider"></div>
 
       <form class="form" id="preorderForm">
+        <input type="hidden" name="_subject" value="New Sample Pre-Order — RŪḤ Temple">
         <div class="form-row">
           <div class="field">
             <label>First Name</label>
-            <input type="text" placeholder="Your first name" required>
+            <input type="text" name="first_name" placeholder="Your first name" required>
           </div>
           <div class="field">
             <label>Last Name</label>
-            <input type="text" placeholder="Your last name" required>
+            <input type="text" name="last_name" placeholder="Your last name" required>
           </div>
         </div>
         <div class="field">
           <label>Email</label>
-          <input type="email" placeholder="your@email.com" required>
+          <input type="email" name="email" placeholder="your@email.com" required>
         </div>
         <div class="field">
           <label>Shipping Address</label>
-          <input type="text" placeholder="Street address" required>
+          <input type="text" name="address" placeholder="Street address" required>
         </div>
         <div class="form-row">
           <div class="field">
             <label>City</label>
-            <input type="text" placeholder="City" required>
+            <input type="text" name="city" placeholder="City" required>
           </div>
           <div class="field">
             <label>Country</label>
-            <input type="text" placeholder="Country" required>
+            <input type="text" name="country" placeholder="Country" required>
           </div>
         </div>
         <div class="field">
           <label>Anything you'd like to say</label>
-          <textarea placeholder="Optional…"></textarea>
+          <textarea name="message" placeholder="Optional…"></textarea>
         </div>
         <p class="price-note">Total: $35 AUD — Payment details to follow by email</p>
         <button type="submit" class="submit-btn">Pre-Order My Sample</button>
@@ -431,10 +432,31 @@
     });
   });
 
-  document.getElementById('preorderForm').addEventListener('submit', e => {
+  document.getElementById('preorderForm').addEventListener('submit', async e => {
     e.preventDefault();
-    document.getElementById('formWrap').style.display = 'none';
-    document.getElementById('confirmation').classList.add('show');
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+    try {
+      const res = await fetch('https://formspree.io/f/info@ruhtemple.com', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        document.getElementById('formWrap').style.display = 'none';
+        document.getElementById('confirmation').classList.add('show');
+      } else {
+        btn.textContent = 'Pre-Order My Sample';
+        btn.disabled = false;
+        alert('Something went wrong. Please email us at info@ruhtemple.com');
+      }
+    } catch {
+      btn.textContent = 'Pre-Order My Sample';
+      btn.disabled = false;
+      alert('Something went wrong. Please email us at info@ruhtemple.com');
+    }
   });
 </script>
 </body>
