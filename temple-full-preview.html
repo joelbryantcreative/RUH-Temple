@@ -855,20 +855,35 @@
     min-height: 80vh;
     position: relative;
     overflow: hidden;
-    background:
-      linear-gradient(rgba(15,13,10,0.6), rgba(15,13,10,0.6)),
-      url('IMG_1101.jpeg') center top / cover no-repeat;
+  }
+
+  .poem-section::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    background: url('IMG_1101.jpeg') center top / cover no-repeat;
+    filter: blur(10px);
+    z-index: 0;
+  }
+
+  .poem-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(15,13,10,0.62);
+    z-index: 1;
   }
 
   .poem-bg {
     position: absolute;
     inset: 0;
+    z-index: 2;
     background: radial-gradient(ellipse at 50% 50%, rgba(109,88,64,0.12) 0%, transparent 65%);
   }
 
   .poem-papyrus {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     max-width: 560px;
     text-align: center;
     padding: 80px 60px;
