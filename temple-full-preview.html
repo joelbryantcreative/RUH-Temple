@@ -999,7 +999,31 @@
   }
 
   /* OUR STORY SECTION */
+  .story-section-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .story-section-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    background: url('IMG_1100.jpeg') center center / cover no-repeat;
+    filter: blur(10px);
+    z-index: 0;
+  }
+
+  .story-section-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(15,13,10,0.65);
+    z-index: 1;
+  }
+
   .story-section {
+    position: relative;
+    z-index: 2;
     padding: 160px 60px;
     max-width: 760px;
     margin: 0 auto;
@@ -1712,6 +1736,7 @@
 
 
 <!-- OUR STORY -->
+<div class="story-section-wrap">
 <section class="story-section" id="story">
   <p class="section-eyebrow reveal">Our Story</p>
 
@@ -1732,6 +1757,7 @@
     <li>Plastic-free. Toxin-free.</li>
   </ul>
 </section>
+</div>
 
 <!-- FOUNDER -->
 <section class="founder-section" id="founder">
