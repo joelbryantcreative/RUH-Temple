@@ -382,13 +382,15 @@
     btn.textContent = '...';
     btn.disabled = true;
     try {
+      const email = form.querySelector('input[type="email"]').value;
+      const kitData = new FormData();
+      kitData.append('email_address', email);
       const res = await fetch('https://app.kit.com/forms/9599348/subscriptions', {
         method: 'POST',
-        body: new FormData(form),
+        body: kitData,
         headers: { 'Accept': 'application/json' }
       });
       if (res.ok) {
-        const email = form.querySelector('input[type="email"]').value;
         await emailjs.send('service_td994ke', 'template_9te15pb', { email });
         await emailjs.send('service_td994ke', 'template_nd8r4zw', { subscriber_email: email });
         document.getElementById('formWrap').style.display = 'none';

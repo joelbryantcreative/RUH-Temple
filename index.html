@@ -401,7 +401,7 @@
 
     try {
       const data = new FormData();
-      data.append('email', val);
+      data.append('email_address', val);
       await fetch('https://app.kit.com/forms/9599348/subscriptions', {
         method: 'POST',
         body: data,
