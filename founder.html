@@ -114,15 +114,23 @@
   .page {
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 140px 40px 100px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 140px 40px 80px;
   }
 
   .container {
     width: 100%;
     max-width: 600px;
     text-align: center;
+    margin: 0 auto;
+  }
+
+  .container-bottom {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    margin: 0 auto;
   }
 
   /* EYEBROW */
@@ -261,49 +269,32 @@
 </nav>
 
 <div class="page">
-  <div class="container">
 
+  <!-- TOP: THE FOUNDER + HERITAGE -->
+  <div class="container">
     <p class="eyebrow">The Founder</p>
     <div class="divider"></div>
-
     <div class="founder-story">
-
       <p class="heritage-label">Heritage</p>
-      <p class="heritage-text">Every RŪḤ fragrance is rooted in her heritage<br>The smoky warmth of Algerian interiors,<br>The refined sensibility of French perfumery.<br><br><span>Two cultures.<br>One soul.</span></p>
+      <p class="heritage-text">Every RŪḤ fragrance is rooted in her heritage —<br>The smoky warmth of Algerian interiors,<br>The refined sensibility of French perfumery.<br><br><span>Two cultures.<br>One soul.</span></p>
+    </div>
+  </div>
 
-      <p class="stanza-hook">RŪḤ was not built from a business plan.<br>It was built from longing.</p>
-
-      <p class="stanza">She is half Algerian, half French —<br>
-      far from both for longer than she expected.<br>
-      Distance does something to a person.<br>
-      It doesn't erase where you come from.<br>
+  <!-- BOTTOM: THE REST -->
+  <div class="container-bottom">
+    <div class="founder-story">
+      <p class="stanza">She left France at twenty and built a life in Australia.<br>
+      Distance doesn't erase where you come from.<br>
       It sharpens it.</p>
 
-      <p class="stanza">Scent was always the thread.<br>
-      The warmth of a house in Algeria.<br>
-      Smoke and resin, something ancient in the air.<br>
-      The kind of smell that doesn't announce itself —<br>
-      it simply is, the way memory is.</p>
+      <p class="stanza">The further she got, the stronger the pull.<br>
+      Creating RŪḤ TEMPLE was the only way she knew<br>
+      To carry both worlds with her.</p>
 
-      <p class="stanza">She searched for that feeling in a bottle for years.<br>
-      Through every major house, every niche brand she could find.<br>
-      Nothing came close.<br>
-      So she made it herself.</p>
-
-      <p class="stanza-brand">RŪḤ — soul in Arabic —<br>
-      was named in honour of her Algerian heritage.<br>
-      Not as aesthetic.<br>
-      As devotion.<br><br>
-      Every fragrance is clean, vegan-friendly, and plastic-free<br>
-      because it was never negotiable.</p>
-
-      <p class="stanza">RŪḤ Origine is the fragrance<br>she spent years not finding.</p>
-
-      <p class="stanza-close">A feeling you wear.</p>
-
+      <p class="stanza-close">Sharing cultures through scent.<br>Sharing memory. Sharing feeling.</p>
     </div>
-
   </div>
+
 </div>
 
 <script>
