@@ -400,13 +400,10 @@
     btn.disabled = true;
 
     try {
-      const data = new FormData();
-      data.append('email', val);
-      data.append('api_key', 'sNkEC_OFpLyZpN6Cl');
       await fetch('https://api.convertkit.com/v3/forms/9599348/subscribe', {
         method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
+        body: JSON.stringify({ api_key: 'sNkEC_OFpLyZpN6Cl', email: val }),
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
       });
       await emailjs.send('service_td994ke', 'template_9te15pb', { email: val });
       await emailjs.send('service_td994ke', 'template_nd8r4zw', { subscriber_email: val });
