@@ -401,8 +401,9 @@
 
     try {
       const data = new FormData();
-      data.append('email_address', val);
-      await fetch('https://app.kit.com/forms/9599348/subscriptions', {
+      data.append('email', val);
+      data.append('api_key', 'sNkEC_OFpLyZpN6Cl');
+      await fetch('https://api.convertkit.com/v3/forms/9599348/subscribe', {
         method: 'POST',
         body: data,
         headers: { 'Accept': 'application/json' }
