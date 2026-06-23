@@ -400,11 +400,18 @@
     btn.disabled = true;
 
     try {
-      await fetch('https://app.convertkit.com/forms/cca67c1605/subscriptions', {
-        method: 'POST',
-        body: JSON.stringify({ email_address: val }),
-        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
-      });
+      // Submit to Kit via hidden form
+      const kitForm = document.querySelector('[data-uid="cca67c1605"] form');
+      if (kitForm) {
+        const kitEmail = kitForm.querySelector('input[type="email"]');
+        if (kitEmail) { kitEmail.value = val; kitForm.submit(); }
+      } else {
+        await fetch('https://app.convertkit.com/forms/cca67c1605/subscriptions', {
+          method: 'POST',
+          body: JSON.stringify({ email_address: val }),
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+        });
+      }
       await emailjs.send('service_td994ke', 'template_9te15pb', { email: val });
       await emailjs.send('service_td994ke', 'template_nd8r4zw', { subscriber_email: val });
     } catch (_) {}
@@ -419,5 +426,10 @@
     if (e.key === 'Enter') document.getElementById('notifyBtn').click();
   });
 </script>
+
+<!-- Kit hidden form -->
+<div style="display:none;">
+  <script async data-uid="cca67c1605" src="https://ruh-temple.kit.com/cca67c1605/index.js"></script>
+</div>
 </body>
 </html>
