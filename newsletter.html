@@ -390,6 +390,7 @@
       if (res.ok) {
         const email = form.querySelector('input[type="email"]').value;
         await emailjs.send('service_td994ke', 'template_9te15pb', { email });
+        await emailjs.send('service_td994ke', 'template_nd8r4zw', { subscriber_email: email });
         document.getElementById('formWrap').style.display = 'none';
         document.getElementById('confirmation').classList.add('show');
       } else {

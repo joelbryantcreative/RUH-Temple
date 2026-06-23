@@ -408,6 +408,7 @@
         headers: { 'Accept': 'application/json' }
       });
       await emailjs.send('service_td994ke', 'template_9te15pb', { email: val });
+      await emailjs.send('service_td994ke', 'template_nd8r4zw', { subscriber_email: val });
     } catch (_) {}
 
     document.getElementById('confirm').classList.add('show');
