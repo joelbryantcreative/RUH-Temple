@@ -528,19 +528,27 @@
 
   /* BOTTLE SECTION */
   .bottle-section {
-    padding: 80px 0 160px;
-    background: linear-gradient(to bottom, var(--deepest), var(--darker), var(--deepest));
+    padding: 0;
+    background: #000;
     overflow: hidden;
   }
 
   .bottle-inner {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 60px;
+    padding: 80px 60px 160px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
     align-items: center;
+  }
+
+  .bottle-photo-full {
+    width: 100%;
+    display: block;
+    max-height: 90vh;
+    object-fit: cover;
+    object-position: center;
   }
 
   .bottle-visual {
@@ -1495,7 +1503,7 @@
     .nav-links { display: none; }
     .hamburger { display: flex; }
     .purpose { grid-template-columns: 1fr; gap: 60px; padding: 100px 30px; }
-    .bottle-inner { grid-template-columns: 1fr; padding: 0 30px; }
+    .bottle-inner { grid-template-columns: 1fr; padding: 60px 30px 120px; }
     .bottle-visual { height: 360px; }
     .scent-grid { grid-template-columns: 1fr; gap: 2px; }
     .ritual-steps { grid-template-columns: 1fr; gap: 48px; }
@@ -1599,10 +1607,10 @@
 
 <!-- BOTTLE SECTION -->
 <section class="bottle-section" id="bottle">
+  <img src="DSC04709.jpeg" alt="RŪH Temple vessel" class="bottle-photo-full">
   <div class="bottle-inner">
     <div class="bottle-visual reveal">
       <div style="position:relative;">
-        <img src="DSC04709.jpeg" alt="RŪH Temple vessel" style="width:100%;max-width:420px;display:block;margin:0 auto;border-radius:4px;object-fit:cover;">
         <div style="display:none;"><svg class="bottle-svg-wrap" viewBox="0 0 280 420" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="stoneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
