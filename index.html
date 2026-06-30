@@ -356,6 +356,7 @@
   <div class="notify-form">
     <span class="notify-label">Join the inner circle and get $10 off your first order.</span>
     <div class="notify-row">
+      <input class="notify-input" type="text" placeholder="your name" id="nameInput">
       <input class="notify-input" type="email" placeholder="your@email.com" id="emailInput">
       <button class="notify-btn" id="notifyBtn">Notify me</button>
     </div>
@@ -401,9 +402,11 @@
 
   // Notify
   document.getElementById('notifyBtn').addEventListener('click', async () => {
+    const nameInput = document.getElementById('nameInput');
     const input = document.getElementById('emailInput');
+    const name = nameInput.value.trim();
     const val = input.value.trim();
-    if (!val || !val.includes('@')) return;
+    if (!name || !val || !val.includes('@')) return;
 
     const btn = document.getElementById('notifyBtn');
     btn.textContent = '...';
@@ -414,28 +417,36 @@
       const kitForm = document.querySelector('[data-uid="cca67c1605"] form');
       if (kitForm) {
         const kitEmail = kitForm.querySelector('input[type="email"]');
-        if (kitEmail) { kitEmail.value = val; kitForm.submit(); }
+        const kitName = kitForm.querySelector('input[name="first_name"], input[name="fields[first_name]"]');
+        if (kitEmail) { kitEmail.value = val; }
+        if (kitName) { kitName.value = name; }
+        if (kitEmail) { kitForm.submit(); }
       } else {
         await fetch('https://app.convertkit.com/forms/cca67c1605/subscriptions', {
           method: 'POST',
-          body: JSON.stringify({ email_address: val }),
+          body: JSON.stringify({ email_address: val, first_name: name }),
           headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
         });
       }
-      await emailjs.send('service_td994ke', 'template_9te15pb', { email: val });
-      await emailjs.send('service_td994ke', 'template_nd8r4zw', { subscriber_email: val });
+      await emailjs.send('service_td994ke', 'template_9te15pb', { email: val, name });
+      await emailjs.send('service_td994ke', 'template_nd8r4zw', { subscriber_email: val, subscriber_name: name });
       fetch('https://script.google.com/macros/s/AKfycbzGGX-tEpNIBeNPLQwJTuyeTTAL1DXc00bsBv0tcGgzhBNR0D0lhS3-Hxnw0KZmJ_rA/exec', {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: 'email=' + encodeURIComponent(val)
+        body: 'name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(val)
       });
     } catch (_) {}
 
     document.getElementById('confirm').classList.add('show');
+    nameInput.value = '';
     input.value = '';
     btn.textContent = 'Notify me';
     btn.disabled = false;
+  });
+
+  document.getElementById('nameInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('emailInput').focus();
   });
 
   document.getElementById('emailInput').addEventListener('keydown', e => {
