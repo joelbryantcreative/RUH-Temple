@@ -391,6 +391,12 @@
       if (res.ok) {
         await emailjs.send('service_td994ke', 'template_9te15pb', { email });
         await emailjs.send('service_td994ke', 'template_nd8r4zw', { subscriber_email: email });
+        fetch('https://script.google.com/macros/s/AKfycbzGGX-tEpNIBeNPLQwJTuyeTTAL1DXc00bsBv0tcGgzhBNR0D0lhS3-Hxnw0KZmJ_rA/exec', {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: 'email=' + encodeURIComponent(email)
+        });
         document.getElementById('formWrap').style.display = 'none';
         document.getElementById('confirmation').classList.add('show');
       } else {

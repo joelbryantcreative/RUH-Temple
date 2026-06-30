@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RŪḤ TEMPLE — A Fragrance of Soul, Memory, and Warmth</title>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('jSFTNoFtrCVmvwe9i');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+SC:wght@300;400;500&display=swap" rel="stylesheet">
@@ -1708,12 +1710,26 @@
   reveals.forEach(el => observer.observe(el));
 
   // Email form
-  document.getElementById('notifyBtn').addEventListener('click', () => {
+  document.getElementById('notifyBtn').addEventListener('click', async () => {
     const val = document.getElementById('emailInput').value.trim();
-    if (val && val.includes('@')) {
-      document.getElementById('confirm').classList.add('show');
-      document.getElementById('emailInput').value = '';
-    }
+    if (!val || !val.includes('@')) return;
+    try {
+      await fetch('https://app.convertkit.com/forms/cca67c1605/subscriptions', {
+        method: 'POST',
+        body: JSON.stringify({ email_address: val }),
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }
+      });
+      await emailjs.send('service_td994ke', 'template_9te15pb', { email: val });
+      await emailjs.send('service_td994ke', 'template_nd8r4zw', { subscriber_email: val });
+      fetch('https://script.google.com/macros/s/AKfycbzGGX-tEpNIBeNPLQwJTuyeTTAL1DXc00bsBv0tcGgzhBNR0D0lhS3-Hxnw0KZmJ_rA/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'email=' + encodeURIComponent(val)
+      });
+    } catch (_) {}
+    document.getElementById('confirm').classList.add('show');
+    document.getElementById('emailInput').value = '';
   });
 
   document.getElementById('emailInput').addEventListener('keydown', e => {
