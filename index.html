@@ -365,6 +365,7 @@
       <button class="notify-btn" id="notifyBtn">Notify me</button>
     </div>
     <p class="notify-confirm" id="confirm">We'll be in touch.</p>
+    <p class="notify-confirm" id="notifyError">Please fill in both fields.</p>
   </div>
 
 </div>
@@ -410,7 +411,12 @@
     const input = document.getElementById('emailInput');
     const name = nameInput.value.trim();
     const val = input.value.trim();
-    if (!name || !val || !val.includes('@')) return;
+    const errorMsg = document.getElementById('notifyError');
+    if (!name || !val || !val.includes('@')) {
+      errorMsg.classList.add('show');
+      return;
+    }
+    errorMsg.classList.remove('show');
 
     const btn = document.getElementById('notifyBtn');
     btn.textContent = '...';
