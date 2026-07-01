@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Scent Playlist — RŪḤ Temple</title>
+<meta property="og:title" content="The Scent Playlist — RŪḤ Temple">
+<meta property="og:description" content="Music chosen for the mood of the fragrance. Enter your name and email to receive access.">
+<meta property="og:image" content="https://www.ruhtemple.com/social-card.jpg">
+<meta property="og:url" content="https://www.ruhtemple.com/playlist.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Scent Playlist — RŪḤ Temple">
+<meta name="twitter:description" content="Music chosen for the mood of the fragrance.">
+<meta name="twitter:image" content="https://www.ruhtemple.com/social-card.jpg">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('jSFTNoFtrCVmvwe9i');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cormorant+SC:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #EFE7DA;
+    --sand: #C4AA82;
+    --tan: #A49070;
+    --earth: #6D5840;
+    --deepest: #0F0D0A;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+
+  body {
+    background:
+      linear-gradient(rgba(15,13,10,0.55), rgba(15,13,10,0.55)),
+      url('IMG_1025.jpeg') center center / cover no-repeat fixed;
+    color: var(--ivory);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    min-height: 100vh;
+    cursor: none;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.035;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  .cursor {
+    position: fixed;
+    width: 8px; height: 8px;
+    background: var(--sand);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 32px; height: 32px;
+    border: 1px solid rgba(196,170,130,0.4);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, border-color 0.3s;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 32px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(15,13,10,0.8) 0%, transparent 100%);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant SC', serif;
+    font-size: 18px;
+    letter-spacing: 0.2em;
+    color: var(--ivory);
+    text-decoration: none;
+  }
+
+  .nav-back {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--tan);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.4s;
+  }
+  .nav-back:hover { color: var(--ivory); }
+
+  .page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 40px 80px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 860px;
+    display: flex;
+    gap: 80px;
+    align-items: center;
+  }
+
+  /* ── Playlist card ── */
+  .playlist-card {
+    flex: 0 0 300px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.3s forwards;
+  }
+
+  .card-inner {
+    background: rgba(15,13,10,0.7);
+    border: 1px solid rgba(196,170,130,0.15);
+    border-radius: 4px;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+  }
+
+  .card-art {
+    width: 100%;
+    aspect-ratio: 1;
+    background: linear-gradient(135deg, #1a1208 0%, #2d2010 40%, #1e1610 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Vinyl ring decoration */
+  .card-art::before {
+    content: '';
+    position: absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    border: 1px solid rgba(196,170,130,0.08);
+    box-shadow:
+      0 0 0 24px rgba(196,170,130,0.04),
+      0 0 0 48px rgba(196,170,130,0.03),
+      0 0 0 72px rgba(196,170,130,0.02);
+  }
+
+  .card-art-symbol {
+    font-family: 'Cormorant SC', serif;
+    font-size: 52px;
+    font-weight: 300;
+    color: var(--sand);
+    letter-spacing: 0.05em;
+    position: relative;
+    z-index: 1;
+    opacity: 0.9;
+  }
+
+  /* Waveform bars */
+  .waveform {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 20px;
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .waveform span {
+    display: block;
+    width: 3px;
+    background: rgba(196,170,130,0.4);
+    border-radius: 2px;
+    animation: wave 1.4s ease-in-out infinite;
+  }
+  .waveform span:nth-child(1)  { height: 8px;  animation-delay: 0s; }
+  .waveform span:nth-child(2)  { height: 14px; animation-delay: 0.1s; }
+  .waveform span:nth-child(3)  { height: 20px; animation-delay: 0.2s; }
+  .waveform span:nth-child(4)  { height: 12px; animation-delay: 0.15s; }
+  .waveform span:nth-child(5)  { height: 18px; animation-delay: 0.05s; }
+  .waveform span:nth-child(6)  { height: 10px; animation-delay: 0.25s; }
+  .waveform span:nth-child(7)  { height: 16px; animation-delay: 0.1s; }
+  .waveform span:nth-child(8)  { height: 7px;  animation-delay: 0.3s; }
+  .waveform span:nth-child(9)  { height: 13px; animation-delay: 0.18s; }
+  .waveform span:nth-child(10) { height: 5px;  animation-delay: 0.08s; }
+
+  @keyframes wave {
+    0%, 100% { transform: scaleY(1);   opacity: 0.4; }
+    50%       { transform: scaleY(0.4); opacity: 0.2; }
+  }
+
+  .card-meta {
+    padding: 20px 20px 22px;
+  }
+
+  .card-label {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    letter-spacing: 0.5em;
+    color: var(--earth);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .card-title {
+    font-family: 'Cormorant SC', serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 0.08em;
+    margin-bottom: 4px;
+  }
+
+  .card-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--tan);
+    letter-spacing: 0.03em;
+  }
+
+  .card-tracks {
+    border-top: 1px solid rgba(196,170,130,0.1);
+    margin-top: 16px;
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .track {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .track-num {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    color: var(--earth);
+    width: 14px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .track-bar {
+    flex: 1;
+    height: 1px;
+    background: rgba(196,170,130,0.15);
+    position: relative;
+  }
+
+  .track-bar::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    background: rgba(196,170,130,0.35);
+  }
+
+  .track:nth-child(1) .track-bar::before { width: 72%; }
+  .track:nth-child(2) .track-bar::before { width: 55%; }
+  .track:nth-child(3) .track-bar::before { width: 88%; }
+  .track:nth-child(4) .track-bar::before { width: 40%; }
+  .track:nth-child(5) .track-bar::before { width: 63%; }
+
+  .track-dur {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 11px;
+    color: rgba(164,144,112,0.4);
+    flex-shrink: 0;
+  }
+
+  /* ── Right side: copy + form ── */
+  .copy {
+    flex: 1;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.55s forwards;
+  }
+
+  .eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    color: var(--earth);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .headline {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(32px, 5vw, 54px);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    line-height: 1.1;
+    color: var(--ivory);
+    margin-bottom: 24px;
+  }
+
+  .subline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(15px, 1.8vw, 19px);
+    font-weight: 300;
+    color: var(--tan);
+    line-height: 1.85;
+    letter-spacing: 0.03em;
+    margin-bottom: 48px;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.8s forwards;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .field label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: var(--ivory);
+    text-transform: uppercase;
+  }
+
+  .field input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(196,170,130,0.2);
+    outline: none;
+    padding: 12px 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 0.04em;
+    transition: border-color 0.4s;
+    width: 100%;
+  }
+
+  .field input:focus { border-color: rgba(196,170,130,0.5); }
+  .field input::placeholder { color: rgba(164,144,112,0.3); font-style: italic; }
+
+  .submit-btn {
+    background: transparent;
+    border: 1px solid rgba(196,170,130,0.4);
+    padding: 20px 48px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--ivory);
+    text-transform: uppercase;
+    cursor: none;
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+    align-self: flex-start;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .submit-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(196,170,130,0.08);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+  }
+
+  .submit-btn:hover::before { transform: translateX(0); }
+  .submit-btn:hover { border-color: rgba(196,170,130,0.8); }
+
+  .status-msg {
+    margin-top: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--tan);
+    letter-spacing: 0.04em;
+    opacity: 0;
+    transition: opacity 0.6s;
+  }
+
+  .status-msg.show { opacity: 1; }
+  .status-msg.error { color: rgba(196,170,130,0.6); }
+
+  .confirmation {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    animation: fadeUp 1s ease forwards;
+  }
+
+  .confirmation.show { display: flex; }
+
+  .confirm-mark {
+    width: 40px;
+    height: 1px;
+    background: var(--sand);
+  }
+
+  .confirm-headline {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(26px, 3.5vw, 40px);
+    font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 0.1em;
+  }
+
+  .confirm-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--tan);
+    line-height: 1.9;
+    letter-spacing: 0.03em;
+  }
+
+  .confirm-back {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--earth);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.4s;
+    margin-top: 8px;
+    display: inline-block;
+  }
+  .confirm-back:hover { color: var(--sand); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 720px) {
+    nav { padding: 24px 30px; }
+    .container {
+      flex-direction: column;
+      gap: 48px;
+      padding: 100px 0 60px;
+      align-items: flex-start;
+    }
+    .playlist-card {
+      flex: 0 0 auto;
+      width: 100%;
+      max-width: 300px;
+      align-self: center;
+    }
+    .submit-btn { align-self: stretch; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">RŪḤ</a>
+  <a href="index.html" class="nav-back">← Return</a>
+</nav>
+
+<div class="page">
+  <div class="container">
+
+    <!-- Playlist visual card -->
+    <div class="playlist-card">
+      <div class="card-inner">
+        <div class="card-art">
+          <span class="card-art-symbol">RŪḤ</span>
+          <div class="waveform">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+        <div class="card-meta">
+          <p class="card-label">Playlist · RŪḤ Temple</p>
+          <p class="card-title">The Scent Playlist</p>
+          <p class="card-subtitle">Music for the mood of the fragrance</p>
+          <div class="card-tracks">
+            <div class="track"><span class="track-num">01</span><div class="track-bar"></div><span class="track-dur">3:42</span></div>
+            <div class="track"><span class="track-num">02</span><div class="track-bar"></div><span class="track-dur">4:11</span></div>
+            <div class="track"><span class="track-num">03</span><div class="track-bar"></div><span class="track-dur">3:28</span></div>
+            <div class="track"><span class="track-num">04</span><div class="track-bar"></div><span class="track-dur">5:03</span></div>
+            <div class="track"><span class="track-num">05</span><div class="track-bar"></div><span class="track-dur">4:55</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copy + form -->
+    <div class="copy">
+      <p class="eyebrow">RŪḤ Temple</p>
+      <h1 class="headline">The Scent<br>Playlist</h1>
+      <p class="subline">Music chosen to match the soul of the fragrance.<br>Enter your details and we'll send you the link.</p>
+
+      <div id="formWrap">
+        <form class="form" id="playlistForm" novalidate>
+          <div class="field">
+            <label>First Name</label>
+            <input type="text" id="nameInput" placeholder="Your first name" autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" id="emailInput" placeholder="your@email.com" autocomplete="email">
+          </div>
+          <button type="submit" class="submit-btn" id="submitBtn">Send Me the Playlist</button>
+        </form>
+        <p class="status-msg error" id="errorMsg">Please fill in both fields.</p>
+      </div>
+
+      <div class="confirmation" id="confirmation">
+        <div class="confirm-mark"></div>
+        <h2 class="confirm-headline">Check Your Inbox.</h2>
+        <p class="confirm-text">The playlist is on its way to you.<br>Let it set the mood.</p>
+        <a href="index.html" class="confirm-back">Return to RŪḤ Temple</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Cursor
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top  = my + 'px';
+  });
+
+  (function loop() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(loop);
+  })();
+
+  document.querySelectorAll('a, button, input').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      ring.style.width = '48px';
+      ring.style.height = '48px';
+      ring.style.borderColor = 'rgba(196,170,130,0.6)';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width = '32px';
+      ring.style.height = '32px';
+      ring.style.borderColor = 'rgba(196,170,130,0.4)';
+    });
+  });
+
+  // Keyboard shortcuts
+  document.getElementById('nameInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('emailInput').focus();
+  });
+  document.getElementById('emailInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('submitBtn').click();
+  });
+
+  // Form submit
+  document.getElementById('playlistForm').addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const name  = document.getElementById('nameInput').value.trim();
+    const email = document.getElementById('emailInput').value.trim();
+    const errorMsg = document.getElementById('errorMsg');
+    const btn   = document.getElementById('submitBtn');
+
+    if (!name || !email || !email.includes('@')) {
+      errorMsg.classList.add('show');
+      return;
+    }
+    errorMsg.classList.remove('show');
+
+    btn.textContent = '...';
+    btn.disabled = true;
+
+    // ── PLAYLIST URL ─────────────────────────────────────────────────
+    // Replace the value below with your actual Spotify playlist URL
+    const PLAYLIST_URL = 'YOUR_SPOTIFY_PLAYLIST_URL_HERE';
+    // ─────────────────────────────────────────────────────────────────
+
+    try {
+      // Send playlist link to subscriber
+      await emailjs.send('service_td994ke', 'template_playlist', {
+        name,
+        email,
+        playlist_url: PLAYLIST_URL
+      });
+
+      // Notify owner
+      await emailjs.send('service_td994ke', 'template_nd8r4zw', {
+        subscriber_email: email,
+        subscriber_name:  name
+      });
+
+      // Log to Google Sheet
+      fetch('https://script.google.com/macros/s/AKfycbzGGX-tEpNIBeNPLQwJTuyeTTAL1DXc00bsBv0tcGgzhBNR0D0lhS3-Hxnw0KZmJ_rA/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email)
+      });
+
+      document.getElementById('formWrap').style.display = 'none';
+      document.getElementById('confirmation').classList.add('show');
+    } catch (_) {
+      btn.textContent = 'Send Me the Playlist';
+      btn.disabled = false;
+      errorMsg.textContent = 'Something went wrong. Please try again.';
+      errorMsg.classList.add('show');
+    }
+  });
+</script>
+</body>
+</html>
