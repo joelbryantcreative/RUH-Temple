@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Lineage — RŪḤ Temple</title>
+<meta property="og:title" content="The Lineage — RŪḤ Temple">
+<meta property="og:description" content="An archive of ancient ritual, before Terre Natale arrives.">
+<meta property="og:image" content="https://www.ruhtemple.com/social-card.jpg">
+<meta property="og:url" content="https://www.ruhtemple.com/lineage.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Lineage — RŪḤ Temple">
+<meta name="twitter:description" content="An archive of ancient ritual, before Terre Natale arrives.">
+<meta name="twitter:image" content="https://www.ruhtemple.com/social-card.jpg">
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('jSFTNoFtrCVmvwe9i');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cormorant+SC:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #EFE7DA;
+    --sand: #C4AA82;
+    --tan: #A49070;
+    --earth: #6D5840;
+    --deepest: #0F0D0A;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    background: var(--deepest);
+    color: var(--ivory);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    overflow: hidden;
+    cursor: none;
+  }
+
+  .bg-video {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.6;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.035;
+    pointer-events: none;
+    z-index: 100;
+  }
+
+  .cursor {
+    position: fixed;
+    width: 7px;
+    height: 7px;
+    background: var(--sand);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(196,170,130,0.35);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, border-color 0.3s;
+  }
+
+  .glow {
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 65%, rgba(109,88,64,0.22) 0%, transparent 60%),
+      radial-gradient(ellipse at 30% 80%, rgba(196,170,130,0.06) 0%, transparent 45%),
+      radial-gradient(ellipse at 70% 20%, rgba(164,144,112,0.05) 0%, transparent 45%);
+    animation: breathe 10s ease-in-out infinite alternate;
+    pointer-events: none;
+  }
+
+  @keyframes breathe {
+    0%   { opacity: 0.7; }
+    100% { opacity: 1; }
+  }
+
+  .stage {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .wordmark {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(80px, 18vw, 200px);
+    font-weight: 300;
+    letter-spacing: 0.12em;
+    line-height: 1;
+    color: var(--ivory);
+    opacity: 0;
+    animation: riseIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+    position: relative;
+  }
+
+  .wordmark::after {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--sand);
+    margin: 28px auto 0;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.8s forwards;
+  }
+
+  .sub-name {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(11px, 1.8vw, 16px);
+    font-weight: 300;
+    letter-spacing: 0.55em;
+    color: var(--ivory);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: riseIn 1.2s ease 1s forwards;
+    margin-top: 24px;
+  }
+
+  .tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(14px, 2vw, 19px);
+    font-weight: 300;
+    color: var(--tan);
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+    opacity: 0;
+    animation: riseIn 1.2s ease 1.4s forwards;
+    margin-top: 20px;
+  }
+
+  .line {
+    width: 1px;
+    height: 0;
+    background: linear-gradient(to bottom, transparent, rgba(196,170,130,0.3), transparent);
+    margin: 56px auto;
+    animation: growLine 1.2s ease 1.8s forwards;
+  }
+
+  @keyframes growLine {
+    to { height: 80px; }
+  }
+
+  .coming {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(9px, 1.2vw, 11px);
+    letter-spacing: 0.55em;
+    color: var(--ivory);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 1s ease 2.4s forwards;
+    margin-bottom: 32px;
+  }
+
+  .notify-form {
+    opacity: 0;
+    animation: riseIn 1s ease 2.6s forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .notify-label {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(9px, 1.1vw, 11px);
+    letter-spacing: 0.4em;
+    color: var(--ivory);
+    text-transform: uppercase;
+  }
+
+  .notify-row {
+    display: flex;
+    gap: 0;
+    border: 1px solid rgba(196,170,130,0.2);
+    overflow: hidden;
+    transition: border-color 0.4s;
+  }
+
+  .notify-row:focus-within {
+    border-color: rgba(196,170,130,0.5);
+  }
+
+  .notify-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 14px 24px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 0.05em;
+    width: 260px;
+  }
+
+  .notify-input + .notify-input {
+    border-left: 1px solid rgba(196,170,130,0.2);
+  }
+
+  .notify-input::placeholder {
+    color: rgba(164,144,112,0.4);
+    font-style: italic;
+  }
+
+  .notify-btn {
+    background: transparent;
+    border: none;
+    border-left: 1px solid rgba(196,170,130,0.2);
+    padding: 14px 24px;
+    font-family: 'Cormorant SC', serif;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: var(--sand);
+    text-transform: uppercase;
+    cursor: none;
+    transition: background 0.4s, color 0.4s;
+  }
+
+  .notify-btn:hover {
+    background: rgba(196,170,130,0.08);
+    color: var(--ivory);
+  }
+
+  .notify-confirm {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--tan);
+    letter-spacing: 0.05em;
+    height: 20px;
+    opacity: 0;
+    transition: opacity 0.6s;
+  }
+
+  .notify-confirm.show { opacity: 1; }
+
+  .bottom-mark {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cormorant SC', serif;
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    color: rgba(109,88,64,0.4);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 1s ease 3s forwards;
+    white-space: nowrap;
+  }
+
+  .corner-mark {
+    position: fixed;
+    top: 36px;
+    right: 48px;
+    font-family: 'Cormorant SC', serif;
+    font-size: 9px;
+    letter-spacing: 0.45em;
+    color: rgba(109,88,64,0.35);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeIn 1.5s ease 2s forwards;
+  }
+
+  @keyframes riseIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @media (max-width: 600px) {
+    .notify-input { width: 140px; }
+    .corner-mark { display: none; }
+    .bottom-mark { font-size: 8px; letter-spacing: 0.35em; }
+  }
+</style>
+</head>
+<body>
+
+<video class="bg-video" autoplay muted loop playsinline>
+  <source src="copy-7ef69c50-371f-4433-88df-31dcac8c7d93_mxyVy04K.mov" type="video/mp4">
+  <source src="6508686_Silhouette%20Shadow%20Hand%20Reaching_By_Alejandro_Campollo_Artlist_HD.mp4" type="video/mp4">
+</video>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="glow"></div>
+
+<div class="stage">
+
+  <h1 class="wordmark">RŪḤ</h1>
+  <p class="sub-name">Temple</p>
+  <p class="tagline">An archive of ancient ritual,<br>before Terre Natale arrives.</p>
+
+  <div class="line"></div>
+
+  <p class="coming">The Lineage</p>
+
+  <div class="notify-form">
+    <span class="notify-label">Enter your details to receive the free archive.</span>
+    <div class="notify-row">
+      <input class="notify-input" type="text" placeholder="your name" id="nameInput">
+      <input class="notify-input" type="email" placeholder="your@email.com" id="emailInput">
+      <button class="notify-btn" id="notifyBtn">Send it to me</button>
+    </div>
+    <p class="notify-confirm" id="confirm">Check your inbox.</p>
+    <p class="notify-confirm" id="notifyError">Please fill in both fields.</p>
+  </div>
+
+</div>
+
+<p class="corner-mark">New Ancient</p>
+<p class="bottom-mark">RŪḤ Temple</p>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top  = my + 'px';
+  });
+
+  (function loop() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(loop);
+  })();
+
+  document.querySelectorAll('button, input').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      ring.style.width = '48px';
+      ring.style.height = '48px';
+      ring.style.borderColor = 'rgba(196,170,130,0.6)';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width = '28px';
+      ring.style.height = '28px';
+      ring.style.borderColor = 'rgba(196,170,130,0.35)';
+    });
+  });
+
+  // ── ARCHIVE LINK ─────────────────────────────────────────────────────
+  // Replace this with the actual hosted URL of the PDF once it's uploaded
+  const ARCHIVE_URL = 'YOUR_PDF_LINK_HERE';
+  // ─────────────────────────────────────────────────────────────────────
+
+  document.getElementById('notifyBtn').addEventListener('click', async () => {
+    const nameInput = document.getElementById('nameInput');
+    const emailInput = document.getElementById('emailInput');
+    const name  = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const errorMsg = document.getElementById('notifyError');
+
+    if (!name || !email || !email.includes('@')) {
+      errorMsg.classList.add('show');
+      return;
+    }
+    errorMsg.classList.remove('show');
+
+    const btn = document.getElementById('notifyBtn');
+    btn.textContent = '...';
+    btn.disabled = true;
+
+    try {
+      await emailjs.send('service_td994ke', 'template_lineage', {
+        name,
+        email,
+        archive_url: ARCHIVE_URL
+      });
+      await emailjs.send('service_td994ke', 'template_nd8r4zw', {
+        subscriber_email: email,
+        subscriber_name: name
+      });
+      fetch('https://script.google.com/macros/s/AKfycbzGGX-tEpNIBeNPLQwJTuyeTTAL1DXc00bsBv0tcGgzhBNR0D0lhS3-Hxnw0KZmJ_rA/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email)
+      });
+    } catch (_) {}
+
+    document.getElementById('confirm').classList.add('show');
+    nameInput.value = '';
+    emailInput.value = '';
+    btn.textContent = 'Send it to me';
+    btn.disabled = false;
+  });
+
+  document.getElementById('nameInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('emailInput').focus();
+  });
+  document.getElementById('emailInput').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('notifyBtn').click();
+  });
+</script>
+</body>
+</html>
