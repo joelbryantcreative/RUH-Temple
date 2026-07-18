@@ -39,14 +39,14 @@
     cursor: none;
   }
 
-  .bg-video {
+  .bg-photo {
     position: fixed;
     inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
     z-index: -1;
-    opacity: 0.6;
+    opacity: 0.75;
   }
 
   body::before {
@@ -310,10 +310,7 @@
 </head>
 <body>
 
-<video class="bg-video" autoplay muted loop playsinline>
-  <source src="copy-7ef69c50-371f-4433-88df-31dcac8c7d93_mxyVy04K.mov" type="video/mp4">
-  <source src="6508686_Silhouette%20Shadow%20Hand%20Reaching_By_Alejandro_Campollo_Artlist_HD.mp4" type="video/mp4">
-</video>
+<img class="bg-photo" src="IMG_1589.jpeg" alt="">
 
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
