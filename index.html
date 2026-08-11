@@ -3,29 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RŪḤ TEMPLE</title>
+<title>RŪḤ TEMPLE — A Fragrance of Soul, Memory, and Warmth</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cormorant+SC:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+SC:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --ivory: #EFE7DA;
     --sand: #C4AA82;
     --tan: #A49070;
     --earth: #6D5840;
+    --dark: #3A3028;
+    --darker: #1E1812;
     --deepest: #0F0D0A;
   }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html, body { height: 100%; }
+  html { scroll-behavior: smooth; }
 
   body {
-    background: var(--deepest);
+    background:
+      linear-gradient(rgba(15,13,10,0.72), rgba(15,13,10,0.72)),
+      url('D5BA0917-D669-4B6E-BAD8-2EBC6C04B146.png') center center / cover no-repeat fixed;
     color: var(--ivory);
     font-family: 'Cormorant Garamond', Georgia, serif;
-    overflow: hidden;
-    cursor: none;
+    overflow-x: hidden;
+    cursor: default;
   }
 
   .bg-video {
@@ -38,7 +42,7 @@
     opacity: 0.6;
   }
 
-  /* GRAIN */
+  /* GRAIN OVERLAY */
   body::before {
     content: '';
     position: fixed;
@@ -46,119 +50,251 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
     opacity: 0.035;
     pointer-events: none;
-    z-index: 100;
+    z-index: 1000;
   }
 
-  /* CURSOR */
+  /* CUSTOM CURSOR */
+  body { cursor: none; }
   .cursor {
     position: fixed;
-    width: 7px;
-    height: 7px;
+    width: 8px;
+    height: 8px;
     background: var(--sand);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
+    transition: transform 0.1s, opacity 0.3s;
     mix-blend-mode: difference;
   }
   .cursor-ring {
     position: fixed;
-    width: 28px;
-    height: 28px;
-    border: 1px solid rgba(196,170,130,0.35);
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(196,170,130,0.4);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9998;
     transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, border-color 0.3s;
+    transition: transform 0.25s ease, width 0.3s, height 0.3s, opacity 0.3s;
   }
 
-  /* AMBIENT GLOW */
-  .glow {
+  /* NAV */
+  nav {
     position: fixed;
-    inset: 0;
-    background:
-      radial-gradient(ellipse at 50% 65%, rgba(109,88,64,0.22) 0%, transparent 60%),
-      radial-gradient(ellipse at 30% 80%, rgba(196,170,130,0.06) 0%, transparent 45%),
-      radial-gradient(ellipse at 70% 20%, rgba(164,144,112,0.05) 0%, transparent 45%);
-    animation: breathe 10s ease-in-out infinite alternate;
-    pointer-events: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 300;
+    padding: 32px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mix-blend-mode: normal;
+    background: linear-gradient(to bottom, rgba(15,13,10,0.8) 0%, transparent 100%);
   }
 
-  @keyframes breathe {
-    0%   { opacity: 0.7; }
-    100% { opacity: 1; }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: var(--ivory);
+    text-decoration: none;
+    opacity: 0;
+    animation: fadeIn 1.5s ease 2s forwards;
   }
 
-  /* LAYOUT */
-  .stage {
-    position: fixed;
-    inset: 0;
+  .nav-links {
+    display: flex;
+    gap: 48px;
+    list-style: none;
+    opacity: 0;
+    animation: fadeIn 1.5s ease 2.2s forwards;
+  }
+
+  .nav-links a {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    color: var(--tan);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.4s;
+  }
+
+  .nav-links a:hover { color: var(--ivory); }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    padding: 40px;
+    overflow: hidden;
   }
 
-  /* WORDMARK */
-  .wordmark {
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 60%, rgba(109,88,64,0.25) 0%, rgba(58,48,40,0.15) 40%, transparent 70%),
+                radial-gradient(ellipse at 20% 80%, rgba(196,170,130,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(164,144,112,0.06) 0%, transparent 50%);
+  }
+
+  .hero-smoke {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(109,88,64,0.2) 0%, transparent 60%);
+    animation: smokeRise 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes smokeRise {
+    0% { transform: translateY(0) scale(1); opacity: 0.6; }
+    100% { transform: translateY(-30px) scale(1.05); opacity: 1; }
+  }
+
+  .hero-content {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    color: var(--sand);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.5s forwards;
+    margin-bottom: 32px;
+  }
+
+  .hero-logo {
     font-family: 'Cormorant SC', serif;
-    font-size: clamp(80px, 18vw, 200px);
+    font-size: clamp(72px, 14vw, 160px);
     font-weight: 300;
     letter-spacing: 0.12em;
-    line-height: 1;
+    line-height: 0.9;
     color: var(--ivory);
     opacity: 0;
-    animation: riseIn 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+    animation: fadeUp 1.4s ease 0.8s forwards;
     position: relative;
   }
 
-  .wordmark::after {
+  .hero-logo::after {
     content: '';
     display: block;
-    width: 32px;
+    width: 40px;
     height: 1px;
     background: var(--sand);
-    margin: 28px auto 0;
+    margin: 24px auto 0;
     opacity: 0;
     animation: fadeIn 1s ease 1.8s forwards;
   }
 
-  /* TEMPLE */
-  .sub-name {
-    font-family: 'Cormorant SC', serif;
-    font-size: clamp(11px, 1.8vw, 16px);
-    font-weight: 300;
-    letter-spacing: 0.55em;
-    color: var(--ivory);
+  .hero-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(11px, 1.5vw, 14px);
+    letter-spacing: 0.45em;
+    color: var(--sand);
     text-transform: uppercase;
     opacity: 0;
-    animation: riseIn 1.2s ease 1s forwards;
-    margin-top: 24px;
+    animation: fadeUp 1.2s ease 1.2s forwards;
+    margin-top: 28px;
   }
 
-  /* TAGLINE */
-  .tagline {
+  .hero-tagline {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: clamp(14px, 2vw, 19px);
+    font-size: clamp(14px, 2vw, 18px);
     font-weight: 300;
     color: var(--tan);
-    letter-spacing: 0.04em;
-    line-height: 1.7;
+    letter-spacing: 0.05em;
     opacity: 0;
-    animation: riseIn 1.2s ease 1.4s forwards;
+    animation: fadeUp 1.2s ease 1.5s forwards;
     margin-top: 20px;
   }
 
-  /* DIVIDER LINE */
-  .line {
+  .hero-cta {
+    margin-top: 56px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 1.8s forwards;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    border: 1px solid rgba(196,170,130,0.4);
+    padding: 18px 48px;
+    text-decoration: none;
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(196,170,130,0.08);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+  }
+
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary:hover { border-color: rgba(196,170,130,0.8); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 48px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    animation: fadeIn 1s ease 2.5s forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-scroll span {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: var(--earth);
+    text-transform: uppercase;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--earth), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(0.7); }
+  }
+
+  /* SECTIONS */
+  section { position: relative; }
+
+  /* COMING SOON ELEMENTS IN HERO */
+  .hero-line {
     width: 1px;
     height: 0;
     background: linear-gradient(to bottom, transparent, rgba(196,170,130,0.3), transparent);
-    margin: 56px auto;
+    margin: 48px auto;
     animation: growLine 1.2s ease 1.8s forwards;
   }
 
@@ -166,22 +302,20 @@
     to { height: 80px; }
   }
 
-  /* COMING SOON TEXT */
-  .coming {
-    font-family: 'Cormorant SC', serif;
+  .hero-coming {
+    font-family: 'Cinzel', serif;
     font-size: clamp(9px, 1.2vw, 11px);
     letter-spacing: 0.55em;
     color: var(--ivory);
     text-transform: uppercase;
     opacity: 0;
-    animation: fadeIn 1s ease 2.4s forwards;
+    animation: fadeUp 1s ease 2.2s forwards;
     margin-bottom: 32px;
   }
 
-  /* EMAIL FORM */
   .notify-form {
     opacity: 0;
-    animation: riseIn 1s ease 2.6s forwards;
+    animation: fadeUp 1s ease 2.5s forwards;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -189,7 +323,7 @@
   }
 
   .notify-label {
-    font-family: 'Cormorant SC', serif;
+    font-family: 'Cinzel', serif;
     font-size: clamp(9px, 1.1vw, 11px);
     letter-spacing: 0.4em;
     color: var(--ivory);
@@ -198,15 +332,12 @@
 
   .notify-row {
     display: flex;
-    gap: 0;
     border: 1px solid rgba(196,170,130,0.2);
     overflow: hidden;
     transition: border-color 0.4s;
   }
 
-  .notify-row:focus-within {
-    border-color: rgba(196,170,130,0.5);
-  }
+  .notify-row:focus-within { border-color: rgba(196,170,130,0.5); }
 
   .notify-input {
     background: transparent;
@@ -231,7 +362,7 @@
     border: none;
     border-left: 1px solid rgba(196,170,130,0.2);
     padding: 14px 24px;
-    font-family: 'Cormorant SC', serif;
+    font-family: 'Cinzel', serif;
     font-size: 9px;
     letter-spacing: 0.4em;
     color: var(--sand);
@@ -258,64 +389,1119 @@
 
   .notify-confirm.show { opacity: 1; }
 
-  .newsletter-link {
-    font-family: 'Cormorant SC', serif;
+  /* MARQUEE DIVIDER */
+  .marquee-wrap {
+    overflow: hidden;
+    border-top: 1px solid rgba(109,88,64,0.25);
+    border-bottom: 1px solid rgba(109,88,64,0.25);
+    padding: 20px 0;
+    background: rgba(15,13,10,0.5);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    white-space: nowrap;
+    animation: marquee 30s linear infinite;
+  }
+
+  .marquee-item {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--earth);
+    text-transform: uppercase;
+    padding: 0 48px;
+  }
+
+  .marquee-dot {
+    color: var(--sand);
+    padding: 0 12px;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* PURPOSE SECTION */
+  .purpose-section {
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(rgba(15,13,10,0.78), rgba(15,13,10,0.78)),
+      url('D5BA0917-D669-4B6E-BAD8-2EBC6C04B146.png') center center / cover no-repeat;
+  }
+
+  .purpose-section-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .purpose {
+    position: relative;
+    z-index: 2;
+    padding: 160px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 120px;
+    align-items: center;
+  }
+
+  .purpose-left {
+    position: relative;
+  }
+
+  .purpose-number {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--earth);
+    margin-bottom: 40px;
+  }
+
+  .purpose-headline {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--ivory);
+    margin-bottom: 40px;
+  }
+
+  .purpose-headline em {
+    font-style: italic;
+    color: var(--sand);
+  }
+
+  .purpose-body {
+    font-size: clamp(15px, 1.5vw, 18px);
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--tan);
+    letter-spacing: 0.02em;
+  }
+
+  .purpose-right {
+    position: relative;
+  }
+
+  .purpose-quote {
+    border-left: 1px solid rgba(196,170,130,0.3);
+    padding-left: 40px;
+  }
+
+  .purpose-quote blockquote {
+    font-style: italic;
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--ivory);
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+  }
+
+  .purpose-quote cite {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    color: var(--earth);
+    font-style: normal;
+    text-transform: uppercase;
+  }
+
+  .purpose-mantra {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(13px, 1.4vw, 16px);
+    font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 0.1em;
+    padding: 0 60px 100px;
+  }
+
+  /* BOTTLE SECTION */
+  .bottle-section {
+    padding: 80px 0 160px;
+    background: linear-gradient(to bottom, var(--deepest), var(--darker), var(--deepest));
+    overflow: hidden;
+  }
+
+  .bottle-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .bottle-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 600px;
+  }
+
+  /* SVG BOTTLE */
+  .bottle-svg-wrap {
+    position: relative;
+    width: 280px;
+    height: 420px;
+    filter: drop-shadow(0 40px 80px rgba(109,88,64,0.4)) drop-shadow(0 0 120px rgba(196,170,130,0.1));
+    animation: bottleFloat 6s ease-in-out infinite;
+  }
+
+  @keyframes bottleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+  }
+
+  .bottle-glow {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 40px;
+    background: radial-gradient(ellipse, rgba(196,170,130,0.25) 0%, transparent 70%);
+    animation: bottleFloat 6s ease-in-out infinite;
+    filter: blur(8px);
+  }
+
+  .bottle-info {
+    position: relative;
+    z-index: 2;
+  }
+
+  .bottle-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    color: var(--earth);
+    text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+
+  .bottle-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(28px, 3.5vw, 44px);
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 1.2;
+    margin-bottom: 32px;
+  }
+
+  .bottle-description {
+    font-size: clamp(14px, 1.4vw, 17px);
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--tan);
+    margin-bottom: 48px;
+    letter-spacing: 0.02em;
+  }
+
+  .bottle-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid rgba(109,88,64,0.3);
+  }
+
+  .spec-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(109,88,64,0.15);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+
+  .spec-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--earth);
+    text-transform: uppercase;
+  }
+
+  .spec-value {
+    color: var(--ivory);
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  /* SCENT SECTION */
+  .scent-section-wrap {
+    position: relative;
+    background: url('IMG_0308.jpeg') center center / cover no-repeat;
+  }
+
+  .scent-section-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(15,13,10,0.65);
+  }
+
+  .scent-section {
+    position: relative;
+    z-index: 2;
+    padding: 160px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .section-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    color: var(--earth);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .soul-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(20px, 2.5vw, 32px);
+    font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 0.04em;
+    line-height: 1.8;
+    margin-bottom: 60px;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 1.1;
+    margin-bottom: 80px;
+  }
+
+  .scent-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    margin-bottom: 80px;
+  }
+
+  .scent-card {
+    position: relative;
+    padding: 64px 40px;
+    background: rgba(30,24,18,0.6);
+    border: 1px solid rgba(109,88,64,0.2);
+    transition: all 0.5s ease;
+    overflow: hidden;
+  }
+
+  .scent-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(196,170,130,0.05) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+
+  .scent-card:hover::before { opacity: 1; }
+  .scent-card:hover { border-color: rgba(196,170,130,0.35); }
+
+  .scent-icon {
+    font-size: 32px;
+    margin-bottom: 24px;
+    opacity: 0.6;
+  }
+
+  .scent-name {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ivory);
+    letter-spacing: 0.15em;
+    margin-bottom: 16px;
+  }
+
+  .scent-desc {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--tan);
+    font-style: italic;
+  }
+
+  .scent-notes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 48px;
+  }
+
+  .note-pill {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--sand);
+    border: 1px solid rgba(196,170,130,0.25);
+    padding: 10px 24px;
+    text-transform: uppercase;
+    transition: all 0.4s;
+  }
+
+  .note-pill:hover {
+    background: rgba(196,170,130,0.08);
+    border-color: rgba(196,170,130,0.5);
+  }
+
+  /* RITUAL SECTION */
+  .ritual-section {
+    position: relative;
+    padding: 160px 0;
+    background:
+      linear-gradient(rgba(15,13,10,0.75), rgba(15,13,10,0.75)),
+      url('IMG_1055.jpeg') center center / cover no-repeat;
+    overflow: hidden;
+  }
+
+  .ritual-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cinzel', serif;
+    font-size: clamp(120px, 20vw, 280px);
+    font-weight: 300;
+    color: rgba(109,88,64,0.04);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: 0.1em;
+  }
+
+  .ritual-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .ritual-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 80px;
+    margin-top: 80px;
+  }
+
+  .ritual-step {
+    text-align: left;
+    position: relative;
+    padding-top: 40px;
+  }
+
+  .ritual-step::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 1px;
+    background: var(--sand);
+  }
+
+  .ritual-num {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.4em;
+    color: var(--earth);
+    margin-bottom: 24px;
+  }
+
+  .ritual-title {
+    font-family: 'Cinzel', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ivory);
+    margin-bottom: 20px;
+    letter-spacing: 0.08em;
+    line-height: 1.3;
+  }
+
+  .ritual-text {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--tan);
+    font-style: italic;
+  }
+
+  /* POEM SECTION */
+  .poem-section {
+    padding: 160px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .poem-section::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    background: url('IMG_1101.jpeg') center top / cover no-repeat;
+    filter: blur(10px);
+    z-index: 0;
+  }
+
+  .poem-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(15,13,10,0.62);
+    z-index: 1;
+  }
+
+  .poem-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: radial-gradient(ellipse at 50% 50%, rgba(109,88,64,0.12) 0%, transparent 65%);
+  }
+
+  .poem-papyrus {
+    position: relative;
+    z-index: 3;
+    max-width: 560px;
+    text-align: center;
+    padding: 80px 60px;
+    background: rgba(196,170,130,0.04);
+    border: 1px solid rgba(196,170,130,0.15);
+  }
+
+  .poem-papyrus::before,
+  .poem-papyrus::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 48px;
+    background: rgba(196,170,130,0.3);
+  }
+
+  .poem-papyrus::before { top: -48px; }
+  .poem-papyrus::after { bottom: -48px; }
+
+  .poem-brand {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    letter-spacing: 0.4em;
+    color: var(--sand);
+    margin-bottom: 48px;
+    text-transform: uppercase;
+  }
+
+  .poem-text {
+    font-style: italic;
+    font-size: clamp(16px, 1.8vw, 20px);
+    font-weight: 300;
+    line-height: 2;
+    color: var(--ivory);
+    letter-spacing: 0.02em;
+  }
+
+  .poem-text p {
+    margin-bottom: 8px;
+  }
+
+  /* PACKAGING SECTION */
+  .packaging-section {
+    padding: 120px 60px 160px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .packaging-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .packaging-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+  }
+
+  .pkg-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    background: rgba(20,16,12,0.8);
+    border: 1px solid rgba(109,88,64,0.2);
+  }
+
+  .pkg-card-inner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px;
+    background: linear-gradient(to top, rgba(15,13,10,0.95) 0%, rgba(15,13,10,0.3) 50%, transparent 100%);
+  }
+
+  .pkg-visual {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pkg-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.4em;
+    color: var(--earth);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .pkg-title {
+    font-family: 'Cinzel', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ivory);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .pkg-desc {
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--tan);
+    font-style: italic;
+  }
+
+  /* OUR STORY SECTION */
+  .story-section-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .story-section-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    background: url('IMG_1125.jpeg') center center / cover no-repeat;
+    filter: blur(10px);
+    z-index: 0;
+  }
+
+  .story-section-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(15,13,10,0.65);
+    z-index: 1;
+  }
+
+  .story-section {
+    position: relative;
+    z-index: 2;
+    padding: 160px 60px;
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .story-philosophy {
+    margin-bottom: 80px;
+  }
+
+  .story-philosophy-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(20px, 2.5vw, 30px);
+    font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 0.08em;
+    margin-bottom: 16px;
+  }
+
+  .story-philosophy-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(15px, 1.6vw, 18px);
+    font-weight: 300;
+    color: var(--sand);
+    letter-spacing: 0.05em;
+    margin-bottom: 48px;
+  }
+
+  .story-philosophy-text {
+    font-size: clamp(16px, 1.8vw, 20px);
+    font-weight: 300;
+    line-height: 2.1;
+    color: var(--ivory);
+    letter-spacing: 0.03em;
+  }
+
+  .story-split {
+    width: 1px;
+    height: 72px;
+    background: linear-gradient(to bottom, transparent, rgba(196,170,130,0.3), transparent);
+    margin: 0 auto 80px;
+  }
+
+  .story-ethos-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    color: var(--earth);
+    text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+
+  .story-values {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .story-values li {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(15px, 1.6vw, 18px);
+    font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(196,170,130,0.1);
+  }
+
+  .story-values li:last-child {
+    border-bottom: none;
+  }
+
+  /* FOUNDER SECTION */
+  .founder-section {
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(rgba(15,13,10,0.62), rgba(15,13,10,0.62)),
+      url('DA3D8325-0A2F-4E4F-8E5F-3999EEDEF571.jpeg') center top / cover no-repeat;
+    padding: 160px 60px;
+    text-align: center;
+  }
+
+  .founder-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .founder-hook {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 1.8;
+    letter-spacing: 0.03em;
+    margin-bottom: 56px;
+  }
+
+  .founder-stanza {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(16px, 1.8vw, 20px);
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 2.1;
+    letter-spacing: 0.03em;
+    margin-bottom: 44px;
+  }
+
+  .founder-brand {
+    font-family: 'Cinzel', serif;
+    font-style: normal;
+    font-size: clamp(10px, 1.1vw, 12px);
+    letter-spacing: 0.35em;
+    color: var(--sand);
+    text-transform: uppercase;
+    line-height: 2.4;
+    margin-bottom: 44px;
+  }
+
+  .founder-heritage-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.5em;
+    color: var(--earth);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .founder-heritage-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.2vw, 28px);
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 1.8;
+    letter-spacing: 0.03em;
+    margin-bottom: 72px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .founder-heritage-text .heritage-inline {
+    font-family: 'Cinzel', serif;
+    font-style: normal;
+    font-size: 0.65em;
+    letter-spacing: 0.35em;
+    color: var(--earth);
+    text-transform: uppercase;
+    margin-right: 8px;
+  }
+
+  .founder-heritage-text span {
+    color: var(--sand);
+  }
+
+  .founder-close {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(18px, 2.2vw, 24px);
+    font-weight: 300;
+    color: var(--sand);
+    letter-spacing: 0.05em;
+  }
+
+  /* MANIFESTO SECTION */
+  .manifesto-section {
+    padding: 160px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(rgba(15,13,10,0.65), rgba(15,13,10,0.65)),
+      url('IMG_1102.jpeg') center center / cover no-repeat;
+  }
+
+  .manifesto-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+
+  .manifesto-section::before {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, rgba(196,170,130,0.3), transparent);
+    margin: 0 auto 80px;
+  }
+
+  .manifesto-open {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(20px, 2.5vw, 28px);
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 1.8;
+    letter-spacing: 0.03em;
+    margin-bottom: 60px;
+  }
+
+  .manifesto-stanza {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(16px, 1.8vw, 20px);
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 2.1;
+    letter-spacing: 0.03em;
+    margin-bottom: 40px;
+  }
+
+  .manifesto-ruh {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(16px, 1.8vw, 20px);
+    font-weight: 300;
+    color: var(--ivory);
+    line-height: 2.1;
+    letter-spacing: 0.03em;
+    margin-bottom: 56px;
+  }
+
+
+  .manifesto-echo {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(16px, 1.8vw, 20px);
+    font-weight: 300;
+    color: var(--tan);
+    letter-spacing: 0.03em;
+    margin-bottom: 24px;
+  }
+
+  .manifesto-close {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(22px, 2.8vw, 32px);
+    font-weight: 300;
+    color: var(--sand);
+    letter-spacing: 0.06em;
+  }
+
+  /* CTA SECTION */
+  .cta-section {
+    padding: 160px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(109,88,64,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-headline {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(36px, 5vw, 68px);
+    font-weight: 300;
+    line-height: 1.1;
+    color: var(--ivory);
+    margin-bottom: 24px;
+  }
+
+  .cta-sub {
+    font-size: clamp(20px, 2.5vw, 32px);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--ivory);
+    letter-spacing: 0.03em;
+    margin-bottom: 56px;
+    line-height: 1.7;
+  }
+
+  .cta-price {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    color: var(--sand);
+    margin-bottom: 48px;
+    text-transform: uppercase;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-ghost {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
     font-size: 10px;
     letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--tan);
+    padding: 18px 40px;
+    text-decoration: none;
+    transition: color 0.4s;
+    border-bottom: 1px solid rgba(196,170,130,0.2);
+  }
+
+  .btn-ghost:hover { color: var(--ivory); border-color: rgba(196,170,130,0.5); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid rgba(109,88,64,0.2);
+    padding: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    letter-spacing: 0.3em;
     color: var(--ivory);
+  }
+
+  .footer-tagline {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--earth);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: var(--earth);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--sand); }
+
+  /* SCROLL REVEALS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.15s; }
+  .reveal-delay-2 { transition-delay: 0.3s; }
+  .reveal-delay-3 { transition-delay: 0.45s; }
+  .reveal-delay-4 { transition-delay: 0.6s; }
+
+  /* KEYFRAMES */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 12px;
+    position: relative;
+    z-index: 201;
+    min-width: 44px;
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: var(--ivory);
+    transition: all 0.4s ease;
+    transform-origin: center;
+  }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* MOBILE OVERLAY */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15,13,10,0.97);
+    z-index: 200;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .mobile-nav.open {
+    display: flex;
+  }
+
+  .mobile-nav a {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.4em;
+    color: var(--tan);
     text-decoration: none;
     text-transform: uppercase;
     transition: color 0.4s;
-    margin-top: 8px;
-  }
-  .newsletter-link:hover { color: var(--sand); }
-
-  /* BOTTOM MARK */
-  .bottom-mark {
-    position: fixed;
-    bottom: 40px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Cormorant SC', serif;
-    font-size: 9px;
-    letter-spacing: 0.5em;
-    color: rgba(109,88,64,0.4);
-    text-transform: uppercase;
-    opacity: 0;
-    animation: fadeIn 1s ease 3s forwards;
-    white-space: nowrap;
+    padding: 12px 24px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
-  /* CORNER MARK */
-  .corner-mark {
-    position: fixed;
-    top: 36px;
-    right: 48px;
-    font-family: 'Cormorant SC', serif;
-    font-size: 9px;
-    letter-spacing: 0.45em;
-    color: rgba(109,88,64,0.35);
-    text-transform: uppercase;
-    opacity: 0;
-    animation: fadeIn 1.5s ease 2s forwards;
-  }
+  .mobile-nav a:hover { color: var(--ivory); }
 
-  /* KEYFRAMES */
-  @keyframes riseIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
-
-  /* MOBILE */
-  @media (max-width: 600px) {
-    .notify-input { width: 180px; }
-    .corner-mark { display: none; }
-    .bottom-mark { font-size: 8px; letter-spacing: 0.35em; }
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 24px 30px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .purpose { grid-template-columns: 1fr; gap: 60px; padding: 100px 30px; }
+    .bottle-inner { grid-template-columns: 1fr; padding: 0 30px; }
+    .bottle-visual { height: 360px; }
+    .scent-grid { grid-template-columns: 1fr; gap: 2px; }
+    .ritual-steps { grid-template-columns: 1fr; gap: 48px; }
+    .packaging-grid { grid-template-columns: 1fr; }
+    .scent-section, .ritual-inner, .poem-section, .cta-section, .packaging-section { padding-left: 30px; padding-right: 30px; }
+    footer { flex-direction: column; gap: 32px; text-align: center; padding: 40px 30px; }
   }
 </style>
 </head>
@@ -328,95 +1514,411 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<div class="glow"></div>
-
-
-<div class="stage">
-
-  <h1 class="wordmark">RŪḤ</h1>
-  <p class="sub-name">Temple</p>
-  <p class="tagline">A fragrance of soul, memory, and warmth.</p>
-
-  <div class="line"></div>
-
-  <p class="coming">a fragrance rooted in memory. arriving soon.</p>
-
-  <div class="notify-form">
-    <span class="notify-label">early access. one list. no noise.</span>
-    <div class="notify-row">
-      <input class="notify-input" type="email" placeholder="your@email.com" id="emailInput">
-      <button class="notify-btn" id="notifyBtn">Notify me</button>
-    </div>
-    <p class="notify-confirm" id="confirm">We'll be in touch.</p>
-  </div>
-
+<!-- MOBILE NAV OVERLAY -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#story" class="mobile-nav-link">Our Story</a>
+  <a href="#founder" class="mobile-nav-link">Founder</a>
+  <a href="#acquire" class="mobile-nav-link">Acquire</a>
+  <a href="contact.html" class="mobile-nav-link">Contact</a>
 </div>
 
-<p class="bottom-mark">RŪḤ Temple</p>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">RŪḤ</a>
+  <ul class="nav-links">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#founder">Founder</a></li>
+    <li><a href="#acquire">Acquire</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-smoke"></div>
+
+  <div class="hero-content">
+    <h1 class="hero-logo">RŪḤ</h1>
+    <p class="hero-subtitle">Temple</p>
+    <p class="hero-tagline">A fragrance of soul, memory, and warmth.</p>
+    <div class="hero-cta">
+      <a href="#acquire" class="btn-primary">Discover</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Descend</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Soul</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Memory</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Warmth</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Ritual</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">RŪḤ Temple</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Origine</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Ancient</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Presence</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Soul</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Memory</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Warmth</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Ritual</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">RŪḤ Temple</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Origine</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Ancient</span><span class="marquee-dot">·</span>
+    <span class="marquee-item">Presence</span><span class="marquee-dot">·</span>
+  </div>
+</div>
+
+<!-- PURPOSE -->
+<section class="purpose-section">
+  <div class="purpose-section-overlay"></div>
+  <div class="purpose">
+    <div class="purpose-left reveal">
+      <p class="purpose-number">01 — Purpose</p>
+      <h2 class="purpose-headline">Fragrance became something<br>we wear <em>without feeling.</em></h2>
+      <p class="purpose-body">There was a time when fragrance was not chosen. It was inherited. Worn as memory, as ritual, as the invisible mark of something sacred.<br><br>Then it became a product. Packaged. Marketed. Forgotten.<br><br>RŪḤ exists to reclaim what scent was always meant to be.</p>
+    </div>
+    <div class="purpose-right reveal reveal-delay-2">
+      <div class="purpose-quote">
+        <blockquote>"This brand is not just fragrance.<br>It is a feeling you wear."</blockquote>
+        <cite>RŪḤ — Means Soul in Arabic</cite>
+      </div>
+    </div>
+  </div>
+  <p class="purpose-mantra reveal">Ancient in origin. Modern in conscience.</p>
+</section>
+
+<!-- BOTTLE SECTION -->
+<section class="bottle-section" id="bottle">
+  <div class="bottle-inner">
+    <div class="bottle-visual reveal">
+      <div style="position:relative;">
+        <div class="bottle-glow"></div>
+        <svg class="bottle-svg-wrap" viewBox="0 0 280 420" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="stoneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#C4AA82;stop-opacity:1" />
+              <stop offset="35%" style="stop-color:#A49070;stop-opacity:1" />
+              <stop offset="65%" style="stop-color:#8B7660;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#6D5840;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="stoneGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#B09872;stop-opacity:1" />
+              <stop offset="40%" style="stop-color:#8B7660;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#5A4835;stop-opacity:1" />
+            </linearGradient>
+            <linearGradient id="topLight" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" style="stop-color:#D4BC94;stop-opacity:0.5" />
+              <stop offset="100%" style="stop-color:#A49070;stop-opacity:0" />
+            </linearGradient>
+            <filter id="texture" x="-5%" y="-5%" width="110%" height="110%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise"/>
+              <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise"/>
+              <feBlend in="SourceGraphic" in2="grayNoise" mode="multiply" result="blend"/>
+              <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+            </filter>
+          </defs>
+          <rect x="70" y="20" width="140" height="105" rx="3" fill="url(#stoneGrad)" filter="url(#texture)"/>
+          <rect x="70" y="20" width="140" height="105" rx="3" fill="url(#topLight)"/>
+          <rect x="70" y="20" width="12" height="105" rx="3" fill="rgba(0,0,0,0.2)"/>
+          <rect x="198" y="20" width="12" height="105" rx="3" fill="rgba(0,0,0,0.15)"/>
+          <line x1="90" y1="40" x2="115" y2="55" stroke="rgba(90,72,53,0.3)" stroke-width="1"/>
+          <line x1="160" y1="30" x2="185" y2="50" stroke="rgba(90,72,53,0.2)" stroke-width="0.8"/>
+          <line x1="80" y1="80" x2="120" y2="95" stroke="rgba(90,72,53,0.15)" stroke-width="1.2"/>
+          <rect x="100" y="122" width="80" height="24" rx="2" fill="url(#stoneGrad2)"/>
+          <rect x="100" y="122" width="80" height="24" rx="2" fill="rgba(0,0,0,0.12)"/>
+          <rect x="40" y="140" width="200" height="260" rx="4" fill="url(#stoneGrad)" filter="url(#texture)"/>
+          <rect x="40" y="140" width="200" height="260" rx="4" fill="url(#topLight)"/>
+          <rect x="40" y="140" width="16" height="260" rx="4" fill="rgba(0,0,0,0.2)"/>
+          <rect x="224" y="140" width="16" height="260" rx="4" fill="rgba(0,0,0,0.15)"/>
+          <rect x="40" y="368" width="200" height="32" rx="4" fill="rgba(0,0,0,0.2)"/>
+          <line x1="60" y1="180" x2="100" y2="200" stroke="rgba(90,72,53,0.25)" stroke-width="1.5"/>
+          <line x1="180" y1="160" x2="220" y2="190" stroke="rgba(90,72,53,0.2)" stroke-width="1"/>
+          <line x1="55" y1="280" x2="95" y2="300" stroke="rgba(90,72,53,0.2)" stroke-width="1.2"/>
+          <line x1="170" y1="320" x2="220" y2="350" stroke="rgba(90,72,53,0.15)" stroke-width="1.5"/>
+          <circle cx="200" cy="250" r="8" fill="rgba(90,72,53,0.12)"/>
+          <circle cx="65" cy="330" r="5" fill="rgba(90,72,53,0.15)"/>
+          <text x="140" y="248" font-family="Georgia, serif" font-size="22" font-weight="400" fill="rgba(58,48,40,0.7)" text-anchor="middle" letter-spacing="6">RŪH</text>
+          <text x="140" y="272" font-family="Georgia, serif" font-size="11" font-weight="300" fill="rgba(58,48,40,0.6)" text-anchor="middle" letter-spacing="5">TEMPLE</text>
+          <rect x="40" y="140" width="200" height="260" rx="4" fill="none" stroke="rgba(196,170,130,0.15)" stroke-width="1"/>
+          <rect x="70" y="20" width="140" height="105" rx="3" fill="none" stroke="rgba(196,170,130,0.12)" stroke-width="1"/>
+        </svg>
+      </div>
+    </div>
+    <div class="bottle-info reveal reveal-delay-2">
+      <p class="bottle-label">02 — The Vessel</p>
+      <h2 class="bottle-title">An Artifact,<br>Not a Bottle</h2>
+      <p class="bottle-description">In ancient workshops, objects were made one at a time. Held, shaped, considered. The maker's hand left in every surface.<br><br>RŪḤ returns to that. Each vessel is cast by hand, in small batches — heavy, imperfect, irreplaceable. An object that carries the memory of being made.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SCENT SECTION -->
+<section class="scent-section-wrap" id="scent">
+<div class="scent-section">
+  <p class="section-eyebrow reveal">03 — The Soul</p>
+  <p class="soul-intro reveal reveal-delay-1">Three layers. One feeling. Yours alone.</p>
+
+  <div class="scent-grid">
+    <div class="scent-card reveal">
+      <div class="scent-name">Smoky Depth</div>
+      <div class="scent-desc">The weight of ancient ceremony.</div>
+    </div>
+    <div class="scent-card reveal reveal-delay-1">
+      <div class="scent-name">Warm Sweetness</div>
+      <div class="scent-desc">Warmth that feels like a memory.</div>
+    </div>
+    <div class="scent-card reveal reveal-delay-2">
+      <div class="scent-name">Soft Skin</div>
+      <div class="scent-desc">Skin and soul in harmony.</div>
+    </div>
+  </div>
+</section>
+</section>
+
+<!-- RITUAL SECTION -->
+<section class="ritual-section" id="ritual">
+  <div class="ritual-bg-text">RŪḤ</div>
+  <div class="ritual-inner">
+    <p class="section-eyebrow reveal">04 — The Ritual</p>
+    <p class="soul-intro reveal reveal-delay-1" style="text-align:center;">To return fragrance to a ritual.</p>
+
+    <div class="ritual-steps">
+      <div class="ritual-step reveal">
+        <p class="ritual-num">I</p>
+        <h3 class="ritual-title">Meet the poem first.</h3>
+        <p class="ritual-text">Before the scent, there are words. Written for you. And for a moment, before anything else, it belongs only to you.</p>
+      </div>
+      <div class="ritual-step reveal reveal-delay-2">
+        <p class="ritual-num">II</p>
+        <h3 class="ritual-title">Unwrap it like<br>something sacred.</h3>
+        <p class="ritual-text">Unfold the papyrus. A relic that carries the memory of being made.</p>
+      </div>
+      <div class="ritual-step reveal reveal-delay-3">
+        <p class="ritual-num">III</p>
+        <h3 class="ritual-title">Wear it like<br>a prayer.</h3>
+        <p class="ritual-text">The scent was not made. It was remembered. Now it belongs to you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POEM -->
+<section class="poem-section">
+  <div class="poem-bg"></div>
+  <div class="poem-papyrus reveal">
+    <p class="poem-brand">RŪḤ</p>
+    <div class="poem-text">
+      <p>Let yourself feel.</p>
+      <p>Return to the origin.</p>
+      <p>This scent was born from Earth.</p>
+      <p>Breathe.</p>
+      <br>
+      <p>You are not lost.</p>
+      <p>You are returning.</p>
+      <p>To your soul.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- OUR STORY -->
+<div class="story-section-wrap">
+<section class="story-section" id="story">
+  <p class="section-eyebrow reveal">Our Story</p>
+
+  <div class="story-philosophy reveal reveal-delay-1">
+    <h2 class="story-philosophy-title">The RŪḤ Philosophy</h2>
+    <p class="story-philosophy-sub">"The Essence of Soul"</p>
+    <p class="story-philosophy-text">RŪḤ.<br>The Arabic word for soul.<br>The invisible force that animates<br>breath, memory, and presence.<br><br>We believe fragrance is a living thing. Not a product. Not a formula.<br><br>Ancient, Intentional, Alive.<br><br>There was a time,<br>when scent was Worn<br>as ritual,<br>as memory,<br>as the invisible mark of something sacred.<br><br>RŪḤ exists to return to that original truth.<br><br>Created to bring intention into daily ritual — transforming the act of wearing fragrance from routine into ceremony.<br><br>Each bottle is an act of remembrance. A bridge between the ancient wisdom of plant intelligence and the modern conscience of clean, intentional making.<br><br><em>This is fragrance as it was always meant to be felt.</em></p>
+  </div>
+
+  <div class="story-split"></div>
+
+  <p class="story-ethos-label reveal">Formulation Ethos</p>
+  <ul class="story-values reveal reveal-delay-1">
+    <li>Every fragrance handcrafted in house — Byron Bay, Australia</li>
+    <li>Made in small batches for purity, potency, and energetic integrity</li>
+    <li>Clean, plant-based, cruelty-free and vegan friendly</li>
+    <li>Ingredients sourced from the South of France and Algeria —<br>the two origins of our founder</li>
+    <li>Plastic-free. Toxin-free.</li>
+  </ul>
+</section>
+</div>
+
+<!-- FOUNDER -->
+<section class="founder-section" id="founder">
+  <div class="founder-inner">
+    <p class="section-eyebrow reveal">The Founder</p>
+
+    <p class="founder-heritage-label reveal">Heritage</p>
+    <p class="founder-heritage-text reveal reveal-delay-1">Every RŪḤ fragrance is rooted in her heritage<br>The smoky warmth of Algerian interiors,<br>The refined sensibility of French perfumery.<br><br><span>Two cultures.<br>One soul.</span></p>
+
+    <p class="founder-hook reveal reveal-delay-1">RŪḤ was not built from a business plan.<br>It was built from longing.</p>
+
+    <p class="founder-stanza reveal reveal-delay-2">She is half Algerian, half French —<br>
+    far from both for longer than she expected.<br>
+    Distance does something to a person.<br>
+    It doesn't erase where you come from.<br>
+    It sharpens it.</p>
+
+    <p class="founder-stanza reveal reveal-delay-2">Scent was always the thread.<br>
+    The warmth of a house in Algeria.<br>
+    Smoke and resin, something ancient in the air.<br>
+    The kind of smell that doesn't announce itself —<br>
+    it simply is, the way memory is.</p>
+
+    <p class="founder-stanza reveal reveal-delay-2">She searched for that feeling in a bottle for years.<br>
+    Through every major house, every niche brand she could find.<br>
+    Nothing came close.<br>
+    So she made it herself.</p>
+
+    <p class="founder-brand reveal reveal-delay-2">RŪḤ — soul in Arabic —<br>
+    was named in honour of her Algerian heritage.<br>
+    Not as aesthetic.<br>
+    As devotion.<br><br>
+    Every fragrance is clean, vegan-friendly, and plastic-free<br>
+    because it was never negotiable.</p>
+
+    <p class="founder-stanza reveal reveal-delay-2">RŪḤ Origine is the fragrance<br>she spent years not finding.</p>
+
+    <p class="founder-close reveal reveal-delay-3">A feeling you wear.</p>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto-section" id="manifesto">
+  <div class="manifesto-inner">
+    <p class="section-eyebrow reveal">Manifesto</p>
+
+    <p class="manifesto-open reveal reveal-delay-1">Some things cannot be explained.<br>Only felt.</p>
+
+    <p class="manifesto-stanza reveal reveal-delay-1">Some things are older than language —<br>
+    smoke rising from burning resin,<br>
+    the warmth of skin after sunlight,<br>
+    the smell of a place you have never been<br>
+    but somehow remember.</p>
+
+    <p class="manifesto-stanza reveal reveal-delay-1">Some things are lost when you leave home.<br>
+    And some things follow you across every ocean,<br>
+    every season, every year of forgetting.</p>
+
+    <p class="manifesto-stanza reveal reveal-delay-1">Some things are made in laboratories.<br>
+    Others are made from longing.</p>
+
+    <p class="manifesto-stanza reveal reveal-delay-1">Some things demand your attention.<br>
+    The ones worth keeping never do.</p>
+
+
+    <p class="manifesto-ruh reveal reveal-delay-2">Some fragrances sit on the surface.<br>
+    RŪḤ settles into skin — and stays.</p>
+
+    <p class="manifesto-echo reveal reveal-delay-2">Some things cannot be explained.</p>
+
+    <p class="manifesto-close reveal reveal-delay-3">Only worn.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="acquire">
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <p class="section-eyebrow reveal">Origine — First Edition</p>
+    <h2 class="cta-headline reveal reveal-delay-1">This is not a fragrance.</h2>
+    <p class="cta-sub reveal reveal-delay-2">It is a feeling to be returned to.<br>A ritual. A memory. A soul worn on skin.</p>
+    <p class="cta-price reveal reveal-delay-2">50ml Fragrance</p>
+    <div class="cta-buttons reveal reveal-delay-3">
+      <a href="preorder.html" class="btn-primary">Pre-Order a Sample — $35</a>
+      <a href="reserve.html" class="btn-ghost">Reserve a Full Bottle</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">RŪḤ TEMPLE</div>
+    <div class="footer-tagline" style="margin-top:8px;">A feeling you wear.</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="https://www.instagram.com/ruh.temple" target="_blank">Instagram</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</footer>
 
 <script>
-  // Cursor
+  // Custom cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
+  let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
 
   document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx + 'px';
-    cursor.style.top = my + 'px';
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
   });
 
-  (function loop() {
-    rx += (mx - rx) * 0.12;
-    ry += (my - ry) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top = ry + 'px';
-    requestAnimationFrame(loop);
-  })();
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
 
-  document.querySelectorAll('button, input').forEach(el => {
+  document.querySelectorAll('a, button').forEach(el => {
     el.addEventListener('mouseenter', () => {
-      ring.style.width = '48px';
-      ring.style.height = '48px';
-      ring.style.borderColor = 'rgba(196,170,130,0.6)';
+      ring.style.width = '56px';
+      ring.style.height = '56px';
+      ring.style.borderColor = 'rgba(196,170,130,0.7)';
     });
     el.addEventListener('mouseleave', () => {
-      ring.style.width = '28px';
-      ring.style.height = '28px';
-      ring.style.borderColor = 'rgba(196,170,130,0.35)';
+      ring.style.width = '32px';
+      ring.style.height = '32px';
+      ring.style.borderColor = 'rgba(196,170,130,0.4)';
     });
   });
 
-  // Notify
-  document.getElementById('notifyBtn').addEventListener('click', async () => {
-    const input = document.getElementById('emailInput');
-    const val = input.value.trim();
-    if (!val || !val.includes('@')) return;
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
 
-    const btn = document.getElementById('notifyBtn');
-    btn.textContent = '...';
-    btn.disabled = true;
+  reveals.forEach(el => observer.observe(el));
 
-    try {
-      const data = new FormData();
-      data.append('email', val);
-      data.append('_subject', 'New Waitlist Signup — RŪḤ Temple');
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
 
-      await fetch('https://formspree.io/f/info@ruhtemple.com', {
-        method: 'POST',
-        body: data,
-        headers: { 'Accept': 'application/json' }
-      });
-    } catch (_) {}
-
-    document.getElementById('confirm').classList.add('show');
-    input.value = '';
-    btn.textContent = 'Notify me';
-    btn.disabled = false;
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
   });
 
-  document.getElementById('emailInput').addEventListener('keydown', e => {
-    if (e.key === 'Enter') document.getElementById('notifyBtn').click();
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
   });
 </script>
 </body>
