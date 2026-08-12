@@ -1951,9 +1951,12 @@
     overlay.classList.add('hidden');
   }
 
-  document.getElementById('popupClose').addEventListener('click', closePopup);
-  document.getElementById('popupSkip').addEventListener('click', closePopup);
+  ['click','touchend'].forEach(ev => {
+    document.getElementById('popupClose').addEventListener(ev, function(e){ e.preventDefault(); closePopup(); });
+    document.getElementById('popupSkip').addEventListener(ev, function(e){ e.preventDefault(); closePopup(); });
+  });
   overlay.addEventListener('click', e => { if (e.target === overlay) closePopup(); });
+  overlay.addEventListener('touchend', e => { if (e.target === overlay) closePopup(); });
 
   document.getElementById('popupBtn').addEventListener('click', async () => {
     const name  = document.getElementById('popupName').value.trim();
