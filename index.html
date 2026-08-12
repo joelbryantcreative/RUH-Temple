@@ -1564,10 +1564,14 @@
     color: rgba(196,170,130,0.4);
     font-family: 'Cinzel', serif;
     font-size: 18px;
-    cursor: none;
+    cursor: pointer;
     transition: color 0.3s;
     line-height: 1;
-    padding: 4px;
+    padding: 12px;
+    min-width: 44px;
+    min-height: 44px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
   .popup-close:hover { color: var(--sand); }
 
@@ -1642,8 +1646,10 @@
     letter-spacing: 0.4em;
     color: var(--ivory);
     text-transform: uppercase;
-    cursor: none;
+    cursor: pointer;
     transition: all 0.4s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
   .popup-btn:hover { background: rgba(196,170,130,0.08); border-color: rgba(196,170,130,0.8); }
 
@@ -1667,10 +1673,13 @@
     letter-spacing: 0.35em;
     color: rgba(109,88,64,0.5);
     text-transform: uppercase;
-    cursor: none;
+    cursor: pointer;
     background: none;
     border: none;
     transition: color 0.3s;
+    padding: 12px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
   .popup-skip:hover { color: var(--earth); }
 
