@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RŪḤ TEMPLE — A Fragrance of Soul, Memory, and Warmth</title>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>emailjs.init('jSFTNoFtrCVmvwe9i');</script>
 <meta property="og:title" content="RŪḤ Temple">
 <meta property="og:description" content="A fragrance of soul, memory, and warmth.">
 <meta property="og:image" content="https://www.ruhtemple.com/social-card.jpg">
@@ -1526,6 +1528,156 @@
 
   .mobile-nav a:hover { color: var(--ivory); }
 
+  /* POPUP */
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,13,10,0.75);
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    animation: fadeIn 0.8s ease 1.5s forwards;
+  }
+
+  .popup-overlay.hidden { display: none; }
+
+  .popup {
+    position: relative;
+    max-width: 480px;
+    width: 100%;
+    background: rgba(15,13,10,0.97);
+    border: 1px solid rgba(196,170,130,0.2);
+    padding: 64px 48px;
+    text-align: center;
+    backdrop-filter: blur(20px);
+  }
+
+  .popup-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: none;
+    border: none;
+    color: rgba(196,170,130,0.4);
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    cursor: none;
+    transition: color 0.3s;
+    line-height: 1;
+    padding: 4px;
+  }
+  .popup-close:hover { color: var(--sand); }
+
+  .popup-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.5em;
+    color: var(--earth);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+
+  .popup-title {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 0.08em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .popup-line {
+    width: 32px;
+    height: 1px;
+    background: var(--sand);
+    margin: 20px auto;
+  }
+
+  .popup-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--tan);
+    line-height: 1.8;
+    letter-spacing: 0.03em;
+    margin-bottom: 40px;
+  }
+
+  .popup-field {
+    margin-bottom: 12px;
+  }
+
+  .popup-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(196,170,130,0.2);
+    outline: none;
+    padding: 12px 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--ivory);
+    letter-spacing: 0.04em;
+    transition: border-color 0.4s;
+    text-align: center;
+  }
+
+  .popup-input:focus { border-color: rgba(196,170,130,0.5); }
+  .popup-input::placeholder { color: rgba(164,144,112,0.35); font-style: italic; }
+
+  .popup-btn {
+    margin-top: 28px;
+    width: 100%;
+    background: transparent;
+    border: 1px solid rgba(196,170,130,0.4);
+    padding: 18px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    color: var(--ivory);
+    text-transform: uppercase;
+    cursor: none;
+    transition: all 0.4s;
+  }
+  .popup-btn:hover { background: rgba(196,170,130,0.08); border-color: rgba(196,170,130,0.8); }
+
+  .popup-confirm {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: var(--tan);
+    margin-top: 20px;
+    opacity: 0;
+    transition: opacity 0.6s;
+    letter-spacing: 0.03em;
+  }
+  .popup-confirm.show { opacity: 1; }
+
+  .popup-skip {
+    display: block;
+    margin-top: 24px;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    color: rgba(109,88,64,0.5);
+    text-transform: uppercase;
+    cursor: none;
+    background: none;
+    border: none;
+    transition: color 0.3s;
+  }
+  .popup-skip:hover { color: var(--earth); }
+
+  @media (max-width: 600px) {
+    .popup { padding: 48px 28px; }
+  }
+
   /* RESPONSIVE */
   @media (max-width: 900px) {
     nav { padding: 24px 30px; }
@@ -1543,6 +1695,26 @@
 </style>
 </head>
 <body>
+
+<!-- POPUP -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup">
+    <button class="popup-close" id="popupClose">✕</button>
+    <p class="popup-eyebrow">A Gift for You</p>
+    <h2 class="popup-title">The Lineage</h2>
+    <div class="popup-line"></div>
+    <p class="popup-sub">Five days. Five ancient rituals<br>from North Africa and the Amazigh tradition.<br>Yours, free.</p>
+    <div class="popup-field">
+      <input class="popup-input" type="text" id="popupName" placeholder="your name">
+    </div>
+    <div class="popup-field">
+      <input class="popup-input" type="email" id="popupEmail" placeholder="your@email.com">
+    </div>
+    <button class="popup-btn" id="popupBtn">Send Me the Archive</button>
+    <p class="popup-confirm" id="popupConfirm">Check your inbox.</p>
+    <button class="popup-skip" id="popupSkip">No thank you</button>
+  </div>
+</div>
 
 <video class="bg-video" autoplay muted loop playsinline>
   <source src="copy-7ef69c50-371f-4433-88df-31dcac8c7d93_mxyVy04K.mov" type="video/mp4">
@@ -1752,6 +1924,56 @@
 
   document.getElementById('emailInput').addEventListener('keydown', e => {
     if (e.key === 'Enter') document.getElementById('notifyBtn').click();
+  });
+
+  // Popup
+  const ARCHIVE_URL = 'https://www.dropbox.com/scl/fi/s38by0seznkcncc1zm9zm/Sacred-rituals-from-North-Africa.pdf?rlkey=z3ixj1l94po4aaqgomh380hb0&st=8q7javir&dl=0';
+  const overlay = document.getElementById('popupOverlay');
+
+  function closePopup() {
+    overlay.classList.add('hidden');
+    document.body.style.overflow = '';
+    sessionStorage.setItem('popupSeen', '1');
+  }
+
+  if (!sessionStorage.getItem('popupSeen')) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    overlay.classList.add('hidden');
+  }
+
+  document.getElementById('popupClose').addEventListener('click', closePopup);
+  document.getElementById('popupSkip').addEventListener('click', closePopup);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closePopup(); });
+
+  document.getElementById('popupBtn').addEventListener('click', async () => {
+    const name  = document.getElementById('popupName').value.trim();
+    const email = document.getElementById('popupEmail').value.trim();
+    if (!name || !email || !email.includes('@')) return;
+
+    const btn = document.getElementById('popupBtn');
+    btn.textContent = '...';
+    btn.disabled = true;
+
+    try {
+      await emailjs.send('service_td994ke', 'template_lineage', { name, email, archive_url: ARCHIVE_URL });
+      await emailjs.send('service_td994ke', 'template_nd8r4zw', { subscriber_email: email, subscriber_name: name });
+      fetch('https://script.google.com/macros/s/AKfycbzGGX-tEpNIBeNPLQwJTuyeTTAL1DXc00bsBv0tcGgzhBNR0D0lhS3-Hxnw0KZmJ_rA/exec', {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email)
+      });
+    } catch (_) {}
+
+    document.getElementById('popupConfirm').classList.add('show');
+    setTimeout(closePopup, 2500);
+  });
+
+  document.getElementById('popupName').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('popupEmail').focus();
+  });
+  document.getElementById('popupEmail').addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('popupBtn').click();
   });
 
   // Hamburger menu
