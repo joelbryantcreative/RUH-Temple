@@ -1536,14 +1536,13 @@
     inset: 0;
     background: rgba(15,13,10,0.75);
     z-index: 9000;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     padding: 24px;
-    opacity: 0;
-    animation: fadeIn 0.8s ease 1.5s forwards;
   }
 
+  .popup-overlay.visible { display: flex; }
   .popup-overlay.hidden { display: none; }
 
   .popup {
@@ -1946,15 +1945,17 @@
   const overlay = document.getElementById('popupOverlay');
 
   window.closePopup = function() {
+    overlay.classList.remove('visible');
     overlay.classList.add('hidden');
     document.body.style.overflow = '';
     sessionStorage.setItem('popupSeen', '1');
   }
 
   if (!sessionStorage.getItem('popupSeen')) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    overlay.classList.add('hidden');
+    setTimeout(function() {
+      overlay.classList.add('visible');
+      document.body.style.overflow = 'hidden';
+    }, 1500);
   }
 
   ['click','touchend'].forEach(ev => {
