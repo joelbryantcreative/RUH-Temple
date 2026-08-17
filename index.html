@@ -1713,7 +1713,7 @@
 <!-- POPUP -->
 <div class="popup-overlay" id="popupOverlay">
   <div class="popup">
-    <button class="popup-close" id="popupClose" onclick="closePopup()" style="cursor:pointer;">✕</button>
+    <a href="javascript:void(0)" class="popup-close" onclick="closePopup()">✕</a>
     <p class="popup-eyebrow">A Gift for You</p>
     <h2 class="popup-title">The Lineage</h2>
     <div class="popup-line"></div>
@@ -1724,9 +1724,9 @@
     <div class="popup-field">
       <input class="popup-input" type="email" id="popupEmail" placeholder="your@email.com">
     </div>
-    <button class="popup-btn" id="popupBtn" style="cursor:pointer;">Send Me the Archive</button>
+    <a href="javascript:void(0)" class="popup-btn" id="popupBtn" onclick="submitPopup()">Send Me the Archive</a>
     <p class="popup-confirm" id="popupConfirm">Check your inbox.</p>
-    <button class="popup-skip" id="popupSkip" onclick="closePopup()" style="cursor:pointer;">No thank you</button>
+    <a href="javascript:void(0)" class="popup-skip" onclick="closePopup()">No thank you</a>
   </div>
 </div>
 
@@ -1947,33 +1947,14 @@
   window.closePopup = function() {
     overlay.classList.remove('visible');
     overlay.classList.add('hidden');
-    document.body.style.overflow = '';
     sessionStorage.setItem('popupSeen', '1');
   }
 
-  if (!sessionStorage.getItem('popupSeen')) {
-    setTimeout(function() {
-      overlay.classList.add('visible');
-      document.body.style.overflow = 'hidden';
-    }, 1500);
-  }
-
-  ['click','touchend'].forEach(ev => {
-    document.getElementById('popupClose').addEventListener(ev, function(e){ e.preventDefault(); closePopup(); });
-    document.getElementById('popupSkip').addEventListener(ev, function(e){ e.preventDefault(); closePopup(); });
-  });
-  overlay.addEventListener('click', e => { if (e.target === overlay) closePopup(); });
-  overlay.addEventListener('touchend', e => { if (e.target === overlay) closePopup(); });
-
-  document.getElementById('popupBtn').addEventListener('click', async () => {
+  window.submitPopup = async function() {
     const name  = document.getElementById('popupName').value.trim();
     const email = document.getElementById('popupEmail').value.trim();
     if (!name || !email || !email.includes('@')) return;
-
-    const btn = document.getElementById('popupBtn');
-    btn.textContent = '...';
-    btn.disabled = true;
-
+    document.getElementById('popupConfirm').classList.add('show');
     try {
       await emailjs.send('service_td994ke', 'template_lineage', { name, email, archive_url: ARCHIVE_URL });
       await emailjs.send('service_td994ke', 'template_nd8r4zw', { subscriber_email: email, subscriber_name: name });
@@ -1983,16 +1964,20 @@
         body: 'name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email)
       });
     } catch (_) {}
-
-    document.getElementById('popupConfirm').classList.add('show');
     setTimeout(closePopup, 2500);
-  });
+  }
+
+  if (!sessionStorage.getItem('popupSeen')) {
+    setTimeout(function() {
+      overlay.classList.add('visible');
+    }, 1500);
+  }
 
   document.getElementById('popupName').addEventListener('keydown', e => {
     if (e.key === 'Enter') document.getElementById('popupEmail').focus();
   });
   document.getElementById('popupEmail').addEventListener('keydown', e => {
-    if (e.key === 'Enter') document.getElementById('popupBtn').click();
+    if (e.key === 'Enter') submitPopup();
   });
 
   // Hamburger menu
