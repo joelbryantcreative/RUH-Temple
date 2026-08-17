@@ -75,8 +75,10 @@
     z-index: 1000;
   }
 
-  /* CUSTOM CURSOR */
-  body { cursor: none; }
+  /* CUSTOM CURSOR — desktop only */
+  @media (hover: hover) and (pointer: fine) {
+    body { cursor: none; }
+  }
   .cursor {
     position: fixed;
     width: 8px;
@@ -1685,6 +1687,10 @@
 
   @media (max-width: 600px) {
     .popup { padding: 48px 28px; }
+  }
+
+  @media (hover: none), (pointer: coarse) {
+    .cursor, .cursor-ring { display: none; }
   }
 
   /* RESPONSIVE */
