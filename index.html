@@ -393,11 +393,14 @@
   }
 
   .campaign-panel {
+    display: block;
+    text-decoration: none;
+  }
+
+  .campaign-panel-img-wrap {
     position: relative;
     overflow: hidden;
     aspect-ratio: 3 / 4;
-    display: block;
-    text-decoration: none;
   }
 
   .campaign-panel img {
@@ -412,37 +415,29 @@
     transform: scale(1.04);
   }
 
-  .campaign-panel-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(15,13,10,0.55) 0%, transparent 50%);
-    pointer-events: none;
-  }
+  .campaign-panel-overlay { display: none; }
 
   .campaign-panel-label {
-    position: absolute;
-    bottom: 24px;
-    left: 24px;
-    right: 24px;
+    padding: 12px 4px 0;
   }
 
   .campaign-panel-eyebrow {
     font-family: 'SF Pro Display', 'Cinzel', sans-serif;
     font-size: 9px;
     font-weight: 300;
-    letter-spacing: 0.35em;
-    color: rgba(239,231,218,0.6);
+    letter-spacing: 0.3em;
+    color: #888;
     text-transform: uppercase;
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
   }
 
   .campaign-panel-name {
-    font-family: 'Cormorant SC', serif;
-    font-size: clamp(16px, 2vw, 22px);
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 13px;
     font-weight: 300;
-    letter-spacing: 0.1em;
-    color: var(--ivory);
+    letter-spacing: 0.08em;
+    color: #1a1a1a;
     display: block;
   }
 
@@ -1855,43 +1850,35 @@
 <!-- CAMPAIGN GRID -->
 <div class="campaign-grid">
 
-  <!-- Panel 1: Product shot → product page -->
+  <!-- Panel 1: Product shot → product page (label below image) -->
   <a href="product.html" class="campaign-panel">
-    <img src="Plain Background.PNG" alt="Terre Natale fragrance">
-    <div class="campaign-panel-overlay"></div>
+    <div class="campaign-panel-img-wrap">
+      <img src="Plain Background.PNG" alt="Terre Natale fragrance">
+    </div>
     <div class="campaign-panel-label">
       <span class="campaign-panel-eyebrow">Eau de Parfum</span>
       <span class="campaign-panel-name">Terre Natale</span>
     </div>
   </a>
 
-  <!-- Panel 2: Ingredient / craft detail → product page -->
+  <!-- Panel 2: No label -->
   <a href="product.html" class="campaign-panel">
-    <img src="IMG_1055.jpeg" alt="Fragrance ingredients">
-    <div class="campaign-panel-overlay"></div>
-    <div class="campaign-panel-label">
-      <span class="campaign-panel-eyebrow">The making</span>
-      <span class="campaign-panel-name">Origin & Ritual</span>
+    <div class="campaign-panel-img-wrap">
+      <img src="IMG_1055.jpeg" alt="Fragrance ingredients">
     </div>
   </a>
 
-  <!-- Panel 3: Founder → about page -->
+  <!-- Panel 3: No label -->
   <a href="product.html" class="campaign-panel">
-    <img src="DA3D8325-0A2F-4E4F-8E5F-3999EEDEF571.jpeg" alt="The founder">
-    <div class="campaign-panel-overlay"></div>
-    <div class="campaign-panel-label">
-      <span class="campaign-panel-eyebrow">The founder</span>
-      <span class="campaign-panel-name">The Story</span>
+    <div class="campaign-panel-img-wrap">
+      <img src="DA3D8325-0A2F-4E4F-8E5F-3999EEDEF571.jpeg" alt="The founder">
     </div>
   </a>
 
-  <!-- Panel 4: Mood / detail → product page -->
+  <!-- Panel 4: No label -->
   <a href="product.html" class="campaign-panel">
-    <img src="D5BA0917-D669-4B6E-BAD8-2EBC6C04B146.png" alt="New Ancient mood">
-    <div class="campaign-panel-overlay"></div>
-    <div class="campaign-panel-label">
-      <span class="campaign-panel-eyebrow">New Ancient</span>
-      <span class="campaign-panel-name">Shop Now</span>
+    <div class="campaign-panel-img-wrap">
+      <img src="D5BA0917-D669-4B6E-BAD8-2EBC6C04B146.png" alt="New Ancient mood">
     </div>
   </a>
 
