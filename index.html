@@ -1594,8 +1594,11 @@
   /* ── FOUNDER VIDEO SECTION ── */
   .founder-video-section {
     background: #fafafa;
-    padding: 100px 60px;
+    padding: 80px 0 0;
     text-align: center;
+  }
+  .founder-video-header {
+    padding: 0 60px 48px;
   }
   .founder-video-eyebrow {
     font-family: 'SF Pro Display','Cinzel',sans-serif;
@@ -1623,43 +1626,23 @@
     text-decoration: none;
     border-bottom: 1px solid #ccc;
     padding-bottom: 2px;
-    margin-bottom: 48px;
     display: inline-block;
     transition: opacity 0.3s;
   }
   .founder-video-sub:hover { opacity: 0.5; }
   .founder-video-wrap {
     position: relative;
-    max-width: 1100px;
-    margin: 0 auto;
+    width: 100%;
     cursor: pointer;
     overflow: hidden;
+    line-height: 0;
   }
   .founder-video {
     width: 100%;
     display: block;
-    height: 600px;
+    height: 85vh;
     object-fit: cover;
   }
-  .video-play-btn {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.6);
-    color: #fff;
-    font-family: 'SF Pro Display','Cinzel',sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    letter-spacing: 0.3em;
-    padding: 20px 48px;
-    cursor: pointer;
-    transition: background 0.3s, opacity 0.3s;
-    backdrop-filter: blur(4px);
-  }
-  .video-play-btn:hover { background: rgba(255,255,255,0.3); }
-  .video-play-btn.hidden { opacity: 0; pointer-events: none; }
 
   /* ── PRODUCTS SECTION ── */
   .products-section {
@@ -1807,11 +1790,13 @@
   }
 
   @media (max-width: 768px) {
-    .editorial-section, .founder-video-section, .products-section { padding: 80px 30px; }
+    .editorial-section, .products-section { padding: 80px 30px; }
+    .founder-video-section { padding-top: 60px; }
+    .founder-video-header { padding: 0 30px 40px; }
     .products-grid { grid-template-columns: 1fr; }
     .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
     .footer-bottom { flex-direction: column; gap: 8px; }
-    .founder-video { height: 300px; }
+    .founder-video { height: 60vh; }
   }
   @media (max-width: 480px) {
     .footer-top { grid-template-columns: 1fr; }
@@ -1927,16 +1912,15 @@
 
 <!-- FOUNDER VIDEO -->
 <section class="founder-video-section">
-  <p class="founder-video-eyebrow">The Founder</p>
-  <h2 class="founder-video-headline">Our story</h2>
-  <a href="about.html" class="founder-video-sub">Read more</a>
+  <div class="founder-video-header">
+    <p class="founder-video-eyebrow">The Founder</p>
+    <h2 class="founder-video-headline">Our story</h2>
+    <a href="about.html" class="founder-video-sub">Read more</a>
+  </div>
   <div class="founder-video-wrap" id="videoWrap">
     <video class="founder-video" id="founderVideo" loop playsinline poster="IMG_1025.jpeg">
       <source src="6508686_Silhouette%20Shadow%20Hand%20Reaching_By_Alejandro_Campollo_Artlist_HD.mp4" type="video/mp4">
     </video>
-    <button class="video-play-btn" id="playBtn" aria-label="Play video">
-      <span>PLAY</span>
-    </button>
   </div>
 </section>
 
@@ -2015,16 +1999,12 @@
 
   reveals.forEach(el => observer.observe(el));
 
-  // Video play button
+  // Click video to play/pause
   const founderVideo = document.getElementById('founderVideo');
-  const playBtn = document.getElementById('playBtn');
-  if (founderVideo && playBtn) {
-    playBtn.addEventListener('click', () => {
-      founderVideo.play();
-      playBtn.classList.add('hidden');
+  if (founderVideo) {
+    founderVideo.addEventListener('click', () => {
+      founderVideo.paused ? founderVideo.play() : founderVideo.pause();
     });
-    founderVideo.addEventListener('pause', () => playBtn.classList.remove('hidden'));
-    founderVideo.addEventListener('ended', () => playBtn.classList.remove('hidden'));
   }
 
   // Hamburger menu
