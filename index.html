@@ -51,7 +51,6 @@
     inset: 0;
     z-index: 0;
     overflow: hidden;
-    opacity: 0.75;
   }
   .bg-video-wrap iframe {
     position: absolute;
@@ -176,25 +175,8 @@
     background: var(--deepest);
   }
 
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 60%, rgba(109,88,64,0.25) 0%, rgba(58,48,40,0.15) 40%, transparent 70%),
-                radial-gradient(ellipse at 20% 80%, rgba(196,170,130,0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(164,144,112,0.06) 0%, transparent 50%);
-  }
-
-  .hero-smoke {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% 100%, rgba(109,88,64,0.2) 0%, transparent 60%);
-    animation: smokeRise 8s ease-in-out infinite alternate;
-  }
-
-  @keyframes smokeRise {
-    0% { transform: translateY(0) scale(1); opacity: 0.6; }
-    100% { transform: translateY(-30px) scale(1.05); opacity: 1; }
-  }
+  .hero-bg { display: none; }
+  .hero-smoke { display: none; }
 
   .hero-content {
     position: relative;
