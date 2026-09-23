@@ -1545,6 +1545,277 @@
     .scent-section, .ritual-inner, .poem-section, .cta-section, .packaging-section { padding-left: 30px; padding-right: 30px; }
     footer { flex-direction: column; gap: 32px; text-align: center; padding: 40px 30px; }
   }
+
+  /* ── EDITORIAL SECTION ── */
+  .editorial-section {
+    background: #fff;
+    padding: 120px 60px;
+    text-align: center;
+  }
+  .editorial-inner { max-width: 900px; margin: 0 auto; }
+  .editorial-eyebrow {
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+  .editorial-img {
+    width: 100%;
+    max-height: 700px;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 48px;
+  }
+  .editorial-caption {
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+    color: #1a1a1a;
+    margin-bottom: 40px;
+  }
+  .editorial-link {
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    color: #1a1a1a;
+    text-decoration: none;
+    border-bottom: 1px solid #1a1a1a;
+    padding-bottom: 2px;
+    transition: opacity 0.3s;
+  }
+  .editorial-link:hover { opacity: 0.5; }
+
+  /* ── FOUNDER VIDEO SECTION ── */
+  .founder-video-section {
+    background: #fafafa;
+    padding: 100px 60px;
+    text-align: center;
+  }
+  .founder-video-eyebrow {
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .founder-video-headline {
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: #1a1a1a;
+    margin: 0 0 12px;
+  }
+  .founder-video-sub {
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    color: #888;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 2px;
+    margin-bottom: 48px;
+    display: inline-block;
+    transition: opacity 0.3s;
+  }
+  .founder-video-sub:hover { opacity: 0.5; }
+  .founder-video-wrap {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .founder-video {
+    width: 100%;
+    display: block;
+    height: 600px;
+    object-fit: cover;
+  }
+  .video-play-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.6);
+    color: #fff;
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    padding: 20px 48px;
+    cursor: pointer;
+    transition: background 0.3s, opacity 0.3s;
+    backdrop-filter: blur(4px);
+  }
+  .video-play-btn:hover { background: rgba(255,255,255,0.3); }
+  .video-play-btn.hidden { opacity: 0; pointer-events: none; }
+
+  /* ── PRODUCTS SECTION ── */
+  .products-section {
+    background: #fff;
+    padding: 100px 60px;
+  }
+  .products-inner { max-width: 1100px; margin: 0 auto; }
+  .products-eyebrow {
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+    text-align: center;
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .product-tile {
+    text-decoration: none;
+    color: inherit;
+  }
+  .product-tile-img-wrap {
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  .product-tile-img-wrap img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .product-tile:hover .product-tile-img-wrap img { transform: scale(1.04); }
+  .product-tile-type {
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .product-tile-name {
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+  }
+  .product-tile-price {
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: #555;
+  }
+
+  /* ── SITE FOOTER ── */
+  .site-footer {
+    background: #fff;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    padding: 80px 60px 40px;
+  }
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+    gap: 40px;
+    margin-bottom: 60px;
+  }
+  .footer-logo-img { height: 40px; width: auto; margin-bottom: 16px; }
+  .footer-tagline {
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: #888;
+  }
+  .footer-col-label {
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #aaa;
+    margin-bottom: 20px;
+  }
+  .footer-links { list-style: none; padding: 0; margin: 0; }
+  .footer-links li { margin-bottom: 10px; }
+  .footer-links a {
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: #2a2a2a;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: #888; }
+  .footer-newsletter { display: flex; flex-direction: column; }
+  .footer-form { display: flex; flex-direction: column; gap: 10px; margin-top: 0; }
+  .footer-input {
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: #1a1a1a;
+    background: transparent;
+    outline: none;
+  }
+  .footer-input::placeholder { color: #aaa; }
+  .footer-btn {
+    background: #1a1a1a;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: opacity 0.3s;
+  }
+  .footer-btn:hover { opacity: 0.7; }
+  .footer-bottom {
+    border-top: 1px solid rgba(0,0,0,0.07);
+    padding-top: 28px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: #aaa;
+  }
+
+  @media (max-width: 768px) {
+    .editorial-section, .founder-video-section, .products-section { padding: 80px 30px; }
+    .products-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .footer-bottom { flex-direction: column; gap: 8px; }
+    .founder-video { height: 300px; }
+  }
+  @media (max-width: 480px) {
+    .footer-top { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -1641,284 +1912,95 @@
 
 </div>
 
-<!-- PURPOSE -->
-<section class="purpose-section">
-  <div class="purpose-section-overlay"></div>
-  <div class="purpose">
-    <div class="purpose-left reveal">
-      <p class="purpose-number">01 — Purpose</p>
-      <h2 class="purpose-headline">Fragrance became something<br>we wear <em>without feeling.</em></h2>
-      <p class="purpose-body">There was a time when fragrance was not chosen. It was inherited. Worn as memory, as ritual, as the invisible mark of something sacred.<br><br>Then it became a product. Packaged. Marketed. Forgotten.<br><br>RŪḤ exists to reclaim what scent was always meant to be.</p>
-    </div>
-    <div class="purpose-right reveal reveal-delay-2">
-      <div class="purpose-quote">
-        <blockquote>"This brand is not just fragrance.<br>It is a feeling you wear."</blockquote>
-        <cite>RŪḤ — Means Soul in Arabic</cite>
-      </div>
-    </div>
-  </div>
-  <p class="purpose-mantra reveal">Ancient in origin. Modern in conscience.</p>
-</section>
-
-<!-- BOTTLE SECTION -->
-<section class="bottle-section" id="bottle">
-  <div class="bottle-inner">
-    <div class="bottle-visual reveal">
-      <div style="position:relative;">
-        <div class="bottle-glow"></div>
-        <svg class="bottle-svg-wrap" viewBox="0 0 280 420" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="stoneGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#C4AA82;stop-opacity:1" />
-              <stop offset="35%" style="stop-color:#A49070;stop-opacity:1" />
-              <stop offset="65%" style="stop-color:#8B7660;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#6D5840;stop-opacity:1" />
-            </linearGradient>
-            <linearGradient id="stoneGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#B09872;stop-opacity:1" />
-              <stop offset="40%" style="stop-color:#8B7660;stop-opacity:1" />
-              <stop offset="100%" style="stop-color:#5A4835;stop-opacity:1" />
-            </linearGradient>
-            <linearGradient id="topLight" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" style="stop-color:#D4BC94;stop-opacity:0.5" />
-              <stop offset="100%" style="stop-color:#A49070;stop-opacity:0" />
-            </linearGradient>
-            <filter id="texture" x="-5%" y="-5%" width="110%" height="110%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="noise"/>
-              <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise"/>
-              <feBlend in="SourceGraphic" in2="grayNoise" mode="multiply" result="blend"/>
-              <feComposite in="blend" in2="SourceGraphic" operator="in"/>
-            </filter>
-          </defs>
-          <rect x="70" y="20" width="140" height="105" rx="3" fill="url(#stoneGrad)" filter="url(#texture)"/>
-          <rect x="70" y="20" width="140" height="105" rx="3" fill="url(#topLight)"/>
-          <rect x="70" y="20" width="12" height="105" rx="3" fill="rgba(0,0,0,0.2)"/>
-          <rect x="198" y="20" width="12" height="105" rx="3" fill="rgba(0,0,0,0.15)"/>
-          <line x1="90" y1="40" x2="115" y2="55" stroke="rgba(90,72,53,0.3)" stroke-width="1"/>
-          <line x1="160" y1="30" x2="185" y2="50" stroke="rgba(90,72,53,0.2)" stroke-width="0.8"/>
-          <line x1="80" y1="80" x2="120" y2="95" stroke="rgba(90,72,53,0.15)" stroke-width="1.2"/>
-          <rect x="100" y="122" width="80" height="24" rx="2" fill="url(#stoneGrad2)"/>
-          <rect x="100" y="122" width="80" height="24" rx="2" fill="rgba(0,0,0,0.12)"/>
-          <rect x="40" y="140" width="200" height="260" rx="4" fill="url(#stoneGrad)" filter="url(#texture)"/>
-          <rect x="40" y="140" width="200" height="260" rx="4" fill="url(#topLight)"/>
-          <rect x="40" y="140" width="16" height="260" rx="4" fill="rgba(0,0,0,0.2)"/>
-          <rect x="224" y="140" width="16" height="260" rx="4" fill="rgba(0,0,0,0.15)"/>
-          <rect x="40" y="368" width="200" height="32" rx="4" fill="rgba(0,0,0,0.2)"/>
-          <line x1="60" y1="180" x2="100" y2="200" stroke="rgba(90,72,53,0.25)" stroke-width="1.5"/>
-          <line x1="180" y1="160" x2="220" y2="190" stroke="rgba(90,72,53,0.2)" stroke-width="1"/>
-          <line x1="55" y1="280" x2="95" y2="300" stroke="rgba(90,72,53,0.2)" stroke-width="1.2"/>
-          <line x1="170" y1="320" x2="220" y2="350" stroke="rgba(90,72,53,0.15)" stroke-width="1.5"/>
-          <circle cx="200" cy="250" r="8" fill="rgba(90,72,53,0.12)"/>
-          <circle cx="65" cy="330" r="5" fill="rgba(90,72,53,0.15)"/>
-          <text x="140" y="248" font-family="Georgia, serif" font-size="22" font-weight="400" fill="rgba(58,48,40,0.7)" text-anchor="middle" letter-spacing="6">RŪH</text>
-          <text x="140" y="272" font-family="Georgia, serif" font-size="11" font-weight="300" fill="rgba(58,48,40,0.6)" text-anchor="middle" letter-spacing="5">TEMPLE</text>
-          <rect x="40" y="140" width="200" height="260" rx="4" fill="none" stroke="rgba(196,170,130,0.15)" stroke-width="1"/>
-          <rect x="70" y="20" width="140" height="105" rx="3" fill="none" stroke="rgba(196,170,130,0.12)" stroke-width="1"/>
-        </svg>
-      </div>
-    </div>
-    <div class="bottle-info reveal reveal-delay-2">
-      <p class="bottle-label">02 — The Vessel</p>
-      <h2 class="bottle-title">An Artifact,<br>Not a Bottle</h2>
-      <p class="bottle-description">In ancient workshops, objects were made one at a time. Held, shaped, considered. The maker's hand left in every surface.<br><br>RŪḤ returns to that. Each vessel is cast by hand, in small batches — heavy, imperfect, irreplaceable. An object that carries the memory of being made.</p>
-    </div>
+<!-- EDITORIAL IMAGE -->
+<section class="editorial-section">
+  <div class="editorial-inner">
+    <p class="editorial-eyebrow">Terre Natale — Eau de Parfum</p>
+    <img
+      src="https://images.unsplash.com/photo-1583416750470-965b2707b355?auto=format&fit=crop&w=1400&q=80"
+      alt="Terre Natale fragrance editorial"
+      class="editorial-img">
+    <p class="editorial-caption">A fragrance rooted in two worlds.<br>Algerian smoke. French refinement. One soul.</p>
+    <a href="product.html" class="editorial-link">Discover Terre Natale</a>
   </div>
 </section>
 
-<!-- SCENT SECTION -->
-<section class="scent-section-wrap" id="scent">
-<div class="scent-section">
-  <p class="section-eyebrow reveal">03 — The Soul</p>
-  <p class="soul-intro reveal reveal-delay-1">Three layers. One feeling. Yours alone.</p>
-
-  <div class="scent-grid">
-    <div class="scent-card reveal">
-      <div class="scent-name">Smoky Depth</div>
-      <div class="scent-desc">The weight of ancient ceremony.</div>
-    </div>
-    <div class="scent-card reveal reveal-delay-1">
-      <div class="scent-name">Warm Sweetness</div>
-      <div class="scent-desc">Warmth that feels like a memory.</div>
-    </div>
-    <div class="scent-card reveal reveal-delay-2">
-      <div class="scent-name">Soft Skin</div>
-      <div class="scent-desc">Skin and soul in harmony.</div>
-    </div>
-  </div>
-</section>
-</section>
-
-<!-- RITUAL SECTION -->
-<section class="ritual-section" id="ritual">
-  <div class="ritual-bg-text">RŪḤ</div>
-  <div class="ritual-inner">
-    <p class="section-eyebrow reveal">04 — The Ritual</p>
-    <p class="soul-intro reveal reveal-delay-1" style="text-align:center;">To return fragrance to a ritual.</p>
-
-    <div class="ritual-steps">
-      <div class="ritual-step reveal">
-        <p class="ritual-num">I</p>
-        <h3 class="ritual-title">Meet the poem first.</h3>
-        <p class="ritual-text">Before the scent, there are words. Written for you. And for a moment, before anything else, it belongs only to you.</p>
-      </div>
-      <div class="ritual-step reveal reveal-delay-2">
-        <p class="ritual-num">II</p>
-        <h3 class="ritual-title">Unwrap it like<br>something sacred.</h3>
-        <p class="ritual-text">Unfold the papyrus. A relic that carries the memory of being made.</p>
-      </div>
-      <div class="ritual-step reveal reveal-delay-3">
-        <p class="ritual-num">III</p>
-        <h3 class="ritual-title">Wear it like<br>a prayer.</h3>
-        <p class="ritual-text">The scent was not made. It was remembered. Now it belongs to you.</p>
-      </div>
-    </div>
+<!-- FOUNDER VIDEO -->
+<section class="founder-video-section">
+  <p class="founder-video-eyebrow">The Founder</p>
+  <h2 class="founder-video-headline">Our story</h2>
+  <a href="about.html" class="founder-video-sub">Read more</a>
+  <div class="founder-video-wrap" id="videoWrap">
+    <video class="founder-video" id="founderVideo" loop playsinline poster="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=1400&q=80">
+      <source src="6508686_Silhouette%20Shadow%20Hand%20Reaching_By_Alejandro_Campollo_Artlist_HD.mp4" type="video/mp4">
+    </video>
+    <button class="video-play-btn" id="playBtn" aria-label="Play video">
+      <span>PLAY</span>
+    </button>
   </div>
 </section>
 
-<!-- POEM -->
-<section class="poem-section">
-  <div class="poem-bg"></div>
-  <div class="poem-papyrus reveal">
-    <p class="poem-brand">RŪḤ</p>
-    <div class="poem-text">
-      <p>Let yourself feel.</p>
-      <p>Return to the origin.</p>
-      <p>This scent was born from Earth.</p>
-      <p>Breathe.</p>
-      <br>
-      <p>You are not lost.</p>
-      <p>You are returning.</p>
-      <p>To your soul.</p>
-    </div>
-  </div>
-</section>
-
-
-<!-- OUR STORY -->
-<div class="story-section-wrap">
-<section class="story-section" id="story">
-  <p class="section-eyebrow reveal">Our Story</p>
-
-  <div class="story-philosophy reveal reveal-delay-1">
-    <h2 class="story-philosophy-title">The RŪḤ Philosophy</h2>
-    <p class="story-philosophy-sub">"The Essence of Soul"</p>
-    <p class="story-philosophy-text">RŪḤ.<br>The Arabic word for soul.<br>The invisible force that animates<br>breath, memory, and presence.<br><br>We believe fragrance is a living thing. Not a product. Not a formula.<br><br>Ancient, Intentional, Alive.<br><br>There was a time,<br>when scent was Worn<br>as ritual,<br>as memory,<br>as the invisible mark of something sacred.<br><br>RŪḤ exists to return to that original truth.<br><br>Created to bring intention into daily ritual — transforming the act of wearing fragrance from routine into ceremony.<br><br>Each bottle is an act of remembrance. A bridge between the ancient wisdom of plant intelligence and the modern conscience of clean, intentional making.<br><br><em>This is fragrance as it was always meant to be felt.</em></p>
-  </div>
-
-  <div class="story-split"></div>
-
-  <p class="story-ethos-label reveal">Formulation Ethos</p>
-  <ul class="story-values reveal reveal-delay-1">
-    <li>Every fragrance handcrafted in house — Byron Bay, Australia</li>
-    <li>Made in small batches for purity, potency, and energetic integrity</li>
-    <li>Clean, plant-based, cruelty-free and vegan friendly</li>
-    <li>Ingredients sourced from the South of France and Algeria —<br>the two origins of our founder</li>
-    <li>Plastic-free. Toxin-free.</li>
-  </ul>
-</section>
-</div>
-
-<!-- FOUNDER -->
-<section class="founder-section" id="founder">
-  <div class="founder-inner">
-    <p class="section-eyebrow reveal">The Founder</p>
-
-    <p class="founder-heritage-label reveal">Heritage</p>
-    <p class="founder-heritage-text reveal reveal-delay-1">Every RŪḤ fragrance is rooted in her heritage<br>The smoky warmth of Algerian interiors,<br>The refined sensibility of French perfumery.<br><br><span>Two cultures.<br>One soul.</span></p>
-
-    <p class="founder-hook reveal reveal-delay-1">RŪḤ was not built from a business plan.<br>It was built from longing.</p>
-
-    <p class="founder-stanza reveal reveal-delay-2">She is half Algerian, half French —<br>
-    far from both for longer than she expected.<br>
-    Distance does something to a person.<br>
-    It doesn't erase where you come from.<br>
-    It sharpens it.</p>
-
-    <p class="founder-stanza reveal reveal-delay-2">Scent was always the thread.<br>
-    The warmth of a house in Algeria.<br>
-    Smoke and resin, something ancient in the air.<br>
-    The kind of smell that doesn't announce itself —<br>
-    it simply is, the way memory is.</p>
-
-    <p class="founder-stanza reveal reveal-delay-2">She searched for that feeling in a bottle for years.<br>
-    Through every major house, every niche brand she could find.<br>
-    Nothing came close.<br>
-    So she made it herself.</p>
-
-    <p class="founder-brand reveal reveal-delay-2">RŪḤ — soul in Arabic —<br>
-    was named in honour of her Algerian heritage.<br>
-    Not as aesthetic.<br>
-    As devotion.<br><br>
-    Every fragrance is clean, vegan-friendly, and plastic-free<br>
-    because it was never negotiable.</p>
-
-    <p class="founder-stanza reveal reveal-delay-2">RŪḤ Origine is the fragrance<br>she spent years not finding.</p>
-
-    <p class="founder-close reveal reveal-delay-3">A feeling you wear.</p>
-  </div>
-</section>
-
-<!-- MANIFESTO -->
-<section class="manifesto-section" id="manifesto">
-  <div class="manifesto-inner">
-    <p class="section-eyebrow reveal">Manifesto</p>
-
-    <p class="manifesto-open reveal reveal-delay-1">Some things cannot be explained.<br>Only felt.</p>
-
-    <p class="manifesto-stanza reveal reveal-delay-1">Some things are older than language —<br>
-    smoke rising from burning resin,<br>
-    the warmth of skin after sunlight,<br>
-    the smell of a place you have never been<br>
-    but somehow remember.</p>
-
-    <p class="manifesto-stanza reveal reveal-delay-1">Some things are lost when you leave home.<br>
-    And some things follow you across every ocean,<br>
-    every season, every year of forgetting.</p>
-
-    <p class="manifesto-stanza reveal reveal-delay-1">Some things are made in laboratories.<br>
-    Others are made from longing.</p>
-
-    <p class="manifesto-stanza reveal reveal-delay-1">Some things demand your attention.<br>
-    The ones worth keeping never do.</p>
-
-
-    <p class="manifesto-ruh reveal reveal-delay-2">Some fragrances sit on the surface.<br>
-    RŪḤ settles into skin — and stays.</p>
-
-    <p class="manifesto-echo reveal reveal-delay-2">Some things cannot be explained.</p>
-
-    <p class="manifesto-close reveal reveal-delay-3">Only worn.</p>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section" id="acquire">
-  <div class="cta-glow"></div>
-  <div class="cta-inner">
-    <p class="section-eyebrow reveal">Origine — First Edition</p>
-    <h2 class="cta-headline reveal reveal-delay-1">This is not a fragrance.</h2>
-    <p class="cta-sub reveal reveal-delay-2">It is a feeling to be returned to.<br>A ritual. A memory. A soul worn on skin.</p>
-    <p class="cta-price reveal reveal-delay-2">50ml Fragrance</p>
-    <div class="cta-buttons reveal reveal-delay-3">
-      <a href="shop.html" class="btn-primary">Shop Now</a>
-      <a href="shop.html" class="btn-ghost">View Collection</a>
+<!-- PRODUCT OPTIONS -->
+<section class="products-section">
+  <div class="products-inner">
+    <p class="products-eyebrow">The Collection</p>
+    <div class="products-grid">
+      <a href="product.html" class="product-tile">
+        <div class="product-tile-img-wrap">
+          <img src="https://images.unsplash.com/photo-1541643600914-78b084683702?auto=format&fit=crop&w=600&q=80" alt="Terre Natale 2ml Sample">
+        </div>
+        <p class="product-tile-type">Eau de Parfum</p>
+        <p class="product-tile-name">Terre Natale — Sample</p>
+        <p class="product-tile-price">$35</p>
+      </a>
+      <a href="product.html" class="product-tile">
+        <div class="product-tile-img-wrap">
+          <img src="https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&w=600&q=80" alt="Terre Natale 50ml">
+        </div>
+        <p class="product-tile-type">Eau de Parfum</p>
+        <p class="product-tile-name">Terre Natale — Full Bottle</p>
+        <p class="product-tile-price">Coming soon</p>
+      </a>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer>
-  <div>
-    <div class="footer-logo">RŪḤ TEMPLE</div>
-    <div class="footer-tagline" style="margin-top:8px;">A feeling you wear.</div>
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-col">
+      <img src="RUH Black.png" alt="RŪḤ Temple" class="footer-logo-img">
+      <p class="footer-tagline">A feeling you wear.</p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-label">Navigate</p>
+      <ul class="footer-links">
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="lineage.html">The Lineage</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-label">Follow</p>
+      <ul class="footer-links">
+        <li><a href="https://www.instagram.com/ruh.temple" target="_blank">Instagram</a></li>
+      </ul>
+    </div>
+    <div class="footer-col footer-newsletter">
+      <p class="footer-col-label">Stay close</p>
+      <form class="footer-form" onsubmit="return false;">
+        <input type="email" placeholder="your@email.com" class="footer-input">
+        <button type="submit" class="footer-btn">Subscribe</button>
+      </form>
+    </div>
   </div>
-  <ul class="footer-links">
-    <li><a href="shop.html">Shop</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="https://www.instagram.com/ruh.temple" target="_blank">Instagram</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
+  <div class="footer-bottom">
+    <p>© 2025 RŪḤ Temple. All rights reserved.</p>
+    <p>Handcrafted in Byron Bay &nbsp;·&nbsp; New Ancient</p>
+  </div>
 </footer>
+
 
 <script>
   // Scroll reveal
@@ -1932,6 +2014,18 @@
   }, { threshold: 0.12 });
 
   reveals.forEach(el => observer.observe(el));
+
+  // Video play button
+  const founderVideo = document.getElementById('founderVideo');
+  const playBtn = document.getElementById('playBtn');
+  if (founderVideo && playBtn) {
+    playBtn.addEventListener('click', () => {
+      founderVideo.play();
+      playBtn.classList.add('hidden');
+    });
+    founderVideo.addEventListener('pause', () => playBtn.classList.remove('hidden'));
+    founderVideo.addEventListener('ended', () => playBtn.classList.remove('hidden'));
+  }
 
   // Hamburger menu
   const hamburger = document.getElementById('hamburger');
