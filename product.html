@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Origine — RŪḤ Temple</title>
+<meta name="description" content="Origine — First Edition. A 50ml fragrance of soul, memory, and warmth. Handcrafted in Byron Bay, rooted in Algerian and French heritage. Pre-order now.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #EFE7DA;
+    --sand: #C4AA82;
+    --tan: #A49070;
+    --earth: #6D5840;
+    --dark: #3A3028;
+    --darker: #1E1812;
+    --deepest: #0F0D0A;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deepest);
+    color: var(--ivory);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.035; pointer-events: none; z-index: 1000;
+  }
+
+  @media (hover: hover) and (pointer: fine) { body { cursor: none; } }
+  .cursor {
+    position: fixed; width: 8px; height: 8px; background: var(--sand);
+    border-radius: 50%; pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%); mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    position: fixed; width: 32px; height: 32px;
+    border: 1px solid rgba(196,170,130,0.4); border-radius: 50%;
+    pointer-events: none; z-index: 9998; transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, border-color 0.3s;
+  }
+  @media (hover: none), (pointer: coarse) { .cursor, .cursor-ring { display: none; } }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+    padding: 32px 60px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: linear-gradient(to bottom, rgba(15,13,10,0.9) 0%, transparent 100%);
+  }
+  .nav-logo {
+    font-family: 'Cormorant SC', serif; font-size: 18px;
+    letter-spacing: 0.2em; color: var(--ivory); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
+  .nav-links a {
+    font-family: 'Cinzel', serif; font-size: 11px; font-weight: 300;
+    letter-spacing: 0.3em; color: var(--tan); text-decoration: none;
+    text-transform: uppercase; transition: color 0.4s;
+  }
+  .nav-links a:hover { color: var(--ivory); }
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .hamburger span { display: block; width: 22px; height: 1px; background: var(--tan); }
+  .mobile-nav {
+    display: none; position: fixed; inset: 0;
+    background: rgba(15,13,10,0.97); z-index: 200;
+    flex-direction: column; align-items: center; justify-content: center; gap: 40px;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav-link {
+    font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 0.3em;
+    color: var(--tan); text-decoration: none; text-transform: uppercase; transition: color 0.4s;
+  }
+  .mobile-nav-link:hover { color: var(--ivory); }
+  @media (max-width: 768px) {
+    nav { padding: 24px 30px; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+  }
+
+  /* BREADCRUMB */
+  .breadcrumb {
+    padding: 120px 60px 0;
+    font-family: 'Cinzel', serif;
+    font-size: 9px; letter-spacing: 0.3em;
+    color: var(--earth); text-transform: uppercase;
+    opacity: 0; animation: fadeIn 1s ease 0.3s forwards;
+  }
+  .breadcrumb a { color: var(--earth); text-decoration: none; transition: color 0.4s; }
+  .breadcrumb a:hover { color: var(--tan); }
+  .breadcrumb span { margin: 0 8px; }
+
+  /* PRODUCT LAYOUT */
+  .product {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 60px 120px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  /* LEFT: VISUAL */
+  .product-visual {
+    position: sticky;
+    top: 120px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.5s forwards;
+  }
+
+  .visual-frame {
+    aspect-ratio: 3 / 4;
+    border: 1px solid rgba(196,170,130,0.08);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    background: rgba(255,255,255,0.01);
+  }
+
+  .visual-glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 80%, rgba(109,88,64,0.2) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .visual-badge {
+    position: absolute; top: 20px; left: 20px;
+    font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--sand);
+    border: 1px solid rgba(196,170,130,0.3);
+    padding: 4px 10px;
+    background: rgba(15,13,10,0.7);
+  }
+
+  .visual-size {
+    position: absolute; bottom: 20px; right: 20px;
+    font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--earth);
+  }
+
+  /* RIGHT: INFO */
+  .product-info {
+    padding-top: 20px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.7s forwards;
+  }
+
+  .product-label {
+    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.5em;
+    color: var(--earth); text-transform: uppercase; margin-bottom: 12px;
+  }
+
+  .product-name {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(36px, 5vw, 56px); font-weight: 300;
+    letter-spacing: 0.1em; color: var(--ivory); line-height: 1;
+    margin-bottom: 20px;
+  }
+
+  .product-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: clamp(16px, 2vw, 20px);
+    font-weight: 300; color: var(--tan); letter-spacing: 0.03em;
+    line-height: 1.7; margin-bottom: 36px;
+  }
+
+  .product-divider {
+    width: 40px; height: 1px;
+    background: rgba(196,170,130,0.2); margin-bottom: 36px;
+  }
+
+  /* SCENT PROFILE */
+  .scent-section { margin-bottom: 40px; }
+  .scent-label {
+    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.4em;
+    color: var(--earth); text-transform: uppercase; margin-bottom: 16px;
+  }
+  .scent-notes { display: flex; flex-direction: column; gap: 12px; }
+  .scent-note {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(196,170,130,0.06);
+  }
+  .note-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px; font-weight: 300; color: var(--ivory); letter-spacing: 0.04em;
+  }
+  .note-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 13px; font-weight: 300;
+    color: var(--tan); letter-spacing: 0.03em;
+  }
+
+  /* PRICING */
+  .pricing { margin-bottom: 36px; }
+  .pricing-label {
+    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.4em;
+    color: var(--earth); text-transform: uppercase; margin-bottom: 16px;
+  }
+  .pricing-options { display: flex; flex-direction: column; gap: 2px; }
+
+  .pricing-option {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 20px;
+    border: 1px solid rgba(196,170,130,0.08);
+    cursor: pointer; transition: border-color 0.4s, background 0.4s;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .pricing-option:hover, .pricing-option.selected {
+    border-color: rgba(196,170,130,0.3);
+    background: rgba(196,170,130,0.04);
+  }
+  .pricing-option.selected::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 2px; background: var(--sand);
+  }
+  .option-left { display: flex; flex-direction: column; gap: 4px; }
+  .option-name {
+    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.2em;
+    color: var(--ivory); text-transform: uppercase;
+  }
+  .option-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 13px; color: var(--tan); letter-spacing: 0.02em;
+  }
+  .option-price {
+    font-family: 'Cormorant SC', serif;
+    font-size: 18px; font-weight: 300; color: var(--ivory); letter-spacing: 0.05em;
+  }
+
+  /* CTA */
+  .cta-section { margin-bottom: 48px; }
+
+  .btn-preorder {
+    display: block; width: 100%;
+    background: var(--sand); border: 1px solid var(--sand);
+    padding: 20px;
+    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.4em;
+    color: var(--deepest); text-transform: uppercase;
+    text-align: center; text-decoration: none;
+    transition: all 0.5s;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    cursor: pointer;
+  }
+  .btn-preorder:hover { background: var(--ivory); border-color: var(--ivory); }
+
+  .pre-note {
+    text-align: center; margin-top: 12px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 13px; color: var(--earth); letter-spacing: 0.02em;
+  }
+
+  /* DETAILS */
+  .details-section { margin-bottom: 40px; }
+  .details-label {
+    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.4em;
+    color: var(--earth); text-transform: uppercase; margin-bottom: 16px;
+  }
+  .details-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .details-list li {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px; font-weight: 300; color: var(--tan); letter-spacing: 0.02em;
+    padding-left: 14px; position: relative; line-height: 1.5;
+  }
+  .details-list li::before {
+    content: '·'; position: absolute; left: 0; color: var(--earth);
+  }
+
+  /* RITUAL STRIP */
+  .ritual-strip {
+    border-top: 1px solid rgba(196,170,130,0.08);
+    padding-top: 32px;
+  }
+  .ritual-label {
+    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.4em;
+    color: var(--earth); text-transform: uppercase; margin-bottom: 20px;
+  }
+  .ritual-steps { display: flex; flex-direction: column; gap: 16px; }
+  .ritual-step {
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .ritual-num {
+    font-family: 'Cormorant SC', serif; font-size: 14px; color: var(--earth);
+    min-width: 20px; margin-top: 2px;
+  }
+  .ritual-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic; font-size: 15px; color: var(--tan);
+    line-height: 1.6; letter-spacing: 0.02em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @media (max-width: 900px) {
+    .product {
+      grid-template-columns: 1fr;
+      gap: 48px; padding: 40px 24px 80px;
+    }
+    .product-visual { position: static; }
+    .breadcrumb { padding: 120px 24px 0; }
+  }
+
+  @media (max-width: 600px) {
+    .breadcrumb { padding: 100px 24px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="shop.html" class="mobile-nav-link">Shop</a>
+  <a href="about.html" class="mobile-nav-link">About</a>
+  <a href="contact.html" class="mobile-nav-link">Contact</a>
+</div>
+
+<nav>
+  <a href="index.html" class="nav-logo">RŪḤ</a>
+  <ul class="nav-links">
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<p class="breadcrumb">
+  <a href="shop.html">Shop</a>
+  <span>→</span>
+  Origine
+</p>
+
+<div class="product">
+
+  <!-- LEFT: VISUAL -->
+  <div class="product-visual">
+    <div class="visual-frame">
+      <div class="visual-glow"></div>
+      <span class="visual-badge">Pre-Order</span>
+      <span class="visual-size">50 ml</span>
+      <svg viewBox="0 0 220 340" width="180" xmlns="http://www.w3.org/2000/svg" style="opacity:0.9;">
+        <defs>
+          <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#C4AA82;stop-opacity:1"/>
+            <stop offset="35%" style="stop-color:#A49070;stop-opacity:1"/>
+            <stop offset="65%" style="stop-color:#8B7660;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#6D5840;stop-opacity:1"/>
+          </linearGradient>
+          <linearGradient id="g2" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" style="stop-color:#D4BC94;stop-opacity:0.4"/>
+            <stop offset="100%" style="stop-color:#A49070;stop-opacity:0"/>
+          </linearGradient>
+          <filter id="t">
+            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="n"/>
+            <feColorMatrix type="saturate" values="0" in="n" result="gn"/>
+            <feBlend in="SourceGraphic" in2="gn" mode="multiply" result="bl"/>
+            <feComposite in="bl" in2="SourceGraphic" operator="in"/>
+          </filter>
+        </defs>
+        <!-- Cap -->
+        <rect x="70" y="10" width="80" height="62" rx="2" fill="url(#g1)" filter="url(#t)"/>
+        <rect x="70" y="10" width="80" height="62" rx="2" fill="url(#g2)"/>
+        <rect x="70" y="10" width="10" height="62" rx="2" fill="rgba(0,0,0,0.18)"/>
+        <!-- Neck -->
+        <rect x="82" y="70" width="56" height="18" rx="1" fill="url(#g1)"/>
+        <!-- Body -->
+        <rect x="26" y="88" width="168" height="232" rx="3" fill="url(#g1)" filter="url(#t)"/>
+        <rect x="26" y="88" width="168" height="232" rx="3" fill="url(#g2)"/>
+        <rect x="26" y="88" width="14" height="232" rx="3" fill="rgba(0,0,0,0.2)"/>
+        <rect x="180" y="88" width="14" height="232" rx="3" fill="rgba(0,0,0,0.15)"/>
+        <rect x="26" y="288" width="168" height="32" rx="3" fill="rgba(0,0,0,0.18)"/>
+        <!-- Label text -->
+        <text x="110" y="206" font-family="Georgia,serif" font-size="18" font-weight="400" fill="rgba(58,48,40,0.75)" text-anchor="middle" letter-spacing="5">RŪH</text>
+        <text x="110" y="225" font-family="Georgia,serif" font-size="8" font-weight="300" fill="rgba(58,48,40,0.6)" text-anchor="middle" letter-spacing="4">TEMPLE</text>
+        <!-- Border -->
+        <rect x="26" y="88" width="168" height="232" rx="3" fill="none" stroke="rgba(196,170,130,0.12)" stroke-width="1"/>
+        <rect x="70" y="10" width="80" height="62" rx="2" fill="none" stroke="rgba(196,170,130,0.1)" stroke-width="1"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- RIGHT: INFO -->
+  <div class="product-info">
+
+    <p class="product-label">First Edition · 50 ml</p>
+    <h1 class="product-name">Origine</h1>
+    <p class="product-tagline">A fragrance of soul, memory, and warmth.<br>Ancient ceremony in a handcrafted vessel.</p>
+    <div class="product-divider"></div>
+
+    <!-- SCENT NOTES -->
+    <div class="scent-section">
+      <p class="scent-label">Scent Profile</p>
+      <div class="scent-notes">
+        <div class="scent-note">
+          <span class="note-name">Smoky Depth</span>
+          <span class="note-desc">The weight of ancient ceremony</span>
+        </div>
+        <div class="scent-note">
+          <span class="note-name">Warm Sweetness</span>
+          <span class="note-desc">Warmth that feels like memory</span>
+        </div>
+        <div class="scent-note">
+          <span class="note-name">Soft Skin</span>
+          <span class="note-desc">Skin and soul in harmony</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRICING OPTIONS -->
+    <div class="pricing">
+      <p class="pricing-label">Choose Your Experience</p>
+      <div class="pricing-options">
+        <div class="pricing-option selected" data-option="sample" onclick="selectOption(this)">
+          <div class="option-left">
+            <span class="option-name">Sample</span>
+            <span class="option-desc">5 ml · Discover the ritual</span>
+          </div>
+          <span class="option-price">$35</span>
+        </div>
+        <div class="pricing-option" data-option="full" onclick="selectOption(this)">
+          <div class="option-left">
+            <span class="option-name">Full Bottle</span>
+            <span class="option-desc">50 ml · The complete vessel</span>
+          </div>
+          <span class="option-price">TBC</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <a href="#" class="btn-preorder" id="preorderBtn">Pre-Order Now</a>
+      <p class="pre-note">Ships when ready — you will be notified personally.</p>
+    </div>
+
+    <!-- DETAILS -->
+    <div class="details-section">
+      <p class="details-label">About this Fragrance</p>
+      <ul class="details-list">
+        <li>Handcrafted in small batches in Byron Bay, Australia</li>
+        <li>Ingredients sourced from the South of France and Algeria</li>
+        <li>Clean, plant-based, cruelty-free and vegan-friendly</li>
+        <li>Plastic-free. Toxin-free.</li>
+        <li>Every bottle arrives with a handwritten poem and papyrus</li>
+      </ul>
+    </div>
+
+    <!-- RITUAL -->
+    <div class="ritual-strip">
+      <p class="ritual-label">The Ritual</p>
+      <div class="ritual-steps">
+        <div class="ritual-step">
+          <span class="ritual-num">I</span>
+          <span class="ritual-text">Meet the poem first — written for you alone.</span>
+        </div>
+        <div class="ritual-step">
+          <span class="ritual-num">II</span>
+          <span class="ritual-text">Unwrap the papyrus like something sacred.</span>
+        </div>
+        <div class="ritual-step">
+          <span class="ritual-num">III</span>
+          <span class="ritual-text">Wear it like a prayer. It settles into skin and stays.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function selectOption(el) {
+    document.querySelectorAll('.pricing-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  hamburger.addEventListener('click', () => {
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px'; cursor.style.top = my + 'px';
+  });
+  (function loop() {
+    rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a, button, .pricing-option').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      ring.style.width = '48px'; ring.style.height = '48px';
+      ring.style.borderColor = 'rgba(196,170,130,0.6)';
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.style.width = '32px'; ring.style.height = '32px';
+      ring.style.borderColor = 'rgba(196,170,130,0.4)';
+    });
+  });
+</script>
+</body>
+</html>
