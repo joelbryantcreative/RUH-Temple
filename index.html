@@ -194,14 +194,30 @@
   }
 
   .hero-campaign-name {
-    font-family: 'Cormorant SC', serif;
-    font-size: clamp(32px, 5vw, 64px);
-    font-weight: 300;
-    letter-spacing: 0.18em;
-    color: var(--ivory);
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: clamp(28px, 4vw, 56px);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #fff;
     line-height: 1;
     opacity: 0;
-    animation: fadeUp 1.2s ease 1s forwards;
+    animation: fadeUp 1.2s ease 0.8s forwards;
+    margin-bottom: 16px;
+  }
+
+  .hero-discover-link {
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.2s forwards;
+    display: inline-block;
   }
 
   .hero-campaign-sub {
@@ -1885,12 +1901,8 @@
   <div class="hero-smoke"></div>
 
   <div class="hero-content">
-    <p class="hero-campaign-label">Now available</p>
     <h1 class="hero-campaign-name">Terre Natale</h1>
-    <p class="hero-campaign-sub">A fragrance of soul, memory, and warmth.</p>
-    <div class="hero-cta">
-      <a href="shop.html" class="btn-primary">Discover</a>
-    </div>
+    <a href="product.html" class="hero-discover-link">Discover</a>
   </div>
 
   <div class="hero-scroll">
