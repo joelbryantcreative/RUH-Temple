@@ -126,8 +126,22 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    gap: 20px;
     grid-column: 3;
   }
+
+  .nav-cart {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    color: #2a2a2a;
+    transition: color 0.3s;
+  }
+  .nav-cart:hover { color: #000; }
+  .nav-cart svg { display: block; }
 
   /* HERO */
   .hero {
@@ -1861,8 +1875,12 @@
   </ul>
   <a href="index.html" class="nav-logo"><img src="RUH Black.png" alt="RŪḤ Temple" class="nav-logo-img"></a>
   <div class="nav-right">
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
+    <button class="nav-cart" aria-label="Cart">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
     </button>
   </div>
 </nav>
