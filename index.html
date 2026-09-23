@@ -1628,10 +1628,28 @@
   .founder-video-wrap {
     position: relative;
     width: 100%;
-    cursor: pointer;
+    cursor: none;
     overflow: hidden;
     line-height: 0;
   }
+
+  .video-cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    font-family: 'SF Pro Display','Cinzel',sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.28em;
+    color: #fff;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease;
+    mix-blend-mode: difference;
+    white-space: nowrap;
+  }
+  .video-cursor.visible { opacity: 1; }
   .founder-video {
     width: 100%;
     display: block;
@@ -1909,6 +1927,7 @@
       <source src="6508686_Silhouette%20Shadow%20Hand%20Reaching_By_Alejandro_Campollo_Artlist_HD.mp4" type="video/mp4">
     </video>
   </div>
+  <div class="video-cursor" id="videoCursor">Play</div>
 </section>
 
 <!-- PRODUCT OPTIONS -->
@@ -1986,11 +2005,35 @@
 
   reveals.forEach(el => observer.observe(el));
 
-  // Click video to play/pause
+  // Custom cursor for video
   const founderVideo = document.getElementById('founderVideo');
-  if (founderVideo) {
-    founderVideo.addEventListener('click', () => {
-      founderVideo.paused ? founderVideo.play() : founderVideo.pause();
+  const videoWrap = document.getElementById('videoWrap');
+  const videoCursor = document.getElementById('videoCursor');
+
+  if (founderVideo && videoWrap && videoCursor) {
+    // Track mouse position globally so cursor stays smooth
+    document.addEventListener('mousemove', (e) => {
+      videoCursor.style.left = e.clientX + 'px';
+      videoCursor.style.top = e.clientY + 'px';
+    });
+
+    videoWrap.addEventListener('mouseenter', () => {
+      videoCursor.classList.add('visible');
+      videoCursor.textContent = founderVideo.paused ? 'Play' : 'Pause';
+    });
+
+    videoWrap.addEventListener('mouseleave', () => {
+      videoCursor.classList.remove('visible');
+    });
+
+    videoWrap.addEventListener('click', () => {
+      if (founderVideo.paused) {
+        founderVideo.play();
+        videoCursor.textContent = 'Pause';
+      } else {
+        founderVideo.pause();
+        videoCursor.textContent = 'Play';
+      }
     });
   }
 
