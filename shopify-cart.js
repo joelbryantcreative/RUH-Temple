@@ -1,36 +1,60 @@
-/* RŪḤ Temple — Shopify Cart (public endpoints, no token required) */
+/* RŪḤ Temple — Shopify Storefront API Cart */
 (function () {
-  const STORE = 'zdfyns-0v.myshopify.com';
-  const TERRE_NATALE_HANDLE = 'terre-natale';
+  const STORE   = 'zdfyns-0v.myshopify.com';
+  const TOKEN   = 'a9ce0794f6f316fc19377e8699c9fa60';
+  const API_URL = `https://${STORE}/api/2026-07/graphql.json`;
+  const TERRE_NATALE_GID = 'gid://shopify/Product/10548936638786';
 
-  /* Local cart state */
-  let lineItems = []; /* [{ variantId, title, price, qty }] */
+  let cartId      = null;
+  let cartUrl     = null;
+  let lineItems   = []; /* raw line nodes from Shopify */
   let variantCache = null;
 
-  /* ── Fetch variant via public product JSON (no auth needed) ── */
+  /* ── GraphQL helper ── */
+  async function gql(query, variables = {}) {
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Shopify-Storefront-Access-Token': TOKEN,
+      },
+      body: JSON.stringify({ query, variables }),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    if (json.errors) throw new Error(json.errors[0].message);
+    return json.data;
+  }
+
+  /* ── Get first variant ── */
   async function getVariant() {
     if (variantCache) return variantCache;
-    const res = await fetch(
-      `https://${STORE}/products/${TERRE_NATALE_HANDLE}.json`,
-      { headers: { 'Accept': 'application/json' } }
-    );
-    if (!res.ok) throw new Error('Product not found');
-    const data = await res.json();
-    const v = data.product.variants[0];
-    variantCache = {
-      id: v.id,
-      title: data.product.title,
-      variantTitle: v.title,
-      price: parseFloat(v.price),
-    };
+    const data = await gql(`
+      query($id: ID!) {
+        product(id: $id) {
+          title
+          variants(first: 1) {
+            edges { node { id title availableForSale priceV2 { amount currencyCode } } }
+          }
+        }
+      }`, { id: TERRE_NATALE_GID });
+    const node = data.product.variants.edges[0].node;
+    variantCache = { id: node.id, title: data.product.title, variantTitle: node.title, price: parseFloat(node.priceV2.amount), currency: node.priceV2.currencyCode };
     return variantCache;
   }
 
-  /* ── Build Shopify direct-checkout URL ── */
+  /* ── Sync cart from Shopify response ── */
+  function syncCart(cart) {
+    cartId    = cart.id;
+    cartUrl   = cart.checkoutUrl;
+    lineItems = cart.lines.edges.map(e => e.node);
+    renderDrawer();
+    updateCartCount();
+  }
+
+  /* ── Build Shopify direct-checkout URL (fallback) ── */
   function checkoutUrl() {
-    if (lineItems.length === 0) return null;
-    const items = lineItems.map(l => `${l.variantId}:${l.qty}`).join(',');
-    return `https://${STORE}/cart/${items}`;
+    return cartUrl || null;
   }
 
   /* ── Public API ── */
@@ -39,17 +63,51 @@
       showLoading(true);
       try {
         const v = await getVariant();
-        const existing = lineItems.find(l => l.variantId === v.id);
-        if (existing) {
-          existing.qty += 1;
+        let cart;
+        if (!cartId) {
+          const data = await gql(`
+            mutation($variantId: ID!) {
+              cartCreate(input: { lines: [{ merchandiseId: $variantId, quantity: 1 }] }) {
+                cart { id checkoutUrl lines(first: 20) { edges { node {
+                  id quantity
+                  merchandise { ... on ProductVariant { id title priceV2 { amount currencyCode } product { title } } }
+                }}}}
+                userErrors { message }
+              }
+            }`, { variantId: v.id });
+          if (data.cartCreate.userErrors.length) throw new Error(data.cartCreate.userErrors[0].message);
+          cart = data.cartCreate.cart;
         } else {
-          lineItems.push({ variantId: v.id, title: v.title, variantTitle: v.variantTitle, price: v.price, qty: 1 });
+          const existing = lineItems.find(l => l.merchandise?.id === v.id);
+          if (existing) {
+            const data = await gql(`
+              mutation($cartId: ID!, $lineId: ID!, $qty: Int!) {
+                cartLinesUpdate(cartId: $cartId, lines: [{ id: $lineId, quantity: $qty }]) {
+                  cart { id checkoutUrl lines(first: 20) { edges { node {
+                    id quantity
+                    merchandise { ... on ProductVariant { id title priceV2 { amount currencyCode } product { title } } }
+                  }}}}
+                }
+              }`, { cartId, lineId: existing.id, qty: existing.quantity + 1 });
+            cart = data.cartLinesUpdate.cart;
+          } else {
+            const data = await gql(`
+              mutation($cartId: ID!, $variantId: ID!) {
+                cartLinesAdd(cartId: $cartId, lines: [{ merchandiseId: $variantId, quantity: 1 }]) {
+                  cart { id checkoutUrl lines(first: 20) { edges { node {
+                    id quantity
+                    merchandise { ... on ProductVariant { id title priceV2 { amount currencyCode } product { title } } }
+                  }}}}
+                }
+              }`, { cartId, variantId: v.id });
+            cart = data.cartLinesAdd.cart;
+          }
         }
-        renderDrawer();
+        syncCart(cart);
         openDrawer();
       } catch (err) {
         console.error('[RūḥCart]', err);
-        alert('Could not load product. Please check your connection and try again.');
+        alert('Could not add to cart. Please try again.');
       } finally {
         showLoading(false);
       }
@@ -96,21 +154,23 @@
     }
 
     let total = 0;
-    body.innerHTML = lineItems.map((item, idx) => {
-      const lineTotal = item.price * item.qty;
+    body.innerHTML = lineItems.map(item => {
+      const m = item.merchandise;
+      const price = parseFloat(m.priceV2.amount);
+      const lineTotal = price * item.quantity;
       total += lineTotal;
       return `
         <div class="ruh-cart-item">
           <div class="ruh-cart-item-info">
-            <p class="ruh-cart-item-name">${item.title}</p>
-            ${item.variantTitle && item.variantTitle !== 'Default Title' ? `<p class="ruh-cart-item-variant">${item.variantTitle}</p>` : ''}
+            <p class="ruh-cart-item-name">${m.product.title}</p>
+            ${m.title !== 'Default Title' ? `<p class="ruh-cart-item-variant">${m.title}</p>` : ''}
           </div>
           <div class="ruh-cart-item-qty">
-            <button class="ruh-qty-btn" data-idx="${idx}" data-action="dec">−</button>
-            <span>${item.qty}</span>
-            <button class="ruh-qty-btn" data-idx="${idx}" data-action="inc">+</button>
+            <button class="ruh-qty-btn" data-line="${item.id}" data-action="dec" data-qty="${item.quantity}">−</button>
+            <span>${item.quantity}</span>
+            <button class="ruh-qty-btn" data-line="${item.id}" data-action="inc" data-qty="${item.quantity}">+</button>
           </div>
-          <p class="ruh-cart-item-price">AUD ${lineTotal.toFixed(2)}</p>
+          <p class="ruh-cart-item-price">${m.priceV2.currencyCode} ${lineTotal.toFixed(2)}</p>
         </div>`;
     }).join('');
 
@@ -121,17 +181,23 @@
     checkoutLink.style.pointerEvents = 'auto';
 
     body.querySelectorAll('.ruh-qty-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const idx = parseInt(btn.dataset.idx);
-        const action = btn.dataset.action;
-        if (action === 'inc') {
-          lineItems[idx].qty += 1;
-        } else {
-          lineItems[idx].qty -= 1;
-          if (lineItems[idx].qty <= 0) lineItems.splice(idx, 1);
-        }
-        renderDrawer();
-        updateCartCount();
+      btn.addEventListener('click', async () => {
+        const lineId = btn.dataset.line;
+        const qty = parseInt(btn.dataset.qty);
+        const newQty = btn.dataset.action === 'inc' ? qty + 1 : qty - 1;
+        showLoading(true);
+        try {
+          const data = await gql(`
+            mutation($cartId: ID!, $lineId: ID!, $qty: Int!) {
+              cartLinesUpdate(cartId: $cartId, lines: [{ id: $lineId, quantity: $qty }]) {
+                cart { id checkoutUrl lines(first: 20) { edges { node {
+                  id quantity
+                  merchandise { ... on ProductVariant { id title priceV2 { amount currencyCode } product { title } } }
+                }}}}
+              }
+            }`, { cartId, lineId, qty: newQty });
+          syncCart(data.cartLinesUpdate.cart);
+        } finally { showLoading(false); }
       });
     });
 
