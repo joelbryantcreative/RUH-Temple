@@ -386,38 +386,85 @@
   .notify-confirm.show { opacity: 1; }
 
   /* MARQUEE DIVIDER */
-  .marquee-wrap {
+  /* CAMPAIGN GRID */
+  .campaign-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .campaign-panel {
+    position: relative;
     overflow: hidden;
-    border-top: 1px solid rgba(109,88,64,0.25);
-    border-bottom: 1px solid rgba(109,88,64,0.25);
-    padding: 20px 0;
-    background: rgba(15,13,10,0.5);
+    aspect-ratio: 3 / 4;
+    display: block;
+    text-decoration: none;
   }
 
-  .marquee-track {
+  .campaign-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+  }
+
+  .campaign-panel:hover img {
+    transform: scale(1.04);
+  }
+
+  .campaign-panel-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(15,13,10,0.55) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .campaign-panel-label {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+  }
+
+  .campaign-panel-eyebrow {
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 9px;
+    font-weight: 300;
+    letter-spacing: 0.35em;
+    color: rgba(239,231,218,0.6);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .campaign-panel-name {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(16px, 2vw, 22px);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--ivory);
+    display: block;
+  }
+
+  /* Placeholder panels (until real photos are uploaded) */
+  .campaign-panel-placeholder {
+    width: 100%;
+    height: 100%;
+    background: var(--dark);
     display: flex;
-    gap: 0;
-    white-space: nowrap;
-    animation: marquee 30s linear infinite;
-  }
-
-  .marquee-item {
+    align-items: center;
+    justify-content: center;
     font-family: 'Cinzel', serif;
-    font-size: 11px;
-    letter-spacing: 0.4em;
+    font-size: 9px;
+    letter-spacing: 0.3em;
     color: var(--earth);
     text-transform: uppercase;
-    padding: 0 48px;
   }
 
-  .marquee-dot {
-    color: var(--sand);
-    padding: 0 12px;
-  }
-
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+  @media (max-width: 768px) {
+    .campaign-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   /* PURPOSE SECTION */
@@ -1549,25 +1596,49 @@
 </section>
 
 <!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <span class="marquee-item">Soul</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Memory</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Warmth</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Ritual</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">RŪḤ Temple</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Origine</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Ancient</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Presence</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Soul</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Memory</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Warmth</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Ritual</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">RŪḤ Temple</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Origine</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Ancient</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Presence</span><span class="marquee-dot">·</span>
-  </div>
+<!-- CAMPAIGN GRID -->
+<div class="campaign-grid">
+
+  <!-- Panel 1: Product shot → product page -->
+  <a href="product.html" class="campaign-panel">
+    <div class="campaign-panel-placeholder">Add product photo</div>
+    <div class="campaign-panel-overlay"></div>
+    <div class="campaign-panel-label">
+      <span class="campaign-panel-eyebrow">Eau de Parfum</span>
+      <span class="campaign-panel-name">Terre Natale</span>
+    </div>
+  </a>
+
+  <!-- Panel 2: Ingredient / craft detail → product page -->
+  <a href="product.html" class="campaign-panel">
+    <div class="campaign-panel-placeholder">Add ingredient / craft photo</div>
+    <div class="campaign-panel-overlay"></div>
+    <div class="campaign-panel-label">
+      <span class="campaign-panel-eyebrow">The making</span>
+      <span class="campaign-panel-name">Origin & Ritual</span>
+    </div>
+  </a>
+
+  <!-- Panel 3: Founder → about page -->
+  <a href="about.html" class="campaign-panel">
+    <div class="campaign-panel-placeholder">Add founder portrait</div>
+    <div class="campaign-panel-overlay"></div>
+    <div class="campaign-panel-label">
+      <span class="campaign-panel-eyebrow">The founder</span>
+      <span class="campaign-panel-name">The Story</span>
+    </div>
+  </a>
+
+  <!-- Panel 4: Mood / detail → product page -->
+  <a href="product.html" class="campaign-panel">
+    <div class="campaign-panel-placeholder">Add mood / detail photo</div>
+    <div class="campaign-panel-overlay"></div>
+    <div class="campaign-panel-label">
+      <span class="campaign-panel-eyebrow">New Ancient</span>
+      <span class="campaign-panel-name">Shop Now</span>
+    </div>
+  </a>
+
 </div>
 
 <!-- PURPOSE -->
