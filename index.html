@@ -421,21 +421,39 @@
 
   .campaign-panel-overlay { display: none; }
 
-  /* Label sits inside the image, bottom-left */
+  /* Info bar — always visible on image, left + right */
   .campaign-panel-label {
     position: absolute;
-    bottom: 0; left: 0; right: 0;
-    padding: 16px 16px;
-    z-index: 2;
-  }
-
-  .campaign-panel-label-default {
+    bottom: 56px; left: 0; right: 0;
     display: flex;
-    flex-direction: column;
-    gap: 3px;
-    transition: opacity 0.25s ease;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 16px 16px;
+    z-index: 2;
+    pointer-events: none;
   }
 
+  .campaign-panel-eyebrow {
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: #1a1a1a;
+    display: block;
+  }
+
+  .campaign-panel-name {
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    display: block;
+    text-align: right;
+  }
+
+  /* Cart bar — slides up from below on hover */
   .campaign-panel-label-hover {
     position: absolute;
     bottom: 0; left: 0; right: 0;
@@ -444,44 +462,27 @@
     align-items: center;
     padding: 18px 16px;
     background: #fff;
-    opacity: 0;
-    transition: opacity 0.25s ease;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 3;
   }
 
-  .campaign-panel:hover .campaign-panel-label-default { opacity: 0; }
-  .campaign-panel:hover .campaign-panel-label-hover { opacity: 1; }
-
-  .campaign-panel-eyebrow {
-    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
-    font-size: 9px;
-    font-weight: 300;
-    letter-spacing: 0.3em;
-    color: #1a1a1a;
-    text-transform: uppercase;
-    display: block;
-  }
-
-  .campaign-panel-name {
-    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    letter-spacing: 0.04em;
-    color: #1a1a1a;
-    display: block;
+  .campaign-panel:hover .campaign-panel-label-hover {
+    transform: translateY(0);
   }
 
   .campaign-panel-hover-action {
     font-family: 'SF Pro Display', 'Cinzel', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 400;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: #1a1a1a;
   }
 
   .campaign-panel-hover-price {
     font-family: 'SF Pro Display', 'Cinzel', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 300;
     letter-spacing: 0.08em;
     color: #1a1a1a;
@@ -1919,14 +1920,12 @@
     <div class="campaign-panel-img-wrap">
       <img src="Plain Background.PNG" alt="Terre Natale fragrance">
       <div class="campaign-panel-label">
-        <div class="campaign-panel-label-default">
-          <span class="campaign-panel-eyebrow">Eau de Parfum</span>
-          <span class="campaign-panel-name">Terre Natale</span>
-        </div>
-        <div class="campaign-panel-label-hover">
-          <span class="campaign-panel-hover-action">Add to cart</span>
-          <span class="campaign-panel-hover-price">$35</span>
-        </div>
+        <span class="campaign-panel-eyebrow">Eau de Parfum</span>
+        <span class="campaign-panel-name">Terre Natale</span>
+      </div>
+      <div class="campaign-panel-label-hover">
+        <span class="campaign-panel-hover-action">Add to cart</span>
+        <span class="campaign-panel-hover-price">$35</span>
       </div>
     </div>
   </a>
