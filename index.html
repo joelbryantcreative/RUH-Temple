@@ -404,6 +404,7 @@
     position: relative;
     overflow: hidden;
     aspect-ratio: 3 / 4;
+    background: #f5f0ea;
   }
 
   .campaign-panel img {
@@ -420,28 +421,70 @@
 
   .campaign-panel-overlay { display: none; }
 
+  /* Label sits inside the image, bottom-left */
   .campaign-panel-label {
-    padding: 12px 4px 0;
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 16px 16px;
+    z-index: 2;
   }
+
+  .campaign-panel-label-default {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    transition: opacity 0.25s ease;
+  }
+
+  .campaign-panel-label-hover {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 16px;
+    background: #fff;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .campaign-panel:hover .campaign-panel-label-default { opacity: 0; }
+  .campaign-panel:hover .campaign-panel-label-hover { opacity: 1; }
 
   .campaign-panel-eyebrow {
     font-family: 'SF Pro Display', 'Cinzel', sans-serif;
     font-size: 9px;
     font-weight: 300;
     letter-spacing: 0.3em;
-    color: #888;
+    color: #1a1a1a;
     text-transform: uppercase;
     display: block;
-    margin-bottom: 4px;
   }
 
   .campaign-panel-name {
     font-family: 'SF Pro Display', 'Cinzel', sans-serif;
-    font-size: 13px;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    color: #1a1a1a;
+    display: block;
+  }
+
+  .campaign-panel-hover-action {
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #1a1a1a;
+  }
+
+  .campaign-panel-hover-price {
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 11px;
     font-weight: 300;
     letter-spacing: 0.08em;
     color: #1a1a1a;
-    display: block;
   }
 
   /* Placeholder panels (until real photos are uploaded) */
@@ -1871,14 +1914,20 @@
 <!-- CAMPAIGN GRID -->
 <div class="campaign-grid">
 
-  <!-- Panel 1: Product shot → product page (label below image) -->
+  <!-- Panel 1: Product shot → product page -->
   <a href="product.html" class="campaign-panel">
     <div class="campaign-panel-img-wrap">
       <img src="Plain Background.PNG" alt="Terre Natale fragrance">
-    </div>
-    <div class="campaign-panel-label">
-      <span class="campaign-panel-eyebrow">Eau de Parfum</span>
-      <span class="campaign-panel-name">Terre Natale</span>
+      <div class="campaign-panel-label">
+        <div class="campaign-panel-label-default">
+          <span class="campaign-panel-eyebrow">Eau de Parfum</span>
+          <span class="campaign-panel-name">Terre Natale</span>
+        </div>
+        <div class="campaign-panel-label-hover">
+          <span class="campaign-panel-hover-action">Add to cart</span>
+          <span class="campaign-panel-hover-price">$35</span>
+        </div>
+      </div>
     </div>
   </a>
 
