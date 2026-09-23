@@ -187,6 +187,17 @@
     border: 1px solid transparent;
   }
   .visual-thumb.active, .visual-thumb:hover { opacity: 1; border-color: #1a1a1a; }
+  .thumb-label {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: rgba(26,26,26,0.65);
+    color: #fff;
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 7px; letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 3px 0;
+  }
+  .sample-thumb { position: relative; }
   .visual-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   /* RIGHT: INFO */
@@ -406,13 +417,11 @@
     </div>
     <div class="visual-thumbs">
       <div class="visual-thumb active" onclick="setImg('Terre Natale Bottle.png', this)">
-        <img src="Terre Natale Bottle.png" alt="">
+        <img src="Terre Natale Bottle.png" alt="Full Bottle">
       </div>
-      <div class="visual-thumb" onclick="setImg('Plain Background.PNG', this)">
-        <img src="Plain Background.PNG" alt="">
-      </div>
-      <div class="visual-thumb" onclick="setImg('Terre Natale Imagery.JPG', this)">
-        <img src="Terre Natale Imagery.JPG" alt="">
+      <div class="visual-thumb sample-thumb" onclick="setImg('Plain Background.PNG', this)">
+        <img src="Plain Background.PNG" alt="5ml Sample">
+        <span class="thumb-label">Sample</span>
       </div>
     </div>
   </div>
@@ -448,19 +457,19 @@
     <div class="pricing">
       <p class="pricing-label">Choose Your Experience</p>
       <div class="pricing-options">
-        <div class="pricing-option selected" onclick="selectOption(this)">
-          <div class="option-left">
-            <span class="option-name">Sample</span>
-            <span class="option-desc">5 ml · Discover the ritual</span>
-          </div>
-          <span class="option-price">$300</span>
-        </div>
-        <div class="pricing-option" onclick="selectOption(this)">
+        <div class="pricing-option selected" data-variant="full-bottle" onclick="selectOption(this)">
           <div class="option-left">
             <span class="option-name">Full Bottle</span>
             <span class="option-desc">50 ml · The complete vessel</span>
           </div>
-          <span class="option-price">TBC</span>
+          <span class="option-price">$300</span>
+        </div>
+        <div class="pricing-option" data-variant="sample" onclick="selectOption(this)">
+          <div class="option-left">
+            <span class="option-name">Sample</span>
+            <span class="option-desc">5 ml · Discover the ritual</span>
+          </div>
+          <span class="option-price">$35</span>
         </div>
       </div>
     </div>
@@ -509,6 +518,14 @@
   function selectOption(el) {
     document.querySelectorAll('.pricing-option').forEach(o => o.classList.remove('selected'));
     el.classList.add('selected');
+    // Switch main image to match option
+    const variant = el.dataset.variant;
+    const thumbs = document.querySelectorAll('.visual-thumb');
+    if (variant === 'full-bottle') {
+      setImg('Terre Natale Bottle.png', thumbs[0]);
+    } else {
+      setImg('Plain Background.PNG', thumbs[1]);
+    }
   }
 
   function setImg(src, thumb) {
