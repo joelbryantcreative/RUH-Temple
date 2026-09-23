@@ -436,33 +436,32 @@
 
   .campaign-panel-overlay { display: none; }
 
-  /* Info bar — always visible on image, left + right */
+  /* Info bar — always visible, pinned to bottom of image */
   .campaign-panel-label {
     position: absolute;
-    bottom: 56px; left: 0; right: 0;
+    bottom: 0; left: 0; right: 0;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 0 16px 16px;
+    padding: 20px 18px;
     z-index: 2;
     pointer-events: none;
   }
 
   .campaign-panel-eyebrow {
     font-family: 'SF Pro Display', 'Cinzel', sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    letter-spacing: 0.04em;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     color: #1a1a1a;
     display: block;
   }
 
   .campaign-panel-name {
     font-family: 'SF Pro Display', 'Cinzel', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     color: #1a1a1a;
     display: block;
     text-align: right;
@@ -475,7 +474,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 18px 16px;
+    padding: 20px 18px;
     background: #fff;
     transform: translateY(100%);
     transition: transform 0.3s ease;
@@ -488,18 +487,17 @@
 
   .campaign-panel-hover-action {
     font-family: 'SF Pro Display', 'Cinzel', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     color: #1a1a1a;
   }
 
   .campaign-panel-hover-price {
     font-family: 'SF Pro Display', 'Cinzel', sans-serif;
-    font-size: 12px;
-    font-weight: 300;
-    letter-spacing: 0.08em;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     color: #1a1a1a;
   }
 
