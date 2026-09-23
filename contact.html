@@ -8,6 +8,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Cormorant+SC:wght@300;400&display=swap" rel="stylesheet">
 <style>
+  @font-face {
+    font-family: 'SF Pro Display';
+    src: url('SF-Pro-Display-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
   :root {
     --ivory: #EFE7DA;
     --sand: #C4AA82;
@@ -73,38 +80,47 @@
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 32px 60px;
-    display: flex;
-    justify-content: space-between;
+    z-index: 300;
+    padding: 0 60px;
+    height: 72px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    background: linear-gradient(to bottom, rgba(15,13,10,0.8) 0%, transparent 100%);
+    background: #fff;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
   }
 
   .nav-logo {
-    font-family: 'Cormorant SC', serif;
-    font-size: 18px;
-    letter-spacing: 0.2em;
-    color: var(--ivory);
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 0.28em;
+    color: #1a1a1a;
     text-decoration: none;
+    text-align: center;
+    white-space: nowrap;
+    grid-column: 2;
   }
 
   .nav-links {
     display: flex;
-    gap: 40px;
+    gap: 36px;
     list-style: none;
+    grid-column: 1;
   }
   .nav-links a {
-    font-family: 'Cinzel', serif;
-    font-size: 11px;
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 10px;
     font-weight: 300;
-    letter-spacing: 0.3em;
-    color: var(--tan);
+    letter-spacing: 0.18em;
+    color: #2a2a2a;
     text-decoration: none;
     text-transform: uppercase;
-    transition: color 0.4s;
+    transition: color 0.3s;
   }
-  .nav-links a:hover { color: var(--ivory); }
+  .nav-links a:hover { color: #000; }
+
+  .nav-right { grid-column: 3; display: flex; justify-content: flex-end; }
 
   .hamburger {
     display: none;
@@ -119,7 +135,7 @@
     display: block;
     width: 22px;
     height: 1px;
-    background: var(--tan);
+    background: #1a1a1a;
     transition: all 0.3s;
   }
 
@@ -127,7 +143,7 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(15,13,10,0.97);
+    background: rgba(255,255,255,0.98);
     z-index: 200;
     flex-direction: column;
     align-items: center;
@@ -136,17 +152,18 @@
   }
   .mobile-nav.open { display: flex; }
   .mobile-nav-link {
-    font-family: 'Cinzel', serif;
-    font-size: 14px;
-    letter-spacing: 0.3em;
-    color: var(--tan);
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    color: #2a2a2a;
     text-decoration: none;
     text-transform: uppercase;
     transition: color 0.4s;
   }
-  .mobile-nav-link:hover { color: var(--ivory); }
+  .mobile-nav-link:hover { color: #000; }
 
   @media (max-width: 768px) {
+    nav { padding: 0 24px; }
     .nav-links { display: none; }
     .hamburger { display: flex; }
   }
@@ -408,15 +425,17 @@
 </div>
 
 <nav>
-  <a href="index.html" class="nav-logo">RŪḤ</a>
   <ul class="nav-links">
     <li><a href="shop.html">Shop</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <a href="index.html" class="nav-logo">RŪḤ TEMPLE</a>
+  <div class="nav-right">
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <div class="page">
