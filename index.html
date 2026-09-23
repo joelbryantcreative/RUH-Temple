@@ -1464,22 +1464,7 @@
     letter-spacing: 0.05em;
   }
 
-  .footer-links {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-  }
-
-  .footer-links a {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    letter-spacing: 0.3em;
-    color: var(--earth);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-
-  .footer-links a:hover { color: var(--sand); }
+  /* old footer-links removed — new footer styles below */
 
   /* SCROLL REVEALS */
   .reveal {
@@ -1771,6 +1756,9 @@
     background: #fff;
     border-top: 1px solid rgba(0,0,0,0.08);
     padding: 80px 60px 40px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
   }
   .footer-top {
     display: grid;
@@ -1911,6 +1899,9 @@
   </div>
 </section>
 
+<!-- WHITE CONTENT AREA -->
+<div style="background:#fff;width:100%;">
+
 <!-- MARQUEE -->
 <!-- CAMPAIGN GRID -->
 <div class="campaign-grid">
@@ -2041,6 +2032,8 @@
     <p>Handcrafted in Byron Bay &nbsp;·&nbsp; New Ancient</p>
   </div>
 </footer>
+
+</div><!-- end white content area -->
 
 
 <script>
