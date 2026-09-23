@@ -181,56 +181,45 @@
     margin-bottom: 32px;
   }
 
-  .hero-logo {
-    font-family: 'Cormorant SC', serif;
-    font-size: clamp(72px, 14vw, 160px);
+  .hero-campaign-label {
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: clamp(10px, 1.2vw, 12px);
     font-weight: 300;
-    letter-spacing: 0.12em;
-    line-height: 0.9;
-    color: var(--ivory);
-    opacity: 0;
-    animation: fadeUp 1.4s ease 0.8s forwards;
-    position: relative;
-  }
-
-  .hero-logo::after {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 1px;
-    background: var(--sand);
-    margin: 24px auto 0;
-    opacity: 0;
-    animation: fadeIn 1s ease 1.8s forwards;
-  }
-
-  .hero-subtitle {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(11px, 1.5vw, 14px);
-    letter-spacing: 0.45em;
-    color: var(--sand);
+    letter-spacing: 0.4em;
+    color: rgba(239,231,218,0.6);
     text-transform: uppercase;
     opacity: 0;
-    animation: fadeUp 1.2s ease 1.2s forwards;
-    margin-top: 28px;
+    animation: fadeUp 1s ease 0.8s forwards;
+    margin-bottom: 20px;
   }
 
-  .hero-tagline {
+  .hero-campaign-name {
+    font-family: 'Cormorant SC', serif;
+    font-size: clamp(32px, 5vw, 64px);
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    color: var(--ivory);
+    line-height: 1;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 1s forwards;
+  }
+
+  .hero-campaign-sub {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: clamp(14px, 2vw, 18px);
+    font-size: clamp(14px, 1.6vw, 18px);
     font-weight: 300;
     color: var(--tan);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     opacity: 0;
-    animation: fadeUp 1.2s ease 1.5s forwards;
-    margin-top: 20px;
+    animation: fadeUp 1s ease 1.3s forwards;
+    margin-top: 16px;
   }
 
   .hero-cta {
-    margin-top: 56px;
+    margin-top: 48px;
     opacity: 0;
-    animation: fadeUp 1.2s ease 1.8s forwards;
+    animation: fadeUp 1.2s ease 1.6s forwards;
   }
 
   .btn-primary {
@@ -1545,11 +1534,11 @@
   <div class="hero-smoke"></div>
 
   <div class="hero-content">
-    <h1 class="hero-logo">RŪḤ</h1>
-    <p class="hero-subtitle">Temple</p>
-    <p class="hero-tagline">A fragrance of soul, memory, and warmth.</p>
+    <p class="hero-campaign-label">Now available</p>
+    <h1 class="hero-campaign-name">Terre Natale</h1>
+    <p class="hero-campaign-sub">A fragrance of soul, memory, and warmth.</p>
     <div class="hero-cta">
-      <a href="#acquire" class="btn-primary">Discover</a>
+      <a href="shop.html" class="btn-primary">Discover</a>
     </div>
   </div>
 
