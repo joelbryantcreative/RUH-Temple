@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Origine — RŪḤ Temple</title>
+<title>Terre Natale — RŪḤ Temple</title>
 <link rel="icon" href="Black Favicon 2.png" media="(prefers-color-scheme: light)">
 <link rel="icon" href="White Favicon.png" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="Black Favicon 2.png">
-<meta name="description" content="Origine — First Edition. A 50ml fragrance of soul, memory, and warmth. Handcrafted in Byron Bay, rooted in Algerian and French heritage. Pre-order now.">
+<meta name="description" content="Terre Natale — Eau de Parfum. A fragrance of soul, memory, and warmth. Handcrafted in Byron Bay, rooted in Algerian and French heritage.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Cormorant+SC:wght@300;400;500&display=swap" rel="stylesheet">
@@ -19,36 +19,19 @@
     font-style: normal;
     font-display: swap;
   }
-  :root {
-    --ivory: #EFE7DA;
-    --sand: #C4AA82;
-    --tan: #A49070;
-    --earth: #6D5840;
-    --dark: #3A3028;
-    --darker: #1E1812;
-    --deepest: #0F0D0A;
-  }
 
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; background: #fff; }
 
   body {
-    background: var(--deepest);
-    color: var(--ivory);
+    background: #fff;
+    color: #1a1a1a;
     font-family: 'Cormorant Garamond', Georgia, serif;
     min-height: 100vh;
     overflow-x: hidden;
   }
 
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-    opacity: 0.035; pointer-events: none; z-index: 1000;
-  }
-
-
-  /* ANNOUNCEMENT BANNER */
+  /* ANNOUNCEMENT BAR */
   .announcement-bar {
     background: #1a1a1a;
     color: rgba(255,255,255,0.85);
@@ -62,47 +45,72 @@
     align-items: center;
     justify-content: center;
     padding: 0 20px;
-    position: fixed;
-    top: 0; left: 0; right: 0;
+    position: relative;
     z-index: 400;
+    text-transform: uppercase;
   }
+
   /* NAV */
   nav {
-    position: fixed; top: 40px; left: 0; right: 0; z-index: 300;
-    padding: 0 60px; height: 100px;
-    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
-    background: #fff; border-bottom: 1px solid rgba(0,0,0,0.07);
+    position: sticky;
+    top: 0;
+    z-index: 300;
+    height: 100px;
+    padding: 0 60px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    background: #fff;
+    border-bottom: 1px solid rgba(0,0,0,0.18);
   }
   .nav-logo-img { height: 60px; width: auto; display: block; }
   .nav-logo {
-    font-family: 'SF Pro Display', 'Cinzel', sans-serif; font-size: 13px; font-weight: 300;
-    letter-spacing: 0.28em; color: #1a1a1a; text-decoration: none;
-    text-align: center; white-space: nowrap; grid-column: 2;
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 13px; font-weight: 300;
+    letter-spacing: 0.28em; color: #1a1a1a;
+    text-decoration: none; text-align: center;
+    white-space: nowrap; grid-column: 2;
   }
   .nav-links { display: flex; gap: 48px; list-style: none; grid-column: 1; }
   .nav-links a {
-    font-family: 'SF Pro Display', 'Cinzel', sans-serif; font-size: 12px; font-weight: 300;
-    letter-spacing: 0.18em; color: #2a2a2a; text-decoration: none;
-    text-transform: uppercase; transition: color 0.3s;
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 14px; font-weight: 300;
+    letter-spacing: 0.02em; color: #2a2a2a;
+    text-decoration: none; transition: color 0.3s;
   }
   .nav-links a:hover { color: #000; }
-  .nav-right { grid-column: 3; display: flex; justify-content: flex-end; }
+  .nav-right {
+    grid-column: 3;
+    display: flex; justify-content: flex-end; align-items: center; gap: 20px;
+  }
+  .nav-cart {
+    background: none; border: none; cursor: pointer;
+    padding: 4px; display: flex; align-items: center;
+    color: #2a2a2a; transition: color 0.3s;
+  }
+  .nav-cart:hover { color: #000; }
+  .nav-cart svg { display: block; }
+
   .hamburger {
     display: none; flex-direction: column; gap: 5px;
     background: none; border: none; cursor: pointer; padding: 4px;
   }
   .hamburger span { display: block; width: 22px; height: 1px; background: #1a1a1a; transition: all 0.3s; }
+
   .mobile-nav {
     display: none; position: fixed; inset: 0;
-    background: rgba(255,255,255,0.98); z-index: 200;
+    background: rgba(255,255,255,0.98); z-index: 500;
     flex-direction: column; align-items: center; justify-content: center; gap: 40px;
   }
   .mobile-nav.open { display: flex; }
   .mobile-nav-link {
-    font-family: 'SF Pro Display', 'Cinzel', sans-serif; font-size: 13px; letter-spacing: 0.25em;
-    color: #2a2a2a; text-decoration: none; text-transform: uppercase; transition: color 0.4s;
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 13px; letter-spacing: 0.25em;
+    color: #2a2a2a; text-decoration: none;
+    text-transform: uppercase; transition: color 0.4s;
   }
   .mobile-nav-link:hover { color: #000; }
+
   @media (max-width: 768px) {
     nav { padding: 0 24px; }
     .nav-links { display: none; }
@@ -111,21 +119,20 @@
 
   /* BREADCRUMB */
   .breadcrumb {
-    padding: 120px 60px 0;
-    font-family: 'Cinzel', serif;
+    padding: 40px 60px 0;
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
     font-size: 9px; letter-spacing: 0.3em;
-    color: var(--earth); text-transform: uppercase;
-    opacity: 0; animation: fadeIn 1s ease 0.3s forwards;
+    color: #aaa; text-transform: uppercase;
   }
-  .breadcrumb a { color: var(--earth); text-decoration: none; transition: color 0.4s; }
-  .breadcrumb a:hover { color: var(--tan); }
+  .breadcrumb a { color: #aaa; text-decoration: none; transition: color 0.3s; }
+  .breadcrumb a:hover { color: #1a1a1a; }
   .breadcrumb span { margin: 0 8px; }
 
   /* PRODUCT LAYOUT */
   .product {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 60px 60px 120px;
+    padding: 48px 60px 140px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
@@ -137,129 +144,146 @@
     position: sticky;
     top: 120px;
     opacity: 0;
-    animation: fadeUp 1.2s ease 0.5s forwards;
+    animation: fadeUp 1.2s ease 0.3s forwards;
   }
 
   .visual-frame {
     aspect-ratio: 3 / 4;
-    border: 1px solid rgba(196,170,130,0.08);
-    display: flex; align-items: center; justify-content: center;
-    position: relative; overflow: hidden;
-    background: rgba(255,255,255,0.01);
+    background: #f5f3f0;
+    overflow: hidden;
+    position: relative;
   }
 
-  .visual-glow {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at 50% 80%, rgba(109,88,64,0.2) 0%, transparent 65%);
-    pointer-events: none;
+  .visual-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   .visual-badge {
     position: absolute; top: 20px; left: 20px;
-    font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 0.3em;
-    text-transform: uppercase; color: var(--sand);
-    border: 1px solid rgba(196,170,130,0.3);
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 8px; letter-spacing: 0.3em;
+    text-transform: uppercase; color: #fff;
+    background: rgba(26,26,26,0.75);
     padding: 4px 10px;
-    background: rgba(15,13,10,0.7);
   }
 
-  .visual-size {
-    position: absolute; bottom: 20px; right: 20px;
-    font-family: 'Cinzel', serif; font-size: 8px; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--earth);
+  /* Thumbnail strip */
+  .visual-thumbs {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
   }
+  .visual-thumb {
+    width: 72px;
+    aspect-ratio: 3 / 4;
+    background: #f0ede9;
+    overflow: hidden;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+    border: 1px solid transparent;
+  }
+  .visual-thumb.active, .visual-thumb:hover { opacity: 1; border-color: #1a1a1a; }
+  .visual-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
   /* RIGHT: INFO */
   .product-info {
-    padding-top: 20px;
+    padding-top: 8px;
     opacity: 0;
-    animation: fadeUp 1.2s ease 0.7s forwards;
+    animation: fadeUp 1.2s ease 0.5s forwards;
   }
 
   .product-label {
-    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.5em;
-    color: var(--earth); text-transform: uppercase; margin-bottom: 12px;
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 9px; letter-spacing: 0.5em;
+    color: #999; text-transform: uppercase; margin-bottom: 12px;
   }
 
   .product-name {
     font-family: 'Cormorant SC', serif;
-    font-size: clamp(36px, 5vw, 56px); font-weight: 300;
-    letter-spacing: 0.1em; color: var(--ivory); line-height: 1;
+    font-size: clamp(32px, 4.5vw, 52px); font-weight: 300;
+    letter-spacing: 0.1em; color: #1a1a1a; line-height: 1;
     margin-bottom: 20px;
   }
 
   .product-tagline {
     font-family: 'Cormorant Garamond', serif;
-    font-style: italic; font-size: clamp(16px, 2vw, 20px);
-    font-weight: 300; color: var(--tan); letter-spacing: 0.03em;
-    line-height: 1.7; margin-bottom: 36px;
+    font-style: italic; font-size: clamp(15px, 1.8vw, 19px);
+    font-weight: 300; color: #777; letter-spacing: 0.02em;
+    line-height: 1.8; margin-bottom: 36px;
   }
 
   .product-divider {
     width: 40px; height: 1px;
-    background: rgba(196,170,130,0.2); margin-bottom: 36px;
+    background: rgba(0,0,0,0.12); margin-bottom: 36px;
   }
 
   /* SCENT PROFILE */
   .scent-section { margin-bottom: 40px; }
   .scent-label {
-    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.4em;
-    color: var(--earth); text-transform: uppercase; margin-bottom: 16px;
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 9px; letter-spacing: 0.4em;
+    color: #999; text-transform: uppercase; margin-bottom: 16px;
   }
-  .scent-notes { display: flex; flex-direction: column; gap: 12px; }
+  .scent-notes { display: flex; flex-direction: column; gap: 0; }
   .scent-note {
     display: flex; justify-content: space-between; align-items: baseline;
-    padding-bottom: 12px;
-    border-bottom: 1px solid rgba(196,170,130,0.06);
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
   }
   .note-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 16px; font-weight: 300; color: var(--ivory); letter-spacing: 0.04em;
+    font-size: 16px; font-weight: 300; color: #1a1a1a; letter-spacing: 0.03em;
   }
   .note-desc {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic; font-size: 13px; font-weight: 300;
-    color: var(--tan); letter-spacing: 0.03em;
+    color: #999; letter-spacing: 0.02em;
   }
 
   /* PRICING */
   .pricing { margin-bottom: 36px; }
   .pricing-label {
-    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.4em;
-    color: var(--earth); text-transform: uppercase; margin-bottom: 16px;
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 9px; letter-spacing: 0.4em;
+    color: #999; text-transform: uppercase; margin-bottom: 16px;
   }
   .pricing-options { display: flex; flex-direction: column; gap: 2px; }
 
   .pricing-option {
     display: flex; justify-content: space-between; align-items: center;
     padding: 16px 20px;
-    border: 1px solid rgba(196,170,130,0.08);
-    cursor: pointer; transition: border-color 0.4s, background 0.4s;
+    border: 1px solid rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: border-color 0.3s, background 0.3s;
     position: relative;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
   }
-  .pricing-option:hover, .pricing-option.selected {
-    border-color: rgba(196,170,130,0.3);
-    background: rgba(196,170,130,0.04);
+  .pricing-option:hover { border-color: rgba(0,0,0,0.3); }
+  .pricing-option.selected {
+    border-color: #1a1a1a;
+    background: rgba(0,0,0,0.02);
   }
   .pricing-option.selected::before {
     content: '';
     position: absolute; left: 0; top: 0; bottom: 0;
-    width: 2px; background: var(--sand);
+    width: 2px; background: #1a1a1a;
   }
   .option-left { display: flex; flex-direction: column; gap: 4px; }
   .option-name {
-    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.2em;
-    color: var(--ivory); text-transform: uppercase;
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 10px; letter-spacing: 0.2em;
+    color: #1a1a1a; text-transform: uppercase;
   }
   .option-desc {
     font-family: 'Cormorant Garamond', serif;
-    font-style: italic; font-size: 13px; color: var(--tan); letter-spacing: 0.02em;
+    font-style: italic; font-size: 13px; color: #999; letter-spacing: 0.02em;
   }
   .option-price {
     font-family: 'Cormorant SC', serif;
-    font-size: 18px; font-weight: 300; color: var(--ivory); letter-spacing: 0.05em;
+    font-size: 18px; font-weight: 300; color: #1a1a1a; letter-spacing: 0.05em;
   }
 
   /* CTA */
@@ -267,88 +291,73 @@
 
   .btn-preorder {
     display: block; width: 100%;
-    background: var(--sand); border: 1px solid var(--sand);
+    background: #1a1a1a; border: 1px solid #1a1a1a;
     padding: 20px;
-    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 0.4em;
-    color: var(--deepest); text-transform: uppercase;
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 10px; letter-spacing: 0.4em;
+    color: #fff; text-transform: uppercase;
     text-align: center; text-decoration: none;
-    transition: all 0.5s;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
+    transition: all 0.4s;
     cursor: pointer;
   }
-  .btn-preorder:hover { background: var(--ivory); border-color: var(--ivory); }
+  .btn-preorder:hover { background: #333; border-color: #333; }
 
   .pre-note {
     text-align: center; margin-top: 12px;
     font-family: 'Cormorant Garamond', serif;
-    font-style: italic; font-size: 13px; color: var(--earth); letter-spacing: 0.02em;
+    font-style: italic; font-size: 13px; color: #aaa; letter-spacing: 0.02em;
   }
 
   /* DETAILS */
   .details-section { margin-bottom: 40px; }
   .details-label {
-    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.4em;
-    color: var(--earth); text-transform: uppercase; margin-bottom: 16px;
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 9px; letter-spacing: 0.4em;
+    color: #999; text-transform: uppercase; margin-bottom: 16px;
   }
   .details-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
   .details-list li {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 15px; font-weight: 300; color: var(--tan); letter-spacing: 0.02em;
-    padding-left: 14px; position: relative; line-height: 1.5;
+    font-size: 15px; font-weight: 300; color: #555; letter-spacing: 0.02em;
+    padding-left: 14px; position: relative; line-height: 1.6;
   }
-  .details-list li::before {
-    content: '·'; position: absolute; left: 0; color: var(--earth);
-  }
+  .details-list li::before { content: '·'; position: absolute; left: 0; color: #aaa; }
 
-  /* RITUAL STRIP */
+  /* RITUAL */
   .ritual-strip {
-    border-top: 1px solid rgba(196,170,130,0.08);
+    border-top: 1px solid rgba(0,0,0,0.08);
     padding-top: 32px;
   }
   .ritual-label {
-    font-family: 'Cinzel', serif; font-size: 9px; letter-spacing: 0.4em;
-    color: var(--earth); text-transform: uppercase; margin-bottom: 20px;
+    font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+    font-size: 9px; letter-spacing: 0.4em;
+    color: #999; text-transform: uppercase; margin-bottom: 20px;
   }
   .ritual-steps { display: flex; flex-direction: column; gap: 16px; }
-  .ritual-step {
-    display: flex; gap: 16px; align-items: flex-start;
-  }
+  .ritual-step { display: flex; gap: 16px; align-items: flex-start; }
   .ritual-num {
-    font-family: 'Cormorant SC', serif; font-size: 14px; color: var(--earth);
+    font-family: 'Cormorant SC', serif; font-size: 14px; color: #aaa;
     min-width: 20px; margin-top: 2px;
   }
   .ritual-text {
     font-family: 'Cormorant Garamond', serif;
-    font-style: italic; font-size: 15px; color: var(--tan);
-    line-height: 1.6; letter-spacing: 0.02em;
+    font-style: italic; font-size: 15px; color: #555;
+    line-height: 1.7; letter-spacing: 0.02em;
   }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-  }
 
   @media (max-width: 900px) {
-    .product {
-      grid-template-columns: 1fr;
-      gap: 48px; padding: 40px 24px 80px;
-    }
+    .product { grid-template-columns: 1fr; gap: 48px; padding: 40px 24px 100px; }
     .product-visual { position: static; }
-    .breadcrumb { padding: 120px 24px 0; }
-  }
-
-  @media (max-width: 600px) {
-    .breadcrumb { padding: 100px 24px 0; }
+    .breadcrumb { padding: 32px 24px 0; }
   }
 </style>
 </head>
 <body>
-
 
 <div class="mobile-nav" id="mobileNav">
   <a href="shop.html" class="mobile-nav-link">Shop</a>
@@ -357,14 +366,24 @@
 </div>
 
 <div class="announcement-bar">New Ancient — Terre Natale arriving soon</div>
+
 <nav>
   <ul class="nav-links">
     <li><a href="shop.html">Shop</a></li>
     <li><a href="about.html">About</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
-  <a href="index.html" class="nav-logo"><img src="RUH Black.png" alt="RŪḤ Temple" class="nav-logo-img"></a>
+  <a href="index.html" class="nav-logo">
+    <img src="RUH Black.png" alt="RŪḤ Temple" class="nav-logo-img">
+  </a>
   <div class="nav-right">
+    <button class="nav-cart" aria-label="Cart">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+    </button>
     <button class="hamburger" id="hamburger" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -374,63 +393,35 @@
 <p class="breadcrumb">
   <a href="shop.html">Shop</a>
   <span>→</span>
-  Origine
+  Terre Natale
 </p>
 
 <div class="product">
 
   <!-- LEFT: VISUAL -->
   <div class="product-visual">
-    <div class="visual-frame">
-      <div class="visual-glow"></div>
-      <span class="visual-badge">Pre-Order</span>
-      <span class="visual-size">50 ml</span>
-      <svg viewBox="0 0 220 340" width="180" xmlns="http://www.w3.org/2000/svg" style="opacity:0.9;">
-        <defs>
-          <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#C4AA82;stop-opacity:1"/>
-            <stop offset="35%" style="stop-color:#A49070;stop-opacity:1"/>
-            <stop offset="65%" style="stop-color:#8B7660;stop-opacity:1"/>
-            <stop offset="100%" style="stop-color:#6D5840;stop-opacity:1"/>
-          </linearGradient>
-          <linearGradient id="g2" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" style="stop-color:#D4BC94;stop-opacity:0.4"/>
-            <stop offset="100%" style="stop-color:#A49070;stop-opacity:0"/>
-          </linearGradient>
-          <filter id="t">
-            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" result="n"/>
-            <feColorMatrix type="saturate" values="0" in="n" result="gn"/>
-            <feBlend in="SourceGraphic" in2="gn" mode="multiply" result="bl"/>
-            <feComposite in="bl" in2="SourceGraphic" operator="in"/>
-          </filter>
-        </defs>
-        <!-- Cap -->
-        <rect x="70" y="10" width="80" height="62" rx="2" fill="url(#g1)" filter="url(#t)"/>
-        <rect x="70" y="10" width="80" height="62" rx="2" fill="url(#g2)"/>
-        <rect x="70" y="10" width="10" height="62" rx="2" fill="rgba(0,0,0,0.18)"/>
-        <!-- Neck -->
-        <rect x="82" y="70" width="56" height="18" rx="1" fill="url(#g1)"/>
-        <!-- Body -->
-        <rect x="26" y="88" width="168" height="232" rx="3" fill="url(#g1)" filter="url(#t)"/>
-        <rect x="26" y="88" width="168" height="232" rx="3" fill="url(#g2)"/>
-        <rect x="26" y="88" width="14" height="232" rx="3" fill="rgba(0,0,0,0.2)"/>
-        <rect x="180" y="88" width="14" height="232" rx="3" fill="rgba(0,0,0,0.15)"/>
-        <rect x="26" y="288" width="168" height="32" rx="3" fill="rgba(0,0,0,0.18)"/>
-        <!-- Label text -->
-        <text x="110" y="206" font-family="Georgia,serif" font-size="18" font-weight="400" fill="rgba(58,48,40,0.75)" text-anchor="middle" letter-spacing="5">RŪH</text>
-        <text x="110" y="225" font-family="Georgia,serif" font-size="8" font-weight="300" fill="rgba(58,48,40,0.6)" text-anchor="middle" letter-spacing="4">TEMPLE</text>
-        <!-- Border -->
-        <rect x="26" y="88" width="168" height="232" rx="3" fill="none" stroke="rgba(196,170,130,0.12)" stroke-width="1"/>
-        <rect x="70" y="10" width="80" height="62" rx="2" fill="none" stroke="rgba(196,170,130,0.1)" stroke-width="1"/>
-      </svg>
+    <div class="visual-frame" id="mainFrame">
+      <span class="visual-badge">New Ancient</span>
+      <img src="DSC04709.jpeg" alt="Terre Natale" id="mainImg">
+    </div>
+    <div class="visual-thumbs">
+      <div class="visual-thumb active" onclick="setImg('DSC04709.jpeg', this)">
+        <img src="DSC04709.jpeg" alt="">
+      </div>
+      <div class="visual-thumb" onclick="setImg('Plain Background.PNG', this)">
+        <img src="Plain Background.PNG" alt="">
+      </div>
+      <div class="visual-thumb" onclick="setImg('Terre Natale Imagery.JPG', this)">
+        <img src="Terre Natale Imagery.JPG" alt="">
+      </div>
     </div>
   </div>
 
   <!-- RIGHT: INFO -->
   <div class="product-info">
 
-    <p class="product-label">First Edition · 50 ml</p>
-    <h1 class="product-name">Origine</h1>
+    <p class="product-label">Eau de Parfum · 50 ml</p>
+    <h1 class="product-name">Terre Natale</h1>
     <p class="product-tagline">A fragrance of soul, memory, and warmth.<br>Ancient ceremony in a handcrafted vessel.</p>
     <div class="product-divider"></div>
 
@@ -453,18 +444,18 @@
       </div>
     </div>
 
-    <!-- PRICING OPTIONS -->
+    <!-- PRICING -->
     <div class="pricing">
       <p class="pricing-label">Choose Your Experience</p>
       <div class="pricing-options">
-        <div class="pricing-option selected" data-option="sample" onclick="selectOption(this)">
+        <div class="pricing-option selected" onclick="selectOption(this)">
           <div class="option-left">
             <span class="option-name">Sample</span>
             <span class="option-desc">5 ml · Discover the ritual</span>
           </div>
           <span class="option-price">$35</span>
         </div>
-        <div class="pricing-option" data-option="full" onclick="selectOption(this)">
+        <div class="pricing-option" onclick="selectOption(this)">
           <div class="option-left">
             <span class="option-name">Full Bottle</span>
             <span class="option-desc">50 ml · The complete vessel</span>
@@ -476,7 +467,7 @@
 
     <!-- CTA -->
     <div class="cta-section">
-      <a href="#" class="btn-preorder" id="preorderBtn">Pre-Order Now</a>
+      <a href="#" class="btn-preorder">Pre-Order Now</a>
       <p class="pre-note">Ships when ready — you will be notified personally.</p>
     </div>
 
@@ -520,6 +511,12 @@
     el.classList.add('selected');
   }
 
+  function setImg(src, thumb) {
+    document.getElementById('mainImg').src = src;
+    document.querySelectorAll('.visual-thumb').forEach(t => t.classList.remove('active'));
+    thumb.classList.add('active');
+  }
+
   const hamburger = document.getElementById('hamburger');
   const mobileNav = document.getElementById('mobileNav');
   hamburger.addEventListener('click', () => {
@@ -530,17 +527,6 @@
     link.addEventListener('click', () => {
       mobileNav.classList.remove('open');
       document.body.style.overflow = '';
-    });
-  });
-
-  document.querySelectorAll('a, button, .pricing-option').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      ring.style.width = '48px'; ring.style.height = '48px';
-      ring.style.borderColor = 'rgba(196,170,130,0.6)';
-    });
-    el.addEventListener('mouseleave', () => {
-      ring.style.width = '32px'; ring.style.height = '32px';
-      ring.style.borderColor = 'rgba(196,170,130,0.4)';
     });
   });
 </script>
