@@ -1708,31 +1708,21 @@
   /* ── PRODUCTS SECTION ── */
   .products-section {
     background: #fff;
-    padding: 100px 60px;
+    padding: 0;
   }
-  .products-inner { max-width: 1100px; margin: 0 auto; }
-  .products-eyebrow {
-    font-family: 'SF Pro Display','Cinzel',sans-serif;
-    font-size: 11px;
-    font-weight: 300;
-    letter-spacing: 0.22em;
-    color: #888;
-    text-transform: uppercase;
-    margin-bottom: 60px;
-    text-align: center;
-  }
+  .products-inner { width: 100%; }
   .products-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
   }
   .product-tile {
     text-decoration: none;
     color: inherit;
+    display: block;
   }
   .product-tile-img-wrap {
     overflow: hidden;
-    margin-bottom: 20px;
   }
   .product-tile-img-wrap img {
     width: 100%;
@@ -1742,29 +1732,17 @@
     transition: transform 0.6s ease;
   }
   .product-tile:hover .product-tile-img-wrap img { transform: scale(1.04); }
-  .product-tile-type {
+  .product-tile-label {
     font-family: 'SF Pro Display','Cinzel',sans-serif;
     font-size: 10px;
     font-weight: 300;
     letter-spacing: 0.2em;
-    color: #888;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .product-tile-name {
-    font-family: 'SF Pro Display','Cinzel',sans-serif;
-    font-size: 16px;
-    font-weight: 300;
-    letter-spacing: 0.06em;
     color: #1a1a1a;
-    margin-bottom: 6px;
-  }
-  .product-tile-price {
-    font-family: 'SF Pro Display','Cinzel',sans-serif;
-    font-size: 13px;
-    font-weight: 300;
-    letter-spacing: 0.08em;
-    color: #555;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    padding: 16px 20px;
+    display: block;
   }
 
   /* ── SITE FOOTER ── */
@@ -1987,23 +1965,30 @@
 <!-- PRODUCT OPTIONS -->
 <section class="products-section">
   <div class="products-inner">
-    <p class="products-eyebrow">The Collection</p>
     <div class="products-grid">
       <a href="product.html" class="product-tile">
         <div class="product-tile-img-wrap">
-          <img src="DSC04709.jpeg" alt="Terre Natale 2ml Sample">
+          <img src="DSC04709.jpeg" alt="Terre Natale Sample">
         </div>
-        <p class="product-tile-type">Eau de Parfum</p>
-        <p class="product-tile-name">Terre Natale — Sample</p>
-        <p class="product-tile-price">$35</p>
+        <span class="product-tile-label">Eau de Parfum</span>
       </a>
       <a href="product.html" class="product-tile">
         <div class="product-tile-img-wrap">
-          <img src="D5F8B1D0-CA51-4598-A3B0-A53684E096B0.png" alt="Terre Natale 50ml">
+          <img src="D5F8B1D0-CA51-4598-A3B0-A53684E096B0.png" alt="Terre Natale Full Bottle">
         </div>
-        <p class="product-tile-type">Eau de Parfum</p>
-        <p class="product-tile-name">Terre Natale — Full Bottle</p>
-        <p class="product-tile-price">Coming soon</p>
+        <span class="product-tile-label">Extrait de Parfum</span>
+      </a>
+      <a href="product.html" class="product-tile">
+        <div class="product-tile-img-wrap">
+          <img src="IMG_1055.jpeg" alt="The Collection">
+        </div>
+        <span class="product-tile-label">The Collection</span>
+      </a>
+      <a href="product.html" class="product-tile">
+        <div class="product-tile-img-wrap">
+          <img src="IMG_1025.jpeg" alt="Gift &amp; Discovery">
+        </div>
+        <span class="product-tile-label">Gift &amp; Discovery</span>
       </a>
     </div>
   </div>
