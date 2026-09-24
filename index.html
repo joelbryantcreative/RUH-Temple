@@ -445,6 +445,7 @@
     display: block;
     transition: transform 0.7s ease;
   }
+  #bottle-img { transition: none; }
 
   .campaign-panel:hover img {
     transform: scale(1);
@@ -2113,9 +2114,19 @@
 <script>
   const bottleImg = document.getElementById('bottle-img');
   if (bottleImg) {
+    // Preload hover image
+    const preload = new Image();
+    preload.src = 'David Hands Bottle.JPG';
+
+    bottleImg.style.transition = 'none';
     const panel = document.getElementById('bottle-panel');
-    panel.addEventListener('mouseenter', () => { bottleImg.src = 'David Hands Bottle.JPG'; });
-    panel.addEventListener('mouseleave', () => { bottleImg.src = 'Terre Natale Bottle.png'; });
+    panel.addEventListener('mouseenter', () => {
+      bottleImg.style.transform = 'scale(1)';
+      bottleImg.src = 'David Hands Bottle.JPG';
+    });
+    panel.addEventListener('mouseleave', () => {
+      bottleImg.src = 'Terre Natale Bottle.png';
+    });
   }
 </script>
 </body>
