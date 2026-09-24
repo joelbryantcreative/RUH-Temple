@@ -1909,9 +1909,9 @@
 <div class="campaign-grid">
 
   <!-- Panel 1: Product shot → product page -->
-  <a href="product.html" class="campaign-panel">
+  <a href="product.html" class="campaign-panel" id="bottle-panel">
     <div class="campaign-panel-img-wrap">
-      <img src="Terre Natale Bottle.png" alt="Terre Natale fragrance">
+      <img src="Terre Natale Bottle.png" alt="Terre Natale fragrance" id="bottle-img">
       <div class="campaign-panel-label">
         <span class="campaign-panel-eyebrow">Eau de Parfum</span>
         <span class="campaign-panel-name">Terre Natale</span>
@@ -2110,5 +2110,13 @@
   });
 </script>
 <script src="shopify-cart.js"></script>
+<script>
+  const bottleImg = document.getElementById('bottle-img');
+  if (bottleImg) {
+    const panel = document.getElementById('bottle-panel');
+    panel.addEventListener('mouseenter', () => { bottleImg.src = 'David Hands Bottle.JPG'; });
+    panel.addEventListener('mouseleave', () => { bottleImg.src = 'Terre Natale Bottle.png'; });
+  }
+</script>
 </body>
 </html>
