@@ -3,12 +3,14 @@
   const STORE   = 'zdfyns-0v.myshopify.com';
   const TOKEN   = 'a9ce0794f6f316fc19377e8699c9fa60';
   const API_URL = `https://${STORE}/api/2026-07/graphql.json`;
-  const TERRE_NATALE_GID = 'gid://shopify/Product/10548936638786';
+  const VARIANTS = {
+    'full-bottle': 'gid://shopify/ProductVariant/56250002899266',
+    'sample':      'gid://shopify/ProductVariant/56250002932034',
+  };
 
-  let cartId      = null;
-  let cartUrl     = null;
-  let lineItems   = []; /* raw line nodes from Shopify */
-  let variantCache = null;
+  let cartId    = null;
+  let cartUrl   = null;
+  let lineItems = [];
 
   /* ── GraphQL helper ── */
   async function gql(query, variables = {}) {
@@ -26,21 +28,9 @@
     return json.data;
   }
 
-  /* ── Get first variant ── */
-  async function getVariant() {
-    if (variantCache) return variantCache;
-    const data = await gql(`
-      query($id: ID!) {
-        product(id: $id) {
-          title
-          variants(first: 1) {
-            edges { node { id title availableForSale priceV2 { amount currencyCode } } }
-          }
-        }
-      }`, { id: TERRE_NATALE_GID });
-    const node = data.product.variants.edges[0].node;
-    variantCache = { id: node.id, title: data.product.title, variantTitle: node.title, price: parseFloat(node.priceV2.amount), currency: node.priceV2.currencyCode };
-    return variantCache;
+  /* ── Resolve variant ID ── */
+  function resolveVariantId(key) {
+    return VARIANTS[key] || VARIANTS['full-bottle'];
   }
 
   /* ── Sync cart from Shopify response ── */
@@ -57,60 +47,65 @@
     return cartUrl || null;
   }
 
-  /* ── Public API ── */
-  window.RuhCart = {
-    async addTerrNatale() {
-      showLoading(true);
-      try {
-        const v = await getVariant();
-        let cart;
-        if (!cartId) {
+  /* ── Add a specific variant to cart ── */
+  async function addVariant(variantId) {
+    showLoading(true);
+    try {
+      let cart;
+      if (!cartId) {
+        const data = await gql(`
+          mutation($variantId: ID!) {
+            cartCreate(input: { lines: [{ merchandiseId: $variantId, quantity: 1 }] }) {
+              cart { id checkoutUrl lines(first: 20) { edges { node {
+                id quantity
+                merchandise { ... on ProductVariant { id title priceV2 { amount currencyCode } product { title } } }
+              }}}}
+              userErrors { message }
+            }
+          }`, { variantId });
+        if (data.cartCreate.userErrors.length) throw new Error(data.cartCreate.userErrors[0].message);
+        cart = data.cartCreate.cart;
+      } else {
+        const existing = lineItems.find(l => l.merchandise?.id === variantId);
+        if (existing) {
           const data = await gql(`
-            mutation($variantId: ID!) {
-              cartCreate(input: { lines: [{ merchandiseId: $variantId, quantity: 1 }] }) {
+            mutation($cartId: ID!, $lineId: ID!, $qty: Int!) {
+              cartLinesUpdate(cartId: $cartId, lines: [{ id: $lineId, quantity: $qty }]) {
                 cart { id checkoutUrl lines(first: 20) { edges { node {
                   id quantity
                   merchandise { ... on ProductVariant { id title priceV2 { amount currencyCode } product { title } } }
                 }}}}
-                userErrors { message }
               }
-            }`, { variantId: v.id });
-          if (data.cartCreate.userErrors.length) throw new Error(data.cartCreate.userErrors[0].message);
-          cart = data.cartCreate.cart;
+            }`, { cartId, lineId: existing.id, qty: existing.quantity + 1 });
+          cart = data.cartLinesUpdate.cart;
         } else {
-          const existing = lineItems.find(l => l.merchandise?.id === v.id);
-          if (existing) {
-            const data = await gql(`
-              mutation($cartId: ID!, $lineId: ID!, $qty: Int!) {
-                cartLinesUpdate(cartId: $cartId, lines: [{ id: $lineId, quantity: $qty }]) {
-                  cart { id checkoutUrl lines(first: 20) { edges { node {
-                    id quantity
-                    merchandise { ... on ProductVariant { id title priceV2 { amount currencyCode } product { title } } }
-                  }}}}
-                }
-              }`, { cartId, lineId: existing.id, qty: existing.quantity + 1 });
-            cart = data.cartLinesUpdate.cart;
-          } else {
-            const data = await gql(`
-              mutation($cartId: ID!, $variantId: ID!) {
-                cartLinesAdd(cartId: $cartId, lines: [{ merchandiseId: $variantId, quantity: 1 }]) {
-                  cart { id checkoutUrl lines(first: 20) { edges { node {
-                    id quantity
-                    merchandise { ... on ProductVariant { id title priceV2 { amount currencyCode } product { title } } }
-                  }}}}
-                }
-              }`, { cartId, variantId: v.id });
-            cart = data.cartLinesAdd.cart;
-          }
+          const data = await gql(`
+            mutation($cartId: ID!, $variantId: ID!) {
+              cartLinesAdd(cartId: $cartId, lines: [{ merchandiseId: $variantId, quantity: 1 }]) {
+                cart { id checkoutUrl lines(first: 20) { edges { node {
+                  id quantity
+                  merchandise { ... on ProductVariant { id title priceV2 { amount currencyCode } product { title } } }
+                }}}}
+              }
+            }`, { cartId, variantId });
+          cart = data.cartLinesAdd.cart;
         }
-        syncCart(cart);
-        openDrawer();
-      } catch (err) {
-        console.error('[RūḥCart]', err);
-        alert('Could not add to cart. Please try again.');
-      } finally {
-        showLoading(false);
       }
+      syncCart(cart);
+      openDrawer();
+    } catch (err) {
+      console.error('[RūḥCart]', err);
+      alert('Could not add to cart. Please try again.');
+    } finally {
+      showLoading(false);
+    }
+  }
+
+  /* ── Public API ── */
+  window.RuhCart = {
+    async addTerrNatale(variantKey) {
+      const id = resolveVariantId(variantKey || 'full-bottle');
+      await addVariant(id);
     },
     openDrawer,
     closeDrawer,
@@ -372,9 +367,11 @@
     if (preorderBtn) {
       preorderBtn.addEventListener('click', async (e) => {
         e.preventDefault();
+        const selected = document.querySelector('.pricing-option.selected');
+        const variantKey = selected ? selected.dataset.variant : 'full-bottle';
         const orig = preorderBtn.textContent;
         preorderBtn.textContent = 'Adding...';
-        await window.RuhCart.addTerrNatale();
+        await window.RuhCart.addTerrNatale(variantKey);
         preorderBtn.textContent = orig;
       });
     }
