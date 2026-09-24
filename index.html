@@ -504,12 +504,17 @@
     border: 1px solid rgba(0,0,0,0.15);
     box-shadow: 0 4px 20px rgba(0,0,0,0.12);
     transform: translateY(calc(100% + 16px));
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background 0.25s ease;
     z-index: 3;
+    cursor: pointer;
   }
 
   .campaign-panel:hover .campaign-panel-label-hover {
     transform: translateY(0);
+  }
+
+  .campaign-panel-label-hover:hover {
+    background: #1a1a1a;
   }
 
   .campaign-panel-hover-action {
@@ -519,6 +524,7 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: #1a1a1a;
+    transition: color 0.25s ease;
   }
 
   .campaign-panel-hover-price {
@@ -528,6 +534,12 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #1a1a1a;
+    transition: color 0.25s ease;
+  }
+
+  .campaign-panel-label-hover:hover .campaign-panel-hover-action,
+  .campaign-panel-label-hover:hover .campaign-panel-hover-price {
+    color: #fff;
   }
 
   /* Placeholder panels (until real photos are uploaded) */
