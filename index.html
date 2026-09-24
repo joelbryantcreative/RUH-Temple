@@ -2118,25 +2118,17 @@
 <script>
   const bottleImg = document.getElementById('bottle-img');
   if (bottleImg) {
-    // Preload hover image
     const preload = new Image();
     preload.src = 'David Hands Bottle.JPG';
 
-    bottleImg.style.transition = 'none';
     const panel = document.getElementById('bottle-panel');
     panel.addEventListener('mouseenter', () => {
       bottleImg.style.opacity = '0';
-      setTimeout(() => {
-        bottleImg.src = 'David Hands Bottle.JPG';
-        bottleImg.style.opacity = '1';
-      }, 400);
+      setTimeout(() => { bottleImg.src = 'David Hands Bottle.JPG'; bottleImg.style.opacity = '1'; }, 400);
     });
     panel.addEventListener('mouseleave', () => {
       bottleImg.style.opacity = '0';
-      setTimeout(() => {
-        bottleImg.src = 'Terre Natale Bottle.png';
-        bottleImg.style.opacity = '1';
-      }, 400);
+      setTimeout(() => { bottleImg.src = 'Terre Natale Bottle.png'; bottleImg.style.opacity = '1'; }, 400);
     });
   }
 </script>
