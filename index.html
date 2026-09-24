@@ -445,7 +445,15 @@
     display: block;
     transition: transform 0.7s ease;
   }
-  #bottle-img { transition: opacity 0.4s ease; }
+  #bottle-img { display: block; }
+  #bottle-img-hover {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  #bottle-panel:hover #bottle-img-hover { opacity: 1; }
 
   .campaign-panel:hover img {
     transform: scale(1);
@@ -1917,6 +1925,7 @@
   <a href="product.html" class="campaign-panel" id="bottle-panel">
     <div class="campaign-panel-img-wrap">
       <img src="Terre Natale Bottle.png" alt="Terre Natale fragrance" id="bottle-img">
+      <img src="David Hands Bottle.JPG" alt="Terre Natale" id="bottle-img-hover">
       <div class="campaign-panel-label">
         <span class="campaign-panel-eyebrow">Eau de Parfum</span>
         <span class="campaign-panel-name">Terre Natale</span>
@@ -2116,21 +2125,6 @@
 </script>
 <script src="shopify-cart.js"></script>
 <script>
-  const bottleImg = document.getElementById('bottle-img');
-  if (bottleImg) {
-    const preload = new Image();
-    preload.src = 'David Hands Bottle.JPG';
-
-    const panel = document.getElementById('bottle-panel');
-    panel.addEventListener('mouseenter', () => {
-      bottleImg.style.opacity = '0';
-      setTimeout(() => { bottleImg.src = 'David Hands Bottle.JPG'; bottleImg.style.opacity = '1'; }, 400);
-    });
-    panel.addEventListener('mouseleave', () => {
-      bottleImg.style.opacity = '0';
-      setTimeout(() => { bottleImg.src = 'Terre Natale Bottle.png'; bottleImg.style.opacity = '1'; }, 400);
-    });
-  }
 </script>
 </body>
 </html>
