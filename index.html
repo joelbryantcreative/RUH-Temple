@@ -1963,9 +1963,10 @@
       left: 12px;
       right: 12px;
     }
-    .campaign-panel:hover .campaign-panel-label {
-      bottom: 70px;
-    }
+    .campaign-panel:hover .campaign-panel-label { bottom: 12px; }
+    .campaign-panel:hover .campaign-panel-label-hover { transform: translateY(calc(100% + 16px)); opacity: 0; }
+    #bottle-panel:hover .campaign-panel-name .label-default { opacity: 1; }
+    #bottle-panel:hover .campaign-panel-name .label-hover { opacity: 0; }
   }
 
   @media (max-width: 768px) {
@@ -2322,31 +2323,35 @@
 
     var hoverImg = document.getElementById('bottle-img-hover');
 
-    panel.addEventListener('mouseenter', function () {
-      labelDefault.style.opacity = '0';
-      labelHover.style.opacity = '1';
-      // Cut in instantly — no transition
-      hoverImg.style.transition = 'none';
-      hoverImg.style.opacity = '1';
-    });
-    panel.addEventListener('mouseleave', function () {
-      labelDefault.style.opacity = '1';
-      labelHover.style.opacity = '0';
-      // Fade out slowly
-      hoverImg.style.transition = 'opacity 0.5s ease';
-      hoverImg.style.opacity = '0';
-    });
+    var isMobile = window.matchMedia('(max-width: 900px)').matches;
+
+    if (!isMobile) {
+      panel.addEventListener('mouseenter', function () {
+        labelDefault.style.opacity = '0';
+        labelHover.style.opacity = '1';
+        hoverImg.style.transition = 'none';
+        hoverImg.style.opacity = '1';
+      });
+      panel.addEventListener('mouseleave', function () {
+        labelDefault.style.opacity = '1';
+        labelHover.style.opacity = '0';
+        hoverImg.style.transition = 'opacity 0.5s ease';
+        hoverImg.style.opacity = '0';
+      });
+    }
 
     panel.addEventListener('click', function (e) {
-      if (!addBtn.contains(e.target)) {
+      if (isMobile || !addBtn.contains(e.target)) {
         window.location.href = 'product.html';
       }
     });
 
-    addBtn.addEventListener('click', function (e) {
-      e.stopPropagation();
-      window.RuhCart.addTerrNatale('full-bottle');
-    });
+    if (!isMobile) {
+      addBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        window.RuhCart.addTerrNatale('full-bottle');
+      });
+    }
   });
 </script>
 </body>
