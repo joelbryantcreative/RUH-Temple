@@ -50,6 +50,18 @@
     text-transform: uppercase;
   }
 
+  .announcement-bar a {
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: left bottom;
+    background-size: 100% 1px;
+    background-repeat: no-repeat;
+    transition: background-size 0.4s ease;
+  }
+  .announcement-bar a:hover {
+    background-size: 0% 1px;
+  }
+
   /* NAV */
   nav {
     position: sticky;
@@ -376,7 +388,7 @@
   <a href="contact.html" class="mobile-nav-link">Contact</a>
 </div>
 
-<div class="announcement-bar">NEW ANCIENT — TERRE NATALE<a href="product.html" style="color:inherit;text-decoration:underline;text-underline-offset:3px;margin-left:0.35em;">AVAILABLE NOW</a></div>
+<div class="announcement-bar">NEW ANCIENT — TERRE NATALE<a href="product.html" style="color:inherit;margin-left:0.35em;">AVAILABLE NOW</a></div>
 
 <nav>
   <ul class="nav-links">
