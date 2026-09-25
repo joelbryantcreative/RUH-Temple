@@ -1946,10 +1946,23 @@
   }
 
   @media (max-width: 768px) {
-    .editorial-section, .products-section { padding: 80px 30px; }
-    .founder-video-section { padding-top: 60px; }
+    .editorial-section { padding: 80px 30px; }
+    .products-section { padding: 0; }
+    .founder-video-section { padding-top: 60px; padding-bottom: 0; margin-bottom: 0; }
     .founder-video-header { padding: 0 30px 40px; }
-    .products-grid { grid-template-columns: 1fr; }
+    .products-grid {
+      display: flex;
+      flex-direction: row;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      gap: 0;
+    }
+    .products-grid::-webkit-scrollbar { display: none; }
+    .product-tile {
+      flex: 0 0 70vw;
+      scroll-snap-align: start;
+    }
     .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
     .footer-bottom { flex-direction: column; gap: 8px; }
     .founder-video-wrap { aspect-ratio: 9 / 16; height: auto; }
