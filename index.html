@@ -2099,7 +2099,7 @@
     <video class="founder-video" id="founderVideo" loop playsinline muted autoplay>
       <source src="6508686_Silhouette%20Shadow%20Hand%20Reaching_By_Alejandro_Campollo_Artlist_HD.mp4" type="video/mp4">
     </video>
-    <span class="mobile-play-label" id="mobilePlayLabel" style="display:none;">PLAY</span>
+    <span class="mobile-play-label" id="mobilePlayLabel" style="opacity:0;">PLAY</span>
   </div>
   <div class="video-cursor" id="videoCursor">Play</div>
 </section>
@@ -2226,7 +2226,6 @@
   if (founderVideo && mobilePlayLabel && window.matchMedia('(max-width: 900px)').matches) {
     founderVideo.pause();
     founderVideo.currentTime = 0;
-    mobilePlayLabel.style.display = 'block';
     mobilePlayLabel.style.opacity = '1';
     videoWrap.style.cursor = 'pointer';
     let touchStartX, touchStartY;
