@@ -119,7 +119,7 @@
       <div id="ruh-cart-overlay"></div>
       <div id="ruh-cart-panel">
         <div id="ruh-cart-header">
-          <span id="ruh-cart-title">Your Cart</span>
+          <span id="ruh-cart-title">Your Bag</span>
           <button id="ruh-cart-close" aria-label="Close cart">&#215;</button>
         </div>
         <div id="ruh-cart-body"></div>
