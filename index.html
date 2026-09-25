@@ -2189,8 +2189,24 @@
   document.addEventListener('DOMContentLoaded', function () {
     var panel = document.getElementById('bottle-panel');
     var addBtn = document.getElementById('bottle-add-to-bag');
+    var labelDefault = panel.querySelector('.label-default');
+    var labelHover = panel.querySelector('.label-hover');
 
     panel.style.cursor = 'pointer';
+
+    panel.addEventListener('mouseenter', function () {
+      labelDefault.style.opacity = '0';
+      labelDefault.style.transform = 'translateY(-6px)';
+      labelHover.style.opacity = '1';
+      labelHover.style.transform = 'translateY(0)';
+    });
+    panel.addEventListener('mouseleave', function () {
+      labelDefault.style.opacity = '1';
+      labelDefault.style.transform = 'translateY(0)';
+      labelHover.style.opacity = '0';
+      labelHover.style.transform = 'translateY(6px)';
+    });
+
     panel.addEventListener('click', function (e) {
       if (!addBtn.contains(e.target)) {
         window.location.href = 'product.html';
