@@ -2228,15 +2228,17 @@
     founderVideo.currentTime = 0;
     mobilePlayLabel.style.opacity = '1';
     videoWrap.style.cursor = 'pointer';
-    let touchStartX, touchStartY;
+    let touchStartX, touchStartY, touchStartTime;
     videoWrap.addEventListener('touchstart', (e) => {
       touchStartX = e.touches[0].clientX;
       touchStartY = e.touches[0].clientY;
+      touchStartTime = Date.now();
     }, { passive: true });
     videoWrap.addEventListener('touchend', (e) => {
       const dx = Math.abs(e.changedTouches[0].clientX - touchStartX);
       const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
-      if (dx > 8 || dy > 8) return; // was a scroll, ignore
+      const dt = Date.now() - touchStartTime;
+      if (dx > 8 || dy > 8 || dt > 300) return; // was a scroll or hold, ignore
       e.preventDefault();
       if (founderVideo.paused) {
         founderVideo.play();
