@@ -2227,7 +2227,15 @@
     founderVideo.currentTime = 0;
     mobilePlayLabel.style.display = 'block';
     videoWrap.style.cursor = 'pointer';
+    let touchStartX, touchStartY;
+    videoWrap.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
     videoWrap.addEventListener('touchend', (e) => {
+      const dx = Math.abs(e.changedTouches[0].clientX - touchStartX);
+      const dy = Math.abs(e.changedTouches[0].clientY - touchStartY);
+      if (dx > 8 || dy > 8) return; // was a scroll, ignore
       e.preventDefault();
       if (founderVideo.paused) {
         founderVideo.play();
