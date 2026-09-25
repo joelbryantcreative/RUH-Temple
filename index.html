@@ -1946,7 +1946,7 @@
 <div class="campaign-grid">
 
   <!-- Panel 1: Product shot → product page -->
-  <a href="product.html" class="campaign-panel" id="bottle-panel">
+  <div class="campaign-panel" id="bottle-panel">
     <div class="campaign-panel-img-wrap">
       <img src="Terre Natale Bottle.png" alt="Terre Natale fragrance" id="bottle-img">
       <img src="David Hands Bottle.JPG" alt="Terre Natale" id="bottle-img-hover">
@@ -1954,12 +1954,12 @@
         <span class="campaign-panel-eyebrow">Eau de Parfum</span>
         <span class="campaign-panel-name">Terre Natale</span>
       </div>
-      <div class="campaign-panel-label-hover">
-        <span class="campaign-panel-hover-action">Add to cart</span>
+      <div class="campaign-panel-label-hover" id="bottle-add-to-bag">
+        <span class="campaign-panel-hover-action">Add to Bag</span>
         <span class="campaign-panel-hover-price">$300</span>
       </div>
     </div>
-  </a>
+  </div>
 
   <!-- Panel 2: No label -->
   <a href="product.html" class="campaign-panel">
@@ -2149,6 +2149,22 @@
 </script>
 <script src="shopify-cart.js"></script>
 <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var panel = document.getElementById('bottle-panel');
+    var addBtn = document.getElementById('bottle-add-to-bag');
+
+    panel.style.cursor = 'pointer';
+    panel.addEventListener('click', function (e) {
+      if (!addBtn.contains(e.target)) {
+        window.location.href = 'product.html';
+      }
+    });
+
+    addBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      window.RuhCart.addTerrNatale('full-bottle');
+    });
+  });
 </script>
 </body>
 </html>
