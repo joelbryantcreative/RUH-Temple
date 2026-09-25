@@ -497,7 +497,6 @@
     opacity: 0;
     transition: opacity 0.5s ease;
   }
-  #bottle-panel:hover #bottle-img-hover { opacity: 1; }
 
   .campaign-panel:hover img {
     transform: scale(1);
@@ -2220,13 +2219,21 @@
 
     panel.style.cursor = 'pointer';
 
+    var hoverImg = document.getElementById('bottle-img-hover');
+
     panel.addEventListener('mouseenter', function () {
       labelDefault.style.opacity = '0';
       labelHover.style.opacity = '1';
+      // Cut in instantly — no transition
+      hoverImg.style.transition = 'none';
+      hoverImg.style.opacity = '1';
     });
     panel.addEventListener('mouseleave', function () {
       labelDefault.style.opacity = '1';
       labelHover.style.opacity = '0';
+      // Fade out slowly
+      hoverImg.style.transition = 'opacity 0.5s ease';
+      hoverImg.style.opacity = '0';
     });
 
     panel.addEventListener('click', function (e) {
