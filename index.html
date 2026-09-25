@@ -148,11 +148,15 @@
     grid-column: 2;
   }
 
+  .nav-left {
+    display: flex;
+    align-items: center;
+    grid-column: 1;
+  }
   .nav-links {
     display: flex;
     gap: 48px;
     list-style: none;
-    grid-column: 1;
   }
 
   .nav-links a {
@@ -1682,9 +1686,11 @@
 
   /* RESPONSIVE */
   @media (max-width: 900px) {
-    nav { padding: 0 24px; }
+    nav { padding: 0 20px; height: 72px; }
     .nav-links { display: none; }
     .hamburger { display: flex; }
+    .nav-logo-img { height: 56px; }
+    .announcement-bar { height: 44px; font-size: 10px; }
     .purpose { grid-template-columns: 1fr; gap: 60px; padding: 100px 30px; }
     .bottle-inner { grid-template-columns: 1fr; padding: 0 30px; }
     .bottle-visual { height: 360px; }
@@ -1968,11 +1974,16 @@
 <!-- NAV -->
 <div class="announcement-bar">NEW ANCIENT — TERRE NATALE<a href="product.html" style="color:inherit;margin-left:0.35em;">AVAILABLE NOW</a></div>
 <nav>
-  <ul class="nav-links">
-    <li><a href="shop.html">Shop</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
+  <div class="nav-left">
+    <ul class="nav-links">
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
   <a href="index.html" class="nav-logo"><img src="RUH Black.png" alt="RŪḤ Temple" class="nav-logo-img"></a>
   <div class="nav-right">
     <button class="nav-cart" aria-label="Cart">
