@@ -211,29 +211,33 @@
     transform: scale(1.03);
   }
 
-  /* Bottom label bar — always visible */
+  /* Bottom label bar — overlaid on image */
   .shop-tile-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 14px 18px;
-    border-top: 1px solid rgba(0,0,0,0.07);
+    align-items: flex-end;
+    padding: 16px 18px;
+    background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 100%);
   }
 
   .shop-tile-type {
     font-family: 'SF Pro Display', 'Cinzel', sans-serif;
     font-size: 11px;
-    font-weight: 300;
+    font-weight: 400;
     letter-spacing: 0.15em;
-    color: #1a1a1a;
+    color: #fff;
   }
 
   .shop-tile-price {
     font-family: 'Cormorant Garamond', serif;
     font-size: 15px;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: 0.05em;
-    color: #1a1a1a;
+    color: #fff;
   }
 
   /* "Coming Soon" badge for unavailable items */
@@ -331,12 +335,12 @@
   <a href="product.html" class="shop-tile" data-shopify="terre-natale">
     <div class="shop-tile-img-wrap">
       <img src="Terre Natale Bottle.png" alt="Terre Natale Eau de Parfum">
+      <div class="shop-tile-bar">
+        <span class="shop-tile-type">Eau de Parfum</span>
+        <span class="shop-tile-price">$300</span>
+      </div>
     </div>
     <div class="shop-tile-hover">Add to cart</div>
-    <div class="shop-tile-bar">
-      <span class="shop-tile-type">Eau de Parfum</span>
-      <span class="shop-tile-price">$300</span>
-    </div>
   </a>
 
 
@@ -345,10 +349,10 @@
     <div class="shop-tile-img-wrap">
       <img src="Coming Soon - Body Oil.png" alt="Body Oil">
       <span class="shop-tile-badge">Coming Soon</span>
-    </div>
-    <div class="shop-tile-bar">
-      <span class="shop-tile-type">Body Oil</span>
-      <span class="shop-tile-price">—</span>
+      <div class="shop-tile-bar">
+        <span class="shop-tile-type">Body Oil</span>
+        <span class="shop-tile-price">—</span>
+      </div>
     </div>
   </div>
 
@@ -357,10 +361,10 @@
     <div class="shop-tile-img-wrap">
       <img src="Coming Soon - Ritual Kit.png" alt="Ritual Kit">
       <span class="shop-tile-badge">Coming Soon</span>
-    </div>
-    <div class="shop-tile-bar">
-      <span class="shop-tile-type">Ritual Kit</span>
-      <span class="shop-tile-price">—</span>
+      <div class="shop-tile-bar">
+        <span class="shop-tile-type">Ritual Kit</span>
+        <span class="shop-tile-price">—</span>
+      </div>
     </div>
   </div>
 
@@ -368,10 +372,10 @@
   <div class="shop-tile" style="cursor:default;">
     <div class="shop-tile-img-wrap">
       <img src="Gift Cards.png" alt="Gift Card">
-    </div>
-    <div class="shop-tile-bar">
-      <span class="shop-tile-type">Gift Card</span>
-      <span class="shop-tile-price">$35+</span>
+      <div class="shop-tile-bar">
+        <span class="shop-tile-type">Gift Card</span>
+        <span class="shop-tile-price">$35+</span>
+      </div>
     </div>
   </div>
 
