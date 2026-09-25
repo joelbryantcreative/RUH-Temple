@@ -240,8 +240,13 @@
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: #fff;
-    text-decoration: underline;
-    text-underline-offset: 4px;
+    text-decoration: none;
+    /* Background underline trims the trailing letter-spacing gap so the
+       line ends exactly at the last character's right edge */
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: left bottom 0px;
+    background-size: calc(100% - 0.3em) 1px;
     opacity: 0;
     animation: fadeUp 1s ease 1.2s forwards;
     display: inline-block;
