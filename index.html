@@ -1970,6 +1970,7 @@
       color: #fff;
       pointer-events: none;
       z-index: 10;
+      transition: opacity 0.6s ease;
     }
   }
   @media (max-width: 480px) {
@@ -2226,6 +2227,7 @@
     founderVideo.pause();
     founderVideo.currentTime = 0;
     mobilePlayLabel.style.display = 'block';
+    mobilePlayLabel.style.opacity = '1';
     videoWrap.style.cursor = 'pointer';
     let touchStartX, touchStartY;
     videoWrap.addEventListener('touchstart', (e) => {
@@ -2240,9 +2242,16 @@
       if (founderVideo.paused) {
         founderVideo.play();
         mobilePlayLabel.textContent = 'PAUSE';
+        mobilePlayLabel.style.opacity = '1';
+        clearTimeout(mobilePlayLabel._fadeTimer);
+        mobilePlayLabel._fadeTimer = setTimeout(() => {
+          mobilePlayLabel.style.opacity = '0';
+        }, 800);
       } else {
         founderVideo.pause();
         mobilePlayLabel.textContent = 'PLAY';
+        mobilePlayLabel.style.opacity = '1';
+        clearTimeout(mobilePlayLabel._fadeTimer);
       }
     });
   }
