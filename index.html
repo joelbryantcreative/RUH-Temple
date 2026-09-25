@@ -570,13 +570,15 @@
     border: 1px solid rgba(0,0,0,0.15);
     box-shadow: 0 4px 20px rgba(0,0,0,0.12);
     transform: translateY(calc(100% + 16px));
-    transition: transform 0.5s ease, background 0.25s ease;
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease, background 0.25s ease;
     z-index: 3;
     cursor: pointer;
   }
 
   .campaign-panel:hover .campaign-panel-label-hover {
     transform: translateY(0);
+    opacity: 1;
   }
 
   .campaign-panel-label-hover:hover {
