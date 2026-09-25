@@ -524,23 +524,19 @@
   .campaign-panel-name .label-default,
   .campaign-panel-name .label-hover {
     display: block;
-    transition: opacity 0.35s ease, transform 0.35s ease;
   }
   .campaign-panel-name .label-hover {
     position: absolute;
     right: 0;
     bottom: 0;
     opacity: 0;
-    transform: translateY(6px);
     white-space: nowrap;
   }
   #bottle-panel:hover .campaign-panel-name .label-default {
     opacity: 0;
-    transform: translateY(-6px);
   }
   #bottle-panel:hover .campaign-panel-name .label-hover {
     opacity: 1;
-    transform: translateY(0);
   }
 
   /* Cart bar — slides up from below on hover */
@@ -2206,15 +2202,11 @@
 
     panel.addEventListener('mouseenter', function () {
       labelDefault.style.opacity = '0';
-      labelDefault.style.transform = 'translateY(-6px)';
       labelHover.style.opacity = '1';
-      labelHover.style.transform = 'translateY(0)';
     });
     panel.addEventListener('mouseleave', function () {
       labelDefault.style.opacity = '1';
-      labelDefault.style.transform = 'translateY(0)';
       labelHover.style.opacity = '0';
-      labelHover.style.transform = 'translateY(6px)';
     });
 
     panel.addEventListener('click', function (e) {
