@@ -455,6 +455,14 @@
     aspect-ratio: 3 / 4;
     background: #f5f0ea;
   }
+  .campaign-panel-img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+  }
 
   .campaign-panel img {
     width: 100%;
@@ -482,14 +490,16 @@
   /* Info bar — always visible, pinned to bottom of image */
   .campaign-panel-label {
     position: absolute;
-    bottom: 0; left: 0; right: 0;
+    bottom: 20px; left: 18px; right: 18px;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 60px 18px 20px;
-    background: linear-gradient(to top, rgba(0,0,0,0.35) 0%, transparent 100%);
-    z-index: 2;
+    z-index: 4;
     pointer-events: none;
+    transition: bottom 0.3s ease;
+  }
+  .campaign-panel:hover .campaign-panel-label {
+    bottom: 96px;
   }
 
   .campaign-panel-eyebrow {
