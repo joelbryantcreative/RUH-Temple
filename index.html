@@ -1958,6 +1958,19 @@
     .footer-bottom { flex-direction: column; gap: 8px; }
     .founder-video-wrap { aspect-ratio: 2 / 3; height: auto; }
     .founder-video { height: 100%; width: 100%; object-fit: cover; }
+    .mobile-play-label {
+      display: block;
+      position: absolute;
+      bottom: 18px;
+      left: 18px;
+      font-family: 'SF Pro Display', 'Cinzel', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: #fff;
+      pointer-events: none;
+      z-index: 10;
+    }
   }
   @media (max-width: 480px) {
     .footer-top { grid-template-columns: 1fr; }
@@ -2085,6 +2098,7 @@
     <video class="founder-video" id="founderVideo" loop playsinline muted autoplay>
       <source src="6508686_Silhouette%20Shadow%20Hand%20Reaching_By_Alejandro_Campollo_Artlist_HD.mp4" type="video/mp4">
     </video>
+    <span class="mobile-play-label" id="mobilePlayLabel" style="display:none;">PLAY</span>
   </div>
   <div class="video-cursor" id="videoCursor">Play</div>
 </section>
@@ -2202,6 +2216,25 @@
       } else {
         founderVideo.pause();
         videoCursor.textContent = 'Play';
+      }
+    });
+  }
+
+  // Mobile: pause video on load, show PLAY label, tap to toggle
+  const mobilePlayLabel = document.getElementById('mobilePlayLabel');
+  if (founderVideo && mobilePlayLabel && window.matchMedia('(max-width: 900px)').matches) {
+    founderVideo.pause();
+    founderVideo.currentTime = 0;
+    mobilePlayLabel.style.display = 'block';
+    videoWrap.style.cursor = 'pointer';
+    videoWrap.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      if (founderVideo.paused) {
+        founderVideo.play();
+        mobilePlayLabel.textContent = 'PAUSE';
+      } else {
+        founderVideo.pause();
+        mobilePlayLabel.textContent = 'PLAY';
       }
     });
   }
