@@ -1783,7 +1783,6 @@
   }
   .product-tile-img-wrap {
     overflow: hidden;
-    position: relative;
   }
   .product-tile-img-wrap img {
     width: 100%;
@@ -1794,19 +1793,15 @@
   }
   .product-tile:hover .product-tile-img-wrap img { transform: scale(1); }
   .product-tile-label {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     font-family: 'SF Pro Display','Cinzel',sans-serif;
     font-size: 10px;
-    font-weight: 400;
+    font-weight: 300;
     letter-spacing: 0.2em;
-    color: #fff;
+    color: #1a1a1a;
     text-transform: uppercase;
-    text-decoration: none;
-    padding: 32px 20px 16px;
-    background: linear-gradient(to top, rgba(0,0,0,0.45) 0%, transparent 100%);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    padding: 16px 20px;
     display: block;
   }
 
@@ -2034,26 +2029,26 @@
       <a href="product.html" class="product-tile">
         <div class="product-tile-img-wrap">
           <img src="Terre Natale Bottle.png" alt="Terre Natale Sample">
-          <span class="product-tile-label">Eau de Parfum</span>
         </div>
+        <span class="product-tile-label">Eau de Parfum</span>
       </a>
       <div class="product-tile" style="cursor:default;">
         <div class="product-tile-img-wrap">
           <img src="Coming Soon - Body Oil.png" alt="Body Oil">
-          <span class="product-tile-label">Body Oil</span>
         </div>
+        <span class="product-tile-label">Body Oil</span>
       </div>
       <div class="product-tile" style="cursor:default;">
         <div class="product-tile-img-wrap">
           <img src="Coming Soon - Ritual Kit.png" alt="Rituals">
-          <span class="product-tile-label">Rituals</span>
         </div>
+        <span class="product-tile-label">Rituals</span>
       </div>
       <div class="product-tile" style="cursor:default;">
         <div class="product-tile-img-wrap">
           <img src="Gift Cards.png" alt="Gifts">
-          <span class="product-tile-label">Gifts</span>
         </div>
+        <span class="product-tile-label">Gifts</span>
       </div>
     </div>
   </div>
