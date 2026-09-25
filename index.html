@@ -509,6 +509,28 @@
     color: #fff;
     display: block;
     text-align: right;
+    position: relative;
+  }
+  .campaign-panel-name .label-default,
+  .campaign-panel-name .label-hover {
+    display: block;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .campaign-panel-name .label-hover {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transform: translateY(6px);
+    white-space: nowrap;
+  }
+  #bottle-panel:hover .campaign-panel-name .label-default {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  #bottle-panel:hover .campaign-panel-name .label-hover {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   /* Cart bar — slides up from below on hover */
@@ -1964,7 +1986,10 @@
       <img src="David Hands Bottle.JPG" alt="Terre Natale" id="bottle-img-hover">
       <div class="campaign-panel-label">
         <span class="campaign-panel-eyebrow">Eau de Parfum</span>
-        <span class="campaign-panel-name">$300.00</span>
+        <span class="campaign-panel-name">
+          <span class="label-default">$300.00</span>
+          <span class="label-hover">Terre Natale</span>
+        </span>
       </div>
       <div class="campaign-panel-label-hover" id="bottle-add-to-bag">
         <span class="campaign-panel-hover-action">Add to Bag</span>
